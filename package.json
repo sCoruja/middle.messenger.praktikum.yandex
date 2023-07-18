@@ -1,0 +1,20 @@
+{
+  "name": "messenger",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 3000",
+    "start": "vite build && node src/server.js",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "express": "^4.18.2",
+    "vite": "^4.4.0"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.7",
+    "path": "^0.12.7",
+    "vite-plugin-handlebars": "^1.6.0"
+  }
+}
