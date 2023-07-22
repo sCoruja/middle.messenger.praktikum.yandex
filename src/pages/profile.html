@@ -4,31 +4,35 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="main.css" />
     <link rel="stylesheet" href="profile.css" />
     <title>Profile</title>
   </head>
   <body>
     <aside class="chat-list">
-      <div class="chat-list__profile">
-        <div class="profile-card">
-          <img src="#" alt="" class="profile-card__img" />
-          <h3 class="profile-card__name">Profile name</h3>
-          <a class="profile-card__link" href="/pages/profile.html"
-            >Go to the profile</a
-          >
-        </div>
+      <div class="chat-list__top-panel">
+        <a href="/pages/profile.html" class="chat-list__profile-link">ICON</a>
+        <form class="chat-list__search-form">
+          <input
+            type="text"
+            class="chat-list__search-input"
+            placeholder="search"
+          />
+        </form>
       </div>
-      <form class="chat-list__search-form">
-        <input
-          type="text"
-          class="chat-list__search-input"
-          placeholder="search"
-        />
-      </form>
       <ul class="chat-list__list">
         <li class="chat-card">
-          <img src="#" alt="" class="chat-card__img" />
+          <img
+            src="https://avatars.mds.yandex.net/i?id=2eeb65844afee5dc830414a1fc1e54c1034faa59-9215166-images-thumbs&n=13"
+            alt=""
+            class="chat-card__img"
+          />
           <h3 class="chat-card__name">Username</h3>
           <p class="chat-card__message">msg2</p>
         </li>
@@ -42,78 +46,49 @@
     </aside>
     <main class="profile">
       <div class="profile__inner">
-        <img src="#" alt="" class="profile__image" />
-        <h2 class="profile__name">Username</h2>
-        <form class="profile__form">
-          <input
-            type="text"
-            name="first_name"
-            id="first_name"
-            class="profile__input"
-            placeholder="first name"
-            disabled
+        <div class="profile__image-wrapper">
+          <img
+            src="https://avatars.mds.yandex.net/i?id=2eeb65844afee5dc830414a1fc1e54c1034faa59-9215166-images-thumbs&n=13"
+            alt=""
+            class="profile__image"
           />
-          <input
-            type="text"
-            name="second_name"
-            id="second_name"
-            class="profile__input"
-            placeholder="second name"
-            disabled
-          />
-          <input
-            type="text"
-            name="display_name"
-            id="display_name"
-            class="profile__input"
-            placeholder="display name"
-            disabled
-          />
-          <input
-            type="text"
-            name="login"
-            id="login"
-            class="profile__input"
-            placeholder="login"
-            disabled
-          />
-          <input
-            type="email"
-            name="email"
-            id="email"
-            class="profile__input"
-            placeholder="email"
-            disabled
-          />
-          <input
-            type="number"
-            name="phone"
-            id="phone"
-            class="profile__input"
-            placeholder="phone"
-            disabled
-          />
-          <input
-            type="password"
-            name="oldPassword"
-            id="oldPassword"
-            class="profile__input"
-            placeholder="old Password"
-            disabled
-          />
-          <input
-            type="password"
-            name="newPassword"
-            id="newPassword"
-            class="profile__input"
-            placeholder="new Password"
-            disabled
-          />
-          <button type="button" class="profile__button" >Change(save)</button>
-          <button type="button" class="profile__button" >Discard</button>
-        </form>
-        <a href="#" class="profile__link">Log out</a>
+        </div>
+        <div class="profile__fields">
+          <div class="profile__field">
+            <h3 class="profile__field-key">First name</h3>
+            <p class="profile__field-value">John</p>
+          </div>
+          <div class="profile__field">
+            <h3 class="profile__field-key">Second name</h3>
+            <p class="profile__field-value">Smith</p>
+          </div>
+          <div class="profile__field">
+            <h3 class="profile__field-key">Display name</h3>
+            <p class="profile__field-value">John Smith</p>
+          </div>
+          <div class="profile__field">
+            <h3 class="profile__field-key">First Login</h3>
+            <p class="profile__field-value">JSmth2023</p>
+          </div>
+          <div class="profile__field">
+            <h3 class="profile__field-key">Email</h3>
+            <p class="profile__field-value">jsmth@ya.ru</p>
+          </div>
+          <div class="profile__field">
+            <h3 class="profile__field-key">Phone</h3>
+            <p class="profile__field-value">+7 800 555 35 35</p>
+          </div>
+          <a href="#" class="profile__link">Change password</a>
+          <a href="#" class="profile__link profile__link_color_danger"
+            >Log out</a
+          >
+        </div>
       </div>
     </main>
+    <div class="overlay">
+      <div class="modal">
+        <!-- todo -->
+      </div>
+    </div>
   </body>
 </html>

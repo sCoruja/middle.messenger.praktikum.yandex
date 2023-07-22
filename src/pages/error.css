@@ -1,18 +1,30 @@
+body {
+  background-color: #0e1621;
+  overflow: hidden;
+  margin: 0;
+}
 .error-page {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  font-family: Roboto,  sans-serif;;
 }
 .error-page__code {
-    font-size: 256px;
-}
-.error-page__text {
-    position: absolute;
-    font-size: 48px;
-    transform: rotate(90deg);
+  font-size: 256px;
+  color: #fff;
 }
 .error-page__link {
+  color: #244b6d;
+  font-family: Roboto,  sans-serif;;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+}
+.error-page__link:hover {
+    color: #2f6ea5;
 }
