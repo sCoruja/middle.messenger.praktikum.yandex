@@ -1,0 +1,25 @@
+<input
+{{#if isValid}}
+  class="input__input"
+{{/if}}
+{{#unless isValid}}
+  class="input__input input__input_error"
+{{/unless}}
+{{#if id}}
+  id="{{id}}"
+{{/if}}
+{{#if type}}
+  type="{{type}}"
+{{/if}}
+{{#unless type}}
+  type="text"
+{{/unless}}
+  name="{{name}}"
+  placeholder="{{placeholder}}"
+{{#if value}}
+  value="{{value}}"
+{{/if}}
+{{#if placeholder}}
+  placeholder="{{placeholder}}"
+{{/if}}
+/>
