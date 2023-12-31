@@ -1,25 +1,22 @@
 <input
-{{#if isValid}}
-  class="input__input"
-{{/if}}
-{{#unless isValid}}
-  class="input__input input__input_error"
-{{/unless}}
-{{#if id}}
-  id="{{id}}"
-{{/if}}
-{{#if type}}
-  type="{{type}}"
-{{/if}}
-{{#unless type}}
-  type="text"
-{{/unless}}
-  name="{{name}}"
-  placeholder="{{placeholder}}"
-{{#if value}}
-  value="{{value}}"
-{{/if}}
 {{#if placeholder}}
-  placeholder="{{placeholder}}"
+  placeholder='{{placeholder}}'
+{{/if}}
+{{#if htmlType}}
+  type='{{htmlType}}'
+{{/if}}
+{{#if value}}
+  value='{{value}}'
+{{/if}}
+{{#if name}}
+  name='{{name}}  '   
+{{/if}}
+{{#if id}}
+  if='{{id}}'
+{{/if}}
+{{#if className}}
+  class='input {{className}}'
+{{else}}
+  class='input'
 {{/if}}
 />
