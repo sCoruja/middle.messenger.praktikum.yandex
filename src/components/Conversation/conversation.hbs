@@ -1,0 +1,29 @@
+<main class="chat">
+  {{#if conversation.username}}
+    <div class="chat__user">
+      <img src="{{conversation.avatar}}" alt="" class="chat__avatar" />
+      <h2 class="chat__username">{{conversation.username}}</h2>
+    </div>
+    <div class="chat__conversation">
+      <ul class="chat__messages">
+        {{#each conversation.messages}}
+          {{{Message message=this}}}
+        {{/each}}
+      </ul>
+    </div>
+    <div class="chat__form">
+      {{#Form}}
+        {{{Input
+          id="message"
+          type="text"
+          name="message"
+          placeholder="type your message"
+        }}}
+      {{/Form}}
+    </div>
+  {{/if}}
+
+  {{#unless conversation.username}}
+    <span class="chat__select-chat">Select chat</span>
+  {{/unless}}
+</main>

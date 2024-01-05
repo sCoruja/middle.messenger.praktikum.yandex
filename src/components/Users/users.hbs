@@ -1,0 +1,13 @@
+<aside class="users">
+  <div class="users__top-panel">
+    <a href="/profile" class="users__profile-link">ICON</a>
+    <form class="users__search-form">
+      <input type="text" class="users__search-input" placeholder="search" />
+    </form>
+  </div>
+  <ul class="users__list">
+    {{#each users}}
+      {{{UserCard user=this}}}
+    {{/each}}
+  </ul>
+</aside>

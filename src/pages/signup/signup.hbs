@@ -1,0 +1,65 @@
+<main class="signup">
+  <h1 class="signup__title">Sign up</h1>
+  {{#Form}}
+    {{#Fieldset title="First name" inputId="first_name" error=""}}
+      {{{Input
+        id="first_name"
+        type="text"
+        name="first_name"
+        placeholder="John"
+      }}}
+    {{/Fieldset}}
+    {{#Fieldset title="Last name" inputId="second_name" error=""}}
+      {{{Input
+        id="second_name"
+        type="text"
+        name="second_name"
+        placeholder="Smith"
+      }}}
+    {{/Fieldset}}
+    {{#Fieldset title="Login" inputId="login" error=""}}
+      {{{Input
+        id="login"
+        type="text"
+        name="login"
+        placeholder="jsmth23"
+      }}}
+    {{/Fieldset}}
+    {{#Fieldset title="Email" inputId="email" error=""}}
+      {{{Input
+        id="email"
+        type="text"
+        name="email"
+        placeholder="jsmth23@yandex.com"
+      }}}
+    {{/Fieldset}}
+    {{#Fieldset title="Phone" inputId="phone" error=""}}
+      {{{Input
+        id="phone"
+        type="text"
+        name="phone"
+        placeholder="+78005553535"
+      }}}
+    {{/Fieldset}}
+    {{#Fieldset title="Password" inputId="password" error=""}}
+      {{{Input
+        id="password"
+        type="password"
+        name="password"
+        placeholder="Enter your password"
+      }}}
+    {{/Fieldset}}
+    {{#Fieldset title="Confirm password" inputId="confirmPassword" error=""}}
+      {{{Input
+        id="confirmPassword"
+        type="password"
+        name="confirmPassword"
+        placeholder="Enter your password"
+      }}}
+    {{/Fieldset}}
+    {{#Button}}
+      Sign In
+    {{/Button}}
+  {{/Form}}
+  <a href="/signin" class="signin__link">Already have an account?</a>
+</main>

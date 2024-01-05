@@ -1,0 +1,24 @@
+.input {
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.input__label {
+  color: var(--main-text-color);
+  width: 100%;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+}
+.input__title {
+  padding-left: 16px;
+}
+.input__error {
+  color: var(--danger-text-color);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-left: 16px;
+}
