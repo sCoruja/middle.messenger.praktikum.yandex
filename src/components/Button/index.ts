@@ -9,7 +9,7 @@ export class Button extends Component {
       ...props,
       events: {
         click(e: MouseEvent) {
-          props.onClick();
+          if (props.onClick) props.onClick(e);
         },
       },
     });

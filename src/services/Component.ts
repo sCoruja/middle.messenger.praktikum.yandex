@@ -70,7 +70,6 @@ class Component {
       const newNode = recycleNode(newElement);
       this._element = patch(newNode, this._element) as TElement;
       this._addEvents();
-      this.eventBus().emit(EVENTS.FLOW_CDM);
     }
   }
 
@@ -124,7 +123,6 @@ class Component {
     contextAndStubs.__children?.forEach(({ embed }: { embed: Function }) => {
       embed(result);
     });
-    console.log(r);
     return result as TElement;
   }
 

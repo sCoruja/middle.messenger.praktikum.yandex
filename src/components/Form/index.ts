@@ -6,7 +6,9 @@ export class Form extends Component {
     super(tagName, {
       ...props,
       events: {
-        submit: props.onSubmit,
+        submit(event: SubmitEvent) {
+          if (props.onSubmit) props.onSubmit(event);
+        },
       },
     });
   }

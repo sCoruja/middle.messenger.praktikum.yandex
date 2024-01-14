@@ -4,10 +4,9 @@
     {{#Fieldset title="Login" inputId="login" error=""}}
       {{{Input
         id="login"
-        type="text"
+        htmlType="text"
         name="login"
         placeholder="Enter your login"
-        onBlur=blurHandler
         onKeyUp=changeHandler
         value=login
       }}}
@@ -15,10 +14,9 @@
     {{#Fieldset title="Password" inputId="password" error=""}}
       {{{Input
         id="password"
-        type="password"
+        htmlType="password"
         name="password"
         placeholder="Enter your password"
-        onBlur=blurHandler
         onKeyUp=changeHandler
         value=password
       }}}

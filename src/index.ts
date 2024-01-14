@@ -1,4 +1,4 @@
-import { IndexPage } from "./pages/index/index";
+// import { IndexPage } from "./pages/index/index";
 import { ChatPage } from "./pages/chat";
 import { ErrorPage } from "./pages/error";
 import { ProfilePage } from "./pages/profile";
