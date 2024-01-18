@@ -4,37 +4,560 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../normalize.css" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="main.css" />
     <title>Main</title>
   </head>
-  <body>
-    <aside class="chat-list">
-      <div class="chat-list__profile">
-        <div class="profile-card">
-          <img src="#" alt="" class="profile-card__img" />
-          <h3 class="profile-card__name">Profile name</h3>
-          <a class="profile-card__link" href="/pages/profile.html">Go to the profile</a>
-        </div>
-      </div>
-      <form  class="chat-list__search-form">
-        <input type="text" class="chat-list__search-input" placeholder="search">
-      </form>
-      <ul class="chat-list__list">
-        <li class="chat-card">
-          <img src="#" alt="" class="chat-card__img" />
-          <h3 class="chat-card__name">Username</h3>
-          <p class="chat-card__message">msg2</p>
-        </li>
-        <li class="chat-card">
-          <img src="#" alt="" class="chat-card__img" />
-          <h3 class="chat-card__name">Username</h3>
-          <p class="chat-card__message">msg</p>
-          <span class="chat-card__counter">2</span>
-        </li>
-      </ul>
-    </aside>
-    <main class="chat">
-      <span>Select chat</span>
-    </main>
+  <body class="body_theme_dark">
+    <div class="app">
+      <section class="chat">
+        <aside class="aside">
+          <h1 class="logo">Chat App</h1>
+          <div class="user aside__user">
+            <img src="../images/person1.png" alt="avatar" class="user__image" />
+            <h3 class="user__name">Olle Sovinsky</h3>
+            <p class="user__bio">Front-end developer</p>
+            <div class="user__panel">
+              <button class="user__button">
+                <img src="../images/edit.png" alt="" class="user__btn-icon" />
+              </button>
+              <button class="user__button">
+                <img src="../images/theme.png" alt="" class="user__btn-icon" />
+              </button>
+              <button class="user__button">
+                <img src="../images/leave.png" alt="" class="user__btn-icon" />
+              </button>
+            </div>
+          </div>
+          <div class="chats">
+            <div class="search chats__search">
+              <label for="query" class="search__label">
+                <input
+                  type="text"
+                  class="search__input"
+                  id="query"
+                  placeholder="Search"
+                />
+                <img
+                  src="../images/search.png"
+                  alt="search"
+                  class="search__icon"
+                />
+              </label>
+            </div>
+            <ul class="chats__list">
+              <li class="chats__item chats__item_active">
+                <img
+                  src="../images/person2.png"
+                  alt="avatar"
+                  class="chats__img"
+                />
+                <div class="chats__message">
+                  <h4 class="chats__name">Janie</h4>
+                  <p class="chats__text">Hi!</p>
+                </div>
+                <div class="chats__msg-info">
+                  <span class="chats__msg-time">9:45</span>
+                  <span class="chats__msg-count">2</span>
+                </div>
+              </li>
+              <li class="chats__item">
+                <img
+                  src="../images/person3.png"
+                  alt="avatar"
+                  class="chats__img"
+                />
+                <div class="chats__message">
+                  <h4 class="chats__name">Nicole</h4>
+                  <p class="chats__text">tempus, tellus eget condimentu...</p>
+                </div>
+                <div class="chats__msg-info">
+                  <span class="chats__msg-time">9:45</span>
+                </div>
+              </li>
+              <li class="chats__item">
+                <img
+                  src="../images/person4.png"
+                  alt="avatar"
+                  class="chats__img"
+                />
+                <div class="chats__message">
+                  <h4 class="chats__name">John</h4>
+                  <p class="chats__text"><b>You:</b> Nullam?</p>
+                </div>
+                <div class="chats__msg-info">
+                  <span class="chats__msg-time">9:45</span>
+                </div>
+              </li>
+              <li class="chats__item">
+                <img
+                  src="../images/person5.png"
+                  alt="avatar"
+                  class="chats__img"
+                />
+                <div class="chats__message">
+                  <h4 class="chats__name">Ann</h4>
+                  <p class="chats__text">Hi!</p>
+                </div>
+                <div class="chats__msg-info">
+                  <span class="chats__msg-time">9:45</span>
+                </div>
+              </li>
+              <li class="chats__item">
+                <img
+                  src="../images/person6.png"
+                  alt="avatar"
+                  class="chats__img"
+                />
+                <div class="chats__message">
+                  <h4 class="chats__name">Evelyn</h4>
+                  <p class="chats__text">tempus, tellus eget condimentu!!!</p>
+                </div>
+                <div class="chats__msg-info">
+                  <span class="chats__msg-time">9:45</span>
+                </div>
+              </li>
+              <li class="chats__item">
+                <img
+                  src="../images/person3.png"
+                  alt="avatar"
+                  class="chats__img"
+                />
+                <div class="chats__message">
+                  <h4 class="chats__name">Nicole</h4>
+                  <p class="chats__text">tempus, tellus eget condimentu...</p>
+                </div>
+                <div class="chats__msg-info">
+                  <span class="chats__msg-time">9:45</span>
+                </div>
+              </li>
+              <li class="chats__item">
+                <img
+                  src="../images/person4.png"
+                  alt="avatar"
+                  class="chats__img"
+                />
+                <div class="chats__message">
+                  <h4 class="chats__name">John</h4>
+                  <p class="chats__text"><b>You:</b> Nullam?</p>
+                </div>
+                <div class="chats__msg-info">
+                  <span class="chats__msg-time">9:45</span>
+                </div>
+              </li>
+              <li class="chats__item">
+                <img
+                  src="../images/person5.png"
+                  alt="avatar"
+                  class="chats__img"
+                />
+                <div class="chats__message">
+                  <h4 class="chats__name">Ann</h4>
+                  <p class="chats__text">Hi!</p>
+                </div>
+                <div class="chats__msg-info">
+                  <span class="chats__msg-time">9:45</span>
+                </div>
+              </li>
+              <li class="chats__item">
+                <img
+                  src="../images/person6.png"
+                  alt="avatar"
+                  class="chats__img"
+                />
+                <div class="chats__message">
+                  <h4 class="chats__name">Evelyn</h4>
+                  <p class="chats__text">tempus, tellus eget condimentu!!!</p>
+                </div>
+                <div class="chats__msg-info">
+                  <span class="chats__msg-time">9:45</span>
+                </div>
+              </li>
+              <li class="chats__item">
+                <img
+                  src="../images/person3.png"
+                  alt="avatar"
+                  class="chats__img"
+                />
+                <div class="chats__message">
+                  <h4 class="chats__name">Nicole</h4>
+                  <p class="chats__text">tempus, tellus eget condimentu...</p>
+                </div>
+                <div class="chats__msg-info">
+                  <span class="chats__msg-time">9:45</span>
+                </div>
+              </li>
+              <li class="chats__item">
+                <img
+                  src="../images/person4.png"
+                  alt="avatar"
+                  class="chats__img"
+                />
+                <div class="chats__message">
+                  <h4 class="chats__name">John</h4>
+                  <p class="chats__text"><b>You:</b> Nullam?</p>
+                </div>
+                <div class="chats__msg-info">
+                  <span class="chats__msg-time">9:45</span>
+                </div>
+              </li>
+              <li class="chats__item">
+                <img
+                  src="../images/person5.png"
+                  alt="avatar"
+                  class="chats__img"
+                />
+                <div class="chats__message">
+                  <h4 class="chats__name">Ann</h4>
+                  <p class="chats__text">Hi!</p>
+                </div>
+                <div class="chats__msg-info">
+                  <span class="chats__msg-time">9:45</span>
+                </div>
+              </li>
+              <li class="chats__item">
+                <img
+                  src="../images/person6.png"
+                  alt="avatar"
+                  class="chats__img"
+                />
+                <div class="chats__message">
+                  <h4 class="chats__name">Evelyn</h4>
+                  <p class="chats__text">tempus, tellus eget condimentu!!!</p>
+                </div>
+                <div class="chats__msg-info">
+                  <span class="chats__msg-time">9:45</span>
+                </div>
+              </li>
+              <li class="chats__item">
+                <img
+                  src="../images/person3.png"
+                  alt="avatar"
+                  class="chats__img"
+                />
+                <div class="chats__message">
+                  <h4 class="chats__name">Nicole</h4>
+                  <p class="chats__text">tempus, tellus eget condimentu...</p>
+                </div>
+                <div class="chats__msg-info">
+                  <span class="chats__msg-time">9:45</span>
+                </div>
+              </li>
+              <li class="chats__item">
+                <img
+                  src="../images/person4.png"
+                  alt="avatar"
+                  class="chats__img"
+                />
+                <div class="chats__message">
+                  <h4 class="chats__name">John</h4>
+                  <p class="chats__text"><b>You:</b> Nullam?</p>
+                </div>
+                <div class="chats__msg-info">
+                  <span class="chats__msg-time">9:45</span>
+                </div>
+              </li>
+              <li class="chats__item">
+                <img
+                  src="../images/person5.png"
+                  alt="avatar"
+                  class="chats__img"
+                />
+                <div class="chats__message">
+                  <h4 class="chats__name">Ann</h4>
+                  <p class="chats__text">Hi!</p>
+                </div>
+                <div class="chats__msg-info">
+                  <span class="chats__msg-time">9:45</span>
+                </div>
+              </li>
+              <li class="chats__item">
+                <img
+                  src="../images/person6.png"
+                  alt="avatar"
+                  class="chats__img"
+                />
+                <div class="chats__message">
+                  <h4 class="chats__name">Evelyn</h4>
+                  <p class="chats__text">tempus, tellus eget condimentu!!!</p>
+                </div>
+                <div class="chats__msg-info">
+                  <span class="chats__msg-time">9:45</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </aside>
+        <main class="main">
+          <h2 class="main__title">
+            Janie <span class="main__status main__status_online">Online</span>
+          </h2>
+          <div class="main__conversation">
+            <ul class="main__list">
+              <li class="main__message message">
+                <img
+                  src="../images/person2.png"
+                  alt="avatar"
+                  class="message__img"
+                />
+                <div class="message__message">
+                  <p class="message__text">Nullam quis ante.</p>
+                  <div class="message__info">
+                    <span class="message__time">09:45</span>
+                  </div>
+                </div>
+              </li>
+              <li class="main__message message">
+                <img
+                  src="../images/person2.png"
+                  alt="avatar"
+                  class="message__img"
+                />
+                <div class="message__message">
+                  <p class="message__text">
+                    Maecenas tempus, tellus eget condimentum rhoncus, sem quam
+                    semper libero, sit amet adipiscing sem neque sed ipsum.
+                  </p>
+                  <div class="message__info">
+                    <span class="message__time">09:45</span>
+                  </div>
+                </div>
+              </li>
+              <li class="main__message message message_me">
+                <img
+                  src="../images/person1.png"
+                  alt="avatar"
+                  class="message__img"
+                />
+                <div class="message__message">
+                  <p class="message__text">
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                    Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                    natoque penatibus et magnis dis parturient montes, nascetur
+                    ridiculus mus. Donec quam felis, ultricies nec, pellentesque
+                    eu. natibus et magnis dis parturient montes, nascetur
+                    qwsdfgwdef
+                  </p>
+                  <div class="message__info">
+                    <span class="message__time">09:45</span>
+                    <img
+                      src="../images/done.png"
+                      alt=""
+                      class="message__status"
+                    />
+                  </div>
+                </div>
+              </li>
+              <li class="main__message message message_me">
+                <img
+                  src="../images/person1.png"
+                  alt="avatar"
+                  class="message__img"
+                />
+                <div class="message__message">
+                  <p class="message__text">
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                    Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                    natoque penatibus et magnis dis parturient montes, nascetur
+                    ridiculus mus. Donec quam felis, ultricies nec, pellentesque
+                    eu.
+                  </p>
+                  <div class="message__info">
+                    <span class="message__time">09:45</span>
+                    <img
+                      src="../images/done.png"
+                      alt=""
+                      class="message__status"
+                    />
+                  </div>
+                </div>
+              </li>
+              <li class="main__message message">
+                <img
+                  src="../images/person2.png"
+                  alt="avatar"
+                  class="message__img"
+                />
+                <div class="message__message">
+                  <p class="message__text">
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                  </p>
+                  <div class="message__info">
+                    <span class="message__time">09:45</span>
+                  </div>
+                </div>
+              </li>
+              <li class="main__message message message_me">
+                <img
+                  src="../images/person1.png"
+                  alt="avatar"
+                  class="message__img"
+                />
+                <div class="message__message">
+                  <p class="message__text">
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                  </p>
+                  <div class="message__info">
+                    <span class="message__time">09:45</span>
+                    <img
+                      src="../images/done.png"
+                      alt=""
+                      class="message__status"
+                    />
+                  </div>
+                </div>
+              </li>
+              <li class="main__message message">
+                <img
+                  src="../images/person2.png"
+                  alt="avatar"
+                  class="message__img"
+                />
+                <div class="message__message">
+                  <p class="message__text">Nullam quis ante.</p>
+                  <div class="message__info">
+                    <span class="message__time">09:45</span>
+                  </div>
+                </div>
+              </li>
+              <li class="main__message message">
+                <img
+                  src="../images/person2.png"
+                  alt="avatar"
+                  class="message__img"
+                />
+                <div class="message__message">
+                  <p class="message__text">
+                    Maecenas tempus, tellus eget condimentum rhoncus, sem quam
+                    semper libero, sit amet adipiscing sem neque sed ipsum.
+                  </p>
+                  <div class="message__info">
+                    <span class="message__time">09:45</span>
+                  </div>
+                </div>
+              </li>
+              <li class="main__message message message_me">
+                <img
+                  src="../images/person1.png"
+                  alt="avatar"
+                  class="message__img"
+                />
+                <div class="message__message">
+                  <p class="message__text">
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                    Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                    natoque penatibus et magnis dis parturient montes, nascetur
+                    ridiculus mus. Donec quam felis, ultricies nec, pellentesque
+                    eu. natibus et magnis dis parturient montes, nascetur
+                    qwsdfgwdef
+                  </p>
+                  <div class="message__info">
+                    <span class="message__time">09:45</span>
+                    <img
+                      src="../images/done.png"
+                      alt=""
+                      class="message__status"
+                    />
+                  </div>
+                </div>
+              </li>
+              <li class="main__message message message_me">
+                <img
+                  src="../images/person1.png"
+                  alt="avatar"
+                  class="message__img"
+                />
+                <div class="message__message">
+                  <p class="message__text">
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                    Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                    natoque penatibus et magnis dis parturient montes, nascetur
+                    ridiculus mus. Donec quam felis, ultricies nec, pellentesque
+                    eu.
+                  </p>
+                  <div class="message__info">
+                    <span class="message__time">09:45</span>
+                    <img
+                      src="../images/done.png"
+                      alt=""
+                      class="message__status"
+                    />
+                  </div>
+                </div>
+              </li>
+              <li class="main__message message">
+                <img
+                  src="../images/person2.png"
+                  alt="avatar"
+                  class="message__img"
+                />
+                <div class="message__message">
+                  <p class="message__text">
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                  </p>
+                  <div class="message__info">
+                    <span class="message__time">09:45</span>
+                  </div>
+                </div>
+              </li>
+              <li class="main__message message message_me">
+                <img
+                  src="../images/person1.png"
+                  alt="avatar"
+                  class="message__img"
+                />
+                <div class="message__message">
+                  <p class="message__text">
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                  </p>
+                  <div class="message__info">
+                    <span class="message__time">09:45</span>
+                    <img
+                      src="../images/done.png"
+                      alt=""
+                      class="message__status"
+                    />
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <form class="main__form">
+              <label for="file-upload" class="main__file-label">
+                <img
+                  src="../images/attach.png"
+                  alt=""
+                  class="main__file-icon"
+                />
+                <input
+                  type="file"
+                  id="file-upload"
+                  name="file-upload"
+                  class="main__file-input"
+                />
+              </label>
+              <input
+                type="text"
+                class="main__msg-input"
+                placeholder="Type a message..."
+              />
+              <button type="submit" class="main__form-submit">
+                <img
+                  src="../images/send.png"
+                  alt="send icon"
+                  class="main__form-icon"
+                />
+              </button>
+            </form>
+          </div>
+        </main>
+      </section>
+    </div>
   </body>
 </html>

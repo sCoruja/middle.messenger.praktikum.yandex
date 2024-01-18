@@ -1,0 +1,23 @@
+.body_theme_dark {
+  background: var(--bg-color-primary-dark);
+}
+.body_theme_light {
+  background: var(--bg-color-primary-light);
+}
+:root {
+  font-family: "Montserrat", sans-serif;
+
+  --bg-color-primary-light: #f2f5f9;
+  --bg-color-secondary-light: #fff;
+  --bg-color-danger-light: #fcd7d7;
+  --color-primary-light: #393958;
+  --color-secondary: #808080;
+  --bg-color-danger: #d83232;
+  --color-danger: #ffcaca;
+  --color-success: #2dd082;
+
+  --bg-color-primary-dark: #141414;
+  --bg-color-secondary-dark: #1f2021;
+  --bg-color-dark: #49577a;
+  --color-primary-dark: #d0d0d0;
+}
