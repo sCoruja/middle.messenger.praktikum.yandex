@@ -4,78 +4,124 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="signin.css" />
-    <title>Sign Up</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../normalize.css" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="auth.css" />
+    <title>Sign in</title>
   </head>
-  <body>
-    <main class="signin">
-      <form class="form signin__form">
-        <div class="form__group">
-          <input
-            class="form__input"
-            id="first_name"
-            type="text"
-            name="first_name"
-            placeholder="first name"
-          />
-        </div>
-        <div class="form__group">
-          <input
-            class="form__input"
-            id="second_name"
-            type="text"
-            name="second_name"
-            placeholder="second name"
-          />
-        </div>
-        <div class="form__group">
-          <input
-            class="form__input"
-            id="login"
-            type="text"
-            name="login"
-            placeholder="login"
-          />
-        </div>
-        <div class="form__group">
-          <input
-            class="form__input"
-            id="email"
-            type="email"
-            name="email"
-            placeholder="email"
-          />
-        </div>
-        <div class="form__group">
-          <input
-            class="form__input"
-            id="phone"
-            type="number"
-            name="phome"
-            placeholder="phone"
-          />
-        </div>
-        <div class="form__group">
-          <input
-            class="form__input"
-            id="password"
-            type="password"
-            name="password"
-            placeholder="password"
-          />
-        </div>
-        <div class="form__group">
-          <input
-            class="form__input"
-            id="confirm_password"
-            type="password"
-            name="confirm_password"
-            placeholder="confirm password"
-          />
-        </div>
-        <button class="form__button" type="submit">Sign up</button
-        ><a class="form__link" href="/pages/signin.html">Already have an account?</a>
-      </form>
-    </main>
+  <body class="body_theme_dark">
+    <div class="app">
+      <main class="signin">
+        <header class="header">
+          <h1 class="logo header__logo">Messenger</h1>
+          <div class="header__links">
+            <a href="./signin.html" class="header__link header__link_active"
+              >Sign In</a
+            >
+            <a href="./signup.html" class="header__link">Sign Up</a>
+          </div>
+        </header>
+        <aside class="aside signin__aside">
+          <h1 class="logo aside__logo">Messenger</h1>
+          <p class="aside__text">Let's start!</p>
+          <a href="./signin.html" class="aside__link">Sign In</a>
+          <a href="./signup.html" class="aside__link">Sign Up</a>
+        </aside>
+        <form class="form signin__form">
+          <h2 class="form__heading">Sign In</h2>
+          <fieldset class="form__fieldset">
+            <label for="first_name" class="form__label">
+              <h3 class="form__input-title">First name</h3>
+              <input
+                class="form__input"
+                id="first_name"
+                type="text"
+                name="first_name"
+                placeholder="first name"
+              />
+            </label>
+          </fieldset>
+          <fieldset class="form__fieldset">
+            <label for="second_name" class="form__label">
+              <h3 class="form__input-title">Second name</h3>
+              <input
+                class="form__input"
+                id="second_name"
+                type="text"
+                name="second_name"
+                placeholder="second name"
+              />
+            </label>
+          </fieldset>
+          <fieldset class="form__fieldset">
+            <label for="login" class="form__label">
+              <h3 class="form__input-title">Login</h3>
+              <input
+                class="form__input"
+                id="login"
+                type="text"
+                name="login"
+                placeholder="login"
+              />
+            </label>
+          </fieldset>
+          <fieldset class="form__fieldset">
+            <label for="email" class="form__label">
+              <h3 class="form__input-title">Email</h3>
+              <input
+                class="form__input"
+                id="email"
+                type="email"
+                name="email"
+                placeholder="email"
+              />
+            </label>
+          </fieldset>
+          <fieldset class="form__fieldset">
+            <label for="phone" class="form__label">
+              <h3 class="form__input-title">Phone</h3>
+              <input
+                class="form__input"
+                id="phone"
+                type="text"
+                name="phone"
+                placeholder="phone"
+              />
+            </label>
+          </fieldset>
+          <fieldset class="form__fieldset">
+            <label for="password" class="form__label">
+              <h3 class="form__input-title">Password</h3>
+              <input
+                class="form__input"
+                id="password"
+                type="password"
+                name="password"
+                placeholder="password"
+              />
+            </label>
+          </fieldset>
+          <fieldset class="form__fieldset">
+            <label for="confirm_password" class="form__label">
+              <h3 class="form__input-title">Confirm password</h3>
+              <input
+                class="form__input"
+                id="confirm_password"
+                type="password"
+                name="confirm_password"
+                placeholder="confirm password"
+              />
+            </label>
+          </fieldset>
+          <button class="form__button" type="submit">Sign in</button>
+        </form>
+      </main>
+    </div>
   </body>
 </html>

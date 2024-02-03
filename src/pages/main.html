@@ -15,24 +15,48 @@
     <link rel="stylesheet" href="main.css" />
     <title>Main</title>
   </head>
-  <body class="body_theme_dark">
+  <body class="body_theme_light">
     <div class="app">
       <section class="chat">
         <aside class="aside">
-          <h1 class="logo">Chat App</h1>
+          <div class="aside__header">
+            <h1 class="logo">Messenger</h1>
+            <a href="#" class="aside__header-user">
+              <img
+                src="../images/person1.png"
+                alt=""
+                class="aside__header-img"
+              />
+            </a>
+          </div>
           <div class="user aside__user">
             <img src="../images/person1.png" alt="avatar" class="user__image" />
             <h3 class="user__name">Olle Sovinsky</h3>
             <p class="user__bio">Front-end developer</p>
             <div class="user__panel">
               <button class="user__button">
-                <img src="../images/edit.png" alt="" class="user__btn-icon" />
+                <img
+                  src="../images/edit.png"
+                  alt=""
+                  class="user__btn-icon"
+                  id="profileBtn"
+                />
               </button>
               <button class="user__button">
-                <img src="../images/theme.png" alt="" class="user__btn-icon" />
+                <img
+                  src="../images/theme.png"
+                  alt=""
+                  class="user__btn-icon"
+                  id="themeBtn"
+                />
               </button>
               <button class="user__button">
-                <img src="../images/leave.png" alt="" class="user__btn-icon" />
+                <img
+                  src="../images/leave.png"
+                  alt=""
+                  class="user__btn-icon"
+                  id="leaveBtn"
+                />
               </button>
             </div>
           </div>
@@ -559,5 +583,23 @@
         </main>
       </section>
     </div>
+    <script>
+      const profileBtn = document.getElementById("profileBtn");
+      const leaveBtn = document.getElementById("leaveBtn");
+      const themeBtn = document.getElementById("themeBtn");
+      profileBtn.addEventListener("click", (e) => {
+        window.location.pathname = "/pages/profile.html";
+      });
+      leaveBtn.addEventListener("click", (e) => {
+        window.location.pathname = "/pages/signin.html";
+      });
+      themeBtn.addEventListener("click", (e) => {
+        const body = document.getElementsByTagName("body")[0];
+        body.className =
+          body.className === "body_theme_light"
+            ? "body_theme_dark"
+            : "body_theme_light";
+      });
+    </script>
   </body>
 </html>
