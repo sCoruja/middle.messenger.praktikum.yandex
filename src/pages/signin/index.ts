@@ -1,7 +1,10 @@
 import tpl from "./signin.hbs";
-import "./signin.css";
+import styles from "./signin.module.css";
 import Component from "../../services/Component";
 export class SignInPage extends Component {
+  constructor() {
+    super("main", { styles });
+  }
   componentDidMount(): void {
     this.setProps({ login: "", password: "" });
   }

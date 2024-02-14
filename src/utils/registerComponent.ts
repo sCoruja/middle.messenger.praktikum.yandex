@@ -20,12 +20,12 @@ export function registerComponent(
         component,
         embed(fragment: Element) {
           const stub = fragment.querySelector(`[${dataAttribute}]`);
-
-          if (!stub) {
+          if (!stub && stub.getAttribute("data-id") === dataAttribute) {
             return;
           }
           component.getContent()?.append(...Array.from(stub.childNodes));
           stub.replaceWith(component.getContent()!);
+          return { stub, component };
         },
       });
       const contents = fn ? fn(this) : "";

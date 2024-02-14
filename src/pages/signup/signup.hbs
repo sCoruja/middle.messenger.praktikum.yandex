@@ -1,65 +1,104 @@
-<main class="signup">
-  <h1 class="signup__title">Sign up</h1>
-  {{#Form}}
-    {{#Fieldset title="First name" inputId="first_name" error=""}}
-      {{{Input
-        id="first_name"
-        type="text"
-        name="first_name"
-        placeholder="John"
-      }}}
-    {{/Fieldset}}
-    {{#Fieldset title="Last name" inputId="second_name" error=""}}
-      {{{Input
-        id="second_name"
-        type="text"
-        name="second_name"
-        placeholder="Smith"
-      }}}
-    {{/Fieldset}}
-    {{#Fieldset title="Login" inputId="login" error=""}}
-      {{{Input
-        id="login"
-        type="text"
-        name="login"
-        placeholder="jsmth23"
-      }}}
-    {{/Fieldset}}
-    {{#Fieldset title="Email" inputId="email" error=""}}
-      {{{Input
-        id="email"
-        type="text"
-        name="email"
-        placeholder="jsmth23@yandex.com"
-      }}}
-    {{/Fieldset}}
-    {{#Fieldset title="Phone" inputId="phone" error=""}}
-      {{{Input
-        id="phone"
-        type="text"
-        name="phone"
-        placeholder="+78005553535"
-      }}}
-    {{/Fieldset}}
-    {{#Fieldset title="Password" inputId="password" error=""}}
-      {{{Input
-        id="password"
-        type="password"
-        name="password"
-        placeholder="Enter your password"
-      }}}
-    {{/Fieldset}}
-    {{#Fieldset title="Confirm password" inputId="confirmPassword" error=""}}
-      {{{Input
-        id="confirmPassword"
-        type="password"
-        name="confirmPassword"
-        placeholder="Enter your password"
-      }}}
-    {{/Fieldset}}
-    {{#Button}}
-      Sign In
+<main class="{{styles.signin}}">
+  <header class="{{styles.header}}">
+    <h1 class="{{styles.logo}} {{styles.header__logo}}">Messenger</h1>
+    <div class="{{styles.header__links}}">
+      <a
+        href="./signin.html"
+        class="{{styles.header__link}} {{styles.header__link_active}}"
+      >Sign In</a>
+      <a href="./signup.html" class="{{styles.header__link}}">Sign Up</a>
+    </div>
+  </header>
+  <aside class="{{styles.aside}} {{styles.signin__aside}}">
+    <h1 class="{{styles.logo}} {{styles.aside__logo}}">Messenger</h1>
+    <p class="{{styles.aside__text}}">Let's start!</p>
+    <a href="./signin.html" class="{{styles.aside__link}}">Sign In</a>
+  </aside>
+  {{#Form
+    onSubmit=submitHandler className=(concat styles.form styles.signin__form)
+  }}
+
+    <h2 class="{{styles.form__heading}}">Sign Up</h2>
+    <fieldset class="{{styles.form__fieldset}}">
+      <label for="first_name" class="{{styles.form__label}}">
+        <h3 class="{{styles.form__input-title}}">First name</h3>{{{Input
+          onKeyUp=changeHandler
+          value=first_name
+          className=styles.form__input
+          id="first_name"
+          type="text"
+          name="first_name"
+          placeholder="John"
+        }}}</label></fieldset>
+    <fieldset class="{{styles.form__fieldset}}">
+      <label for="second_name" class="{{styles.form__label}}">
+        <h3 class="{{styles.form__input-title}}">Second name</h3>{{{Input
+          onKeyUp=changeHandler
+          value=second_name
+          className=styles.form__input
+          id="second_name"
+          type="text"
+          name="second_name"
+          placeholder="Smith"
+        }}}</label></fieldset>
+    <fieldset class="{{styles.form__fieldset}}">
+      <label for="login" class="{{styles.form__label}}">
+        <h3 class="{{styles.form__input-title}}">Login</h3>{{{Input
+          onKeyUp=changeHandler
+          value=login
+          className=styles.form__input
+          id="login"
+          type="text"
+          name="login"
+          placeholder="jsmth23"
+        }}}</label></fieldset>
+    <fieldset class="{{styles.form__fieldset}}">
+      <label for="email" class="{{styles.form__label}}">
+        <h3 class="{{styles.form__input-title}}">E-mail</h3>{{{Input
+          onKeyUp=changeHandler
+          value=email
+          className=styles.form__input
+          id="email"
+          type="text"
+          name="email"
+          placeholder="jsmth24@ya.ru"
+        }}}</label></fieldset>
+    <fieldset class="{{styles.form__fieldset}}">
+      <label for="phone" class="{{styles.form__label}}">
+        <h3 class="{{styles.form__input-title}}">Phone number</h3>{{{Input
+          onKeyUp=changeHandler
+          value=phone
+          className=styles.form__input
+          id="phone"
+          type="text"
+          name="phone"
+          placeholder="+7 000 000 00 00"
+        }}}</label></fieldset>
+    <fieldset class="{{styles.form__fieldset}}">
+      <label for="password" class="{{styles.form__label}}">
+        <h3 class="{{styles.form__input-title}}">Password</h3>{{{Input
+          onKeyUp=changeHandler
+          value=password
+          className=styles.form__input
+          id="password"
+          type="password"
+          name="password"
+          placeholder="Enter your password"
+        }}}</label></fieldset>
+    <fieldset class="{{styles.form__fieldset}}">
+      <label for="confirm_password" class="{{styles.form__label}}">
+        <h3 class="{{styles.form__input-title}}">Confirm password</h3>{{{Input
+          onKeyUp=changeHandler
+          value=confirm_password
+          className=styles.form__input
+          id="confirm_password"
+          type="password"
+          name="confirm_password"
+          placeholder="Confirm your password"
+        }}}</label></fieldset>
+
+    {{#Button type="submit" className=styles.form__button}}
+      Sign Up
     {{/Button}}
   {{/Form}}
-  <a href="/signin" class="signin__link">Already have an account?</a>
 </main>

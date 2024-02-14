@@ -1,30 +1,54 @@
-<main class="signin">
-  <h1 class="signin__title">Sign in</h1>
-  {{#Form onSubmit=submitHandler}}
-    {{#Fieldset title="Login" inputId="login" error=""}}
-      {{{Input
-        id="login"
-        htmlType="text"
-        name="login"
-        placeholder="Enter your login"
-        onKeyUp=changeHandler
-        value=login
-      }}}
-    {{/Fieldset}}
-    {{#Fieldset title="Password" inputId="password" error=""}}
-      {{{Input
-        id="password"
-        htmlType="password"
-        name="password"
-        placeholder="Enter your password"
-        onKeyUp=changeHandler
-        value=password
-      }}}
-    {{/Fieldset}}
-    {{#Button type="submit"}}
+<main class="{{styles.signin}}">
+  <header class="{{styles.header}}">
+    <h1 class="{{styles.logo}} {{styles.header__logo}}">Messenger</h1>
+    <div class="{{styles.header__links}}">
+      <a
+        href="./signin.html"
+        class="{{styles.header__link}} {{styles.header__link_active}}"
+      >Sign In</a>
+      <a href="./signup.html" class="{{styles.header__link}}">Sign Up</a>
+    </div>
+  </header>
+  <aside class="{{styles.aside}} {{styles.signin__aside}}">
+    <h1 class="{{styles.logo}} {{styles.aside__logo}}">Messenger</h1>
+    <p class="{{styles.aside__text}}">Let's start!</p>
+    <a href="./signup.html" class="{{styles.aside__link}}">Sign Up</a>
+  </aside>
+  {{#Form
+    onSubmit=submitHandler className=(concat styles.signin__form styles.form)
+  }}
+
+    <h2 class="{{styles.form__heading}}">Sign In</h2>
+    <fieldset class="{{styles.form__fieldset}}">
+      <label for="login" class="{{styles.form__label}}">
+        <h3 class="{{styles.form__input-title}}">Login</h3>
+        {{{Input
+          id="login"
+          className=styles.form__input
+          htmlType="text"
+          name="login"
+          placeholder="Enter your login"
+          onKeyUp=changeHandler
+          value=login
+        }}}
+      </label>
+    </fieldset>
+    <fieldset class="{{styles.form__fieldset}}">
+      <label for="login" class="{{styles.form__label}}">
+        <h3 class="{{styles.form__input-title}}">Password</h3>
+        {{{Input
+          id="password"
+          htmlType="password"
+          className=styles.form__input
+          name="password"
+          placeholder="Enter your password"
+          onKeyUp=changeHandler
+          value=password
+        }}}
+      </label>
+    </fieldset>
+    {{#Button type="submit" className=styles.form__button}}
       Sign In
     {{/Button}}
   {{/Form}}
-  <p>{{msg}}</p>
-  <a href="/signup" class="signin__link">Create account</a>
 </main>

@@ -1,4 +1,9 @@
-<li class="profile__field">
-  <h3 class="profile__field-key">{{title}}</h3>
-  <p class="profile__field-value">{{value}}</p>
-</li>
+<div class="{{styles.profile__field}}">
+  <div class="{{styles.profile__fieldInner}}">
+    <span class="{{styles.profile__field-name}}">{{data.title}}</span>
+    <p class="{{styles.profile__field-value}}">{{data.value}}</p>
+    <span class="{{styles.profile__field-span}}">Click for change</span>
+  </div>
+
+  {{{Modal key=data.title onClose=modalCloseHandler isModalShown=isModalShown}}}
+</div>

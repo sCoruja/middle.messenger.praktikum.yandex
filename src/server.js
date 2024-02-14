@@ -9,6 +9,11 @@ const __filename = fileURLToPath(import.meta.url);
 
 const __dirname = path.dirname(__filename).replace("/src", "");
 
+// app.use(express.static('./dist'));
+// app.use('/*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'dist/index.html'));
+// });
+
 // app.use("/static", express.static(__dirname + "/static"));
 // app.use(express.static(__dirname + "/dist"));
 app.get("*", (req, res) => {

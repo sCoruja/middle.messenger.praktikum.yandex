@@ -1,5 +1,5 @@
 import Component from "../../services/Component";
-import "./userCard.css";
+import styles from "./userCard.module.css";
 import tpl from "./userCard.hbs";
 
 export class UserCard extends Component {
@@ -7,6 +7,7 @@ export class UserCard extends Component {
     const { user } = props;
     super(tagName, {
       ...user,
+      styles,
     });
   }
   render() {

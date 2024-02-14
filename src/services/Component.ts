@@ -50,6 +50,7 @@ class Component {
 
   init() {
     this._createResources();
+    console.log(`INIT ${this.constructor.name}`);
     this.eventBus().emit(EVENTS.FLOW_RENDER);
   }
 
@@ -62,14 +63,18 @@ class Component {
 
   dispatchComponentDidMount() {}
 
-  _componentDidUpdate() {
-    this._removeEvents();
+  _componentDidUpdate(oldProps, newProps) {
+    // this._removeEvents();
+    // this._render();
+    // const contextAndStubs = { ...context };
     const fragment = this.compile(this._tpl!, this.props);
     const newElement = fragment as TElement;
     if (this._element) {
       const newNode = recycleNode(newElement);
-      this._element = patch(newNode, this._element) as TElement;
-      this._addEvents();
+      patch(newNode, this._element);
+
+      console.log(`UPDATE ${this.constructor.name}`);
+      // this._addEvents();
     }
   }
 
@@ -80,6 +85,7 @@ class Component {
     if (!nextProps) {
       return;
     }
+    if (this.props === nextProps) return;
     Object.assign(this.props, nextProps);
   };
 
@@ -88,16 +94,20 @@ class Component {
   }
 
   _render() {
-    this._removeEvents();
     const fragment = this.render();
     const newElement = fragment as TElement;
     if (this._element) {
-      const newNode = recycleNode(newElement);
-      patch(newNode, this._element);
+      this._removeEvents();
+
+      if (this._element !== newElement) {
+        const newNode = recycleNode(newElement);
+        patch(newNode, this._element);
+      }
       this._element = newElement;
       this._addEvents();
       this.eventBus().emit(EVENTS.FLOW_CDM);
     }
+    // console.log(`RENDER ${this.constructor.name}`);
   }
 
   // Может переопределять пользователь, необязательно трогать
@@ -142,18 +152,7 @@ class Component {
       });
     }
   }
-  _getChildren(propsAndChildren: ComponentProps) {
-    const children: { [key: string]: Component } = {};
-    const props: ComponentProps = {};
-    Object.entries(propsAndChildren).forEach(([key, value]) => {
-      if (value instanceof Component) {
-        children[key] = value;
-      } else {
-        props[key] = value;
-      }
-    });
-    return { children, props };
-  }
+
   _makePropsProxy(props: ComponentProps) {
     // Можно и так передать this
     // Такой способ больше не применяется с приходом ES6+
@@ -165,8 +164,11 @@ class Component {
       },
       set(target, prop: string, value) {
         const oldValue = target[prop];
-        target[prop] = value;
-        self.eventBus().emit(EVENTS.FLOW_CDU, oldValue, value);
+        if (oldValue !== value) {
+          target[prop] = value;
+          if (oldValue !== value && !(typeof value === "function"))
+            self.eventBus().emit(EVENTS.FLOW_CDU, oldValue, value);
+        }
         return true;
       },
       deleteProperty(target, prop) {

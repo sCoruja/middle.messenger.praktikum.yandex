@@ -1,4 +1,4 @@
-// import { IndexPage } from "./pages/index/index";
+import { IndexPage } from "./pages/index/index";
 import { ChatPage } from "./pages/chat";
 import { ErrorPage } from "./pages/error";
 import { ProfilePage } from "./pages/profile";
@@ -13,23 +13,26 @@ import { Button } from "./components/Button";
 import { Input } from "./components/Input";
 import { Users } from "./components/Users";
 import { Conversation } from "./components/Conversation";
-import { Fieldset } from "./components/Fieldset";
 import { Form } from "./components/Form";
 import { Message } from "./components/Message";
 import { Profile } from "./components/Profile";
 import { ProfileField } from "./components/ProfileField";
 import { UserCard } from "./components/UserCard";
 
+import { registerConcatHelper } from "./utils/concatHelper";
+import { Modal } from "./components/Modal";
+
+registerConcatHelper();
 registerComponent("Button", Button, "button");
 registerComponent("Input", Input, "input");
 registerComponent("Users", Users, "aside");
 registerComponent("Conversation", Conversation, "main");
-registerComponent("Fieldset", Fieldset, "fieldset");
 registerComponent("Form", Form, "form");
 registerComponent("Message", Message, "li");
 registerComponent("Profile", Profile, "main");
 registerComponent("ProfileField", ProfileField, "li");
 registerComponent("UserCard", UserCard, "div");
+registerComponent("Modal", Modal, "div");
 
 // const indexPage = new IndexPage();
 // render("#app", indexPage);
@@ -47,6 +50,11 @@ switch (pathname) {
     <a href="/profile">Profile page</a><br />
     <a href="/chat">Chat page</a><br />
     <a href="/fdssfdfds">404</a><br />`;
+    break;
+  }
+  case "/index/": {
+    const indexPage = new IndexPage();
+    render("#app", indexPage);
     break;
   }
   case "/signup/": {

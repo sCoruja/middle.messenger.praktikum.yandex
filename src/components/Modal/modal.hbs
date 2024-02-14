@@ -1,0 +1,18 @@
+<div class="{{styles.overlay}}">
+  <div class="{{styles.modal}}">
+    {{#Button className=styles.modal__close onClick=onClose}}
+      <div class="{{styles.modal__close-icon}}"></div>
+    {{/Button}}
+    <label class="{{styles.modal__label}}">
+      <p class="{{styles.modal__text}}">Change {{profileKey}}</p>
+      {{{Input
+        className=styles.modal__input
+        id="{{profileKey}}"
+        type="text"
+        name="{{profileKey}}"
+        placeholder="Enter new value..."
+      }}}
+    </label>
+    <button class="{{styles.modal__button}}">Save</button>
+  </div>
+</div>

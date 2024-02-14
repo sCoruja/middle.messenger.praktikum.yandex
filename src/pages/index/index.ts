@@ -1,11 +1,12 @@
 import tpl from "./index.hbs";
-import "./error.css";
 import Component from "../../services/Component";
+import styles from "./index.module.css";
 
 export class IndexPage extends Component {
   constructor() {
     super("main", {
       count: 0,
+      styles,
       value: "",
       clickHandler: () => {
         this.setProps({ ...this.props, count: this.props.count + 1 });
@@ -15,7 +16,6 @@ export class IndexPage extends Component {
           ...this.props,
           value: (e.target as HTMLInputElement).value,
         });
-        console.log(this.props.value);
       },
     });
   }
