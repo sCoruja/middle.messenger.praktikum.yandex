@@ -67,19 +67,21 @@ class Component {
     // this._removeEvents();
     // this._render();
     // const contextAndStubs = { ...context };
+    if (!this.componentDidUpdate(oldProps, newProps)) return;
     const fragment = this.compile(this._tpl!, this.props);
     const newElement = fragment as TElement;
     if (this._element) {
       const newNode = recycleNode(newElement);
       patch(newNode, this._element);
-
       console.log(`UPDATE ${this.constructor.name}`);
       // this._addEvents();
     }
   }
 
   // Может переопределять пользователь, необязательно трогать
-  componentDidUpdate() {}
+  componentDidUpdate(oldProps, newProps) {
+    return true;
+  }
 
   setProps = (nextProps: ComponentProps) => {
     if (!nextProps) {
@@ -100,8 +102,8 @@ class Component {
       this._removeEvents();
 
       if (this._element !== newElement) {
-        const newNode = recycleNode(newElement);
-        patch(newNode, this._element);
+        const newNode = recycleNode(newElement); //создание vnode
+        patch(newNode, this._element); //обновление элемента без его полной перерисовки
       }
       this._element = newElement;
       this._addEvents();
@@ -125,11 +127,8 @@ class Component {
     const tmpl = document.createElement("template");
     tmpl.innerHTML = html;
     const result = tmpl.content.children[0];
-    const v = recycleNode(result as TElement);
-
     const temp = document.createElement(this._meta.tagName);
     temp.innerHTML = html;
-    const r = patch(v, temp as TElement);
     contextAndStubs.__children?.forEach(({ embed }: { embed: Function }) => {
       embed(result);
     });

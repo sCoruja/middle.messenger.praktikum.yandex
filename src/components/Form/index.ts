@@ -7,6 +7,7 @@ export class Form extends Component {
       ...props,
       events: {
         submit(event: SubmitEvent) {
+          event.preventDefault();
           if (props.onSubmit) props.onSubmit(event);
         },
       },
