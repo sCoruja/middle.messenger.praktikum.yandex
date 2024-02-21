@@ -1,13 +1,17 @@
 import tpl from "./button.hbs";
-import "./button.css";
-import { Component } from "../../services/Component";
-// import { InputPropsType } from "./types";
+import Component, { ComponentProps } from "../../services/Component";
 
 export class Button extends Component {
-  constructor(props: any) {
-    super(props);
+  constructor(tagName: "button", props: ComponentProps) {
+    super(tagName, {
+      ...props,
+      events: {
+        click(e: MouseEvent) {
+          props.onClick?.(e);
+        },
+      },
+    });
   }
-
   render() {
     return this.compile(tpl, this.props);
   }

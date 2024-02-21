@@ -1,4 +1,15 @@
-import { HttpRequestData, HttpRequestOptions } from "./types";
+export type HttpRequestOptions = {
+  headers?: HttpRequestHeaders;
+  method?: string;
+  data?: { [key: string]: string };
+  timeout?: number;
+};
+export type HttpRequestData = {
+  [key: string]: string | HttpRequestData;
+};
+export type HttpRequestHeaders = {
+  [key: string]: string;
+};
 
 enum METHODS {
   GET = "GET",
@@ -7,7 +18,7 @@ enum METHODS {
   DELETE = "DELETE",
 }
 
-function queryStringify(data: HttpRequestData ): string {
+function queryStringify(data: HttpRequestData): string {
   if (typeof data !== "object") {
     throw new Error("Data must be object");
   }
@@ -27,7 +38,7 @@ export class HttpTransport {
     );
   };
 
-  post = (url:string, options:HttpRequestOptions = {}) => {
+  post = (url: string, options: HttpRequestOptions = {}) => {
     return this.request(
       url,
       { ...options, method: METHODS.POST },
@@ -35,7 +46,7 @@ export class HttpTransport {
     );
   };
 
-  put = (url:string, options:HttpRequestOptions = {}) => {
+  put = (url: string, options: HttpRequestOptions = {}) => {
     return this.request(
       url,
       { ...options, method: METHODS.PUT },
@@ -43,7 +54,7 @@ export class HttpTransport {
     );
   };
 
-  delete = (url:string, options:HttpRequestOptions = {}) => {
+  delete = (url: string, options: HttpRequestOptions = {}) => {
     return this.request(
       url,
       { ...options, method: METHODS.DELETE },
@@ -51,7 +62,7 @@ export class HttpTransport {
     );
   };
 
-  request = (url:string, options:HttpRequestOptions = {}, timeout = 5000) => {
+  request = (url: string, options: HttpRequestOptions = {}, timeout = 5000) => {
     const { headers = {}, method, data } = options;
 
     return new Promise(function (resolve, reject) {

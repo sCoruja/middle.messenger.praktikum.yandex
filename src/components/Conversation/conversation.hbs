@@ -1,29 +1,46 @@
-<main class="chat">
-  {{#if username}}
-    <div class="chat__user">
-      <img src="{{avatar}}" alt="" class="chat__avatar" />
-      <h2 class="chat__username">{{username}}</h2>
-    </div>
-    <div class="chat__conversation">
-      <ul class="chat__messages">
-        {{#each messages}}
+<main class="{{styles.main}}">
+
+  {{#if conversation.username}}
+    <h2 class="{{styles.main__title}}">
+      {{{conversation.username}}}
+      <span
+        class="{{styles.main__status}} {{styles.main__status_online}}"
+      >Online</span>
+    </h2>
+    <div class="{{styles.main__conversation}}">
+
+      <ul class="{{styles.main__list}}">
+
+        {{#each conversation.messages}}
           {{{Message message=this}}}
         {{/each}}
+
       </ul>
-    </div>
-    <div class="chat__form">
-      {{#Form}}
-        {{{Input
-          id="message"
+
+      <form class="{{styles.main__form}}">
+        <label for="file-upload" class="{{styles.main__fileLabel}}">
+          <div class="{{styles.main__fileIcon}}"></div>
+          <input
+            type="file"
+            id="file-upload"
+            name="file-upload"
+            class="{{styles.main__fileInput}}"
+          />
+        </label>
+        <input
           type="text"
-          name="message"
-          placeholder="type your message"
-        }}}
-      {{/Form}}
+          class="{{styles.main__msgInput}}"
+          placeholder="Type a message..."
+        />
+        <button type="submit" class="{{styles.main__formSubmit}}">
+          <div class="{{styles.main__formIcon}}"></div>
+        </button>
+      </form>
     </div>
+
   {{/if}}
 
-  {{#unless username}}
-    <span class="chat__select-chat">Select chat</span>
+  {{#unless conversation.username}}
+    <span>Select chat</span>
   {{/unless}}
 </main>

@@ -1,9 +1,10 @@
-import "./profile.css";
+import styles from "./profile.module.css";
 import tpl from "./profile.hbs";
-import { Component } from "../../services/Component";
+import Component from "../../services/Component";
+import image from "../../../static/images/person1.png";
 
 export class Profile extends Component {
-  constructor() {
+  constructor(tagName = "main") {
     const fields = [
       {
         title: "First name",
@@ -38,10 +39,16 @@ export class Profile extends Component {
     ];
     // const pwdRegExps =
     //   "^(?=^.{8,40}$)((?=.*d)|(?=.*W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$";
-
-    super({fields});
+    super(tagName, {
+      fields,
+      profileKey: "",
+      styles,
+      image,
+    });
   }
   render() {
-    return this.compile(tpl, this.props);
+    return this.compile(tpl, {
+      ...this.props,
+    });
   }
 }

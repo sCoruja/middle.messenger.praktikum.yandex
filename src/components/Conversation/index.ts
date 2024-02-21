@@ -1,10 +1,12 @@
-import { Component } from "../../services/Component";
-import "./conversation.css";
+import Component from "../../services/Component";
+import styles from "./conversation.module.css";
 import tpl from "./conversation.hbs";
-import { ConversationProps } from "./types";
-
+import attachIcon from "../../../static/images/attach.png";
 export class Conversation extends Component {
+  constructor(tagName = "main", props: any) {
+    super(tagName, { ...props, styles });
+  }
   render() {
-    return this.compile(tpl, this.props.conversation);
+    return this.compile(tpl, { ...this.props, attachIcon });
   }
 }

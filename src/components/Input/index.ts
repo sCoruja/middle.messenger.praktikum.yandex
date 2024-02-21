@@ -1,27 +1,19 @@
 import tpl from "./input.hbs";
-import "./input.css";
-import { Component } from "../../services/Component";
-import { InputPropsType } from "./types";
+import Component, { ComponentProps } from "../../services/Component";
 
 export class Input extends Component {
-  constructor(props: InputPropsType) {
-    super({
+  constructor(tagName = "input", props: ComponentProps) {
+    super(tagName, {
       ...props,
-      isValid: true,
       events: {
-        'blur': props.onBlur,
-        'keyup': props.onKeyUp
+        blur(e: KeyboardEvent) {
+          props.onKeyUp(e);
+        },
       },
     });
   }
-  //   handleChange(event: InputEvent) {}
-  //   componentDidMount() {
-  //     const inputElement: HTMLInputElement = this.element
-  //       ? this.element.getElementsByClassName("input__input")
-  //       : document.createElement("input");
-  //     inputElement.addEventListener("change", this.handleChange);
-  //   }
+
   render() {
-    return this.compile(tpl, { ...this.props });
+    return this.compile(tpl, this.props);
   }
 }

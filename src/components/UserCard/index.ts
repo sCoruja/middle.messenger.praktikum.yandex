@@ -1,12 +1,13 @@
-import { Component } from "../../services/Component";
-import "./userCard.css";
+import Component from "../../services/Component";
+import styles from "./userCard.module.css";
 import tpl from "./userCard.hbs";
 
 export class UserCard extends Component {
-  constructor(props: any) {
+  constructor(tagName = "li", props: any) {
     const { user } = props;
-    super({
+    super(tagName, {
       ...user,
+      styles,
     });
   }
   render() {

@@ -1,0 +1,38 @@
+.profile__field {
+}
+.profile__fieldInner {
+  margin-bottom: 16px;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+.profile__fieldInner:hover {
+  opacity: 0.7;
+}
+.profile__field-name {
+  color: var(--bg-color-primary-light);
+  font-size: 16px;
+  font-style: normal;
+  line-height: normal;
+  margin: 0;
+  margin-bottom: 8px;
+}
+.body_theme_light .profile__field-name {
+  color: var(--color-primary-light);
+}
+.profile__field-span {
+  color: var(--color-secondary);
+  font-size: 12px;
+  padding-left: 20px;
+}
+.body_theme_light .profile__field-span {
+  color: var(--color-primary-light);
+}
+.profile__field-value {
+  font-size: 24px;
+  padding-left: 20px;
+  color: var(--bg-color-primary-light);
+  margin: 0;
+}
+.body_theme_light .profile__field-value {
+  color: var(--color-primary-light);
+}

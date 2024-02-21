@@ -2239,7 +2239,7 @@ vary@~1.1.2:
 
 vite-plugin-handlebars@^1.6.0:
   version "1.6.0"
-  resolved "https://registry.npmjs.org/vite-plugin-handlebars/-/vite-plugin-handlebars-1.6.0.tgz"
+  resolved "https://registry.yarnpkg.com/vite-plugin-handlebars/-/vite-plugin-handlebars-1.6.0.tgz#fe74b8321d81a9267594d807c2d6135581e7a3fe"
   integrity sha512-/TZ2FadScvJW6fmQ+3m3stm6ns+tDZ3VAgzEkSQYQurAnaQ/3MJfidhmTXzD1Hu1iwgkI3lNuEqybzjjKemCTg==
   dependencies:
     handlebars "^4.7.6"

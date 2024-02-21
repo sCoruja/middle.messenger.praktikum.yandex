@@ -1,8 +1,13 @@
 import Handlebars from "handlebars";
 import { HelperOptions } from "handlebars";
 import Component from "../services/Component";
+import { patch, recycleNode } from "../services/VDOM";
 
-export function registerComponent(name: string, Block: typeof Component) {
+export function registerComponent(
+  name: string,
+  Block: typeof Component,
+  tagName: string
+) {
   if (name in Handlebars.helpers) {
     throw `The ${name} component is already registered!`;
   }
@@ -10,28 +15,21 @@ export function registerComponent(name: string, Block: typeof Component) {
   Handlebars.registerHelper(
     name,
     function (this: unknown, { hash, data, fn }: HelperOptions) {
-      const component = new Block(hash);
+      const component = new Block(tagName, hash);
       const dataAttribute = `data-id="${component.id}"`;
-      
-      if ("ref" in hash) {
-        (data.root.__refs = data.root.__refs || {})[hash.ref] = component;
-      }
-      
       (data.root.__children = data.root.__children || []).push({
         component,
-        embed(fragment: DocumentFragment) {
+        embed(fragment: Element) {
           const stub = fragment.querySelector(`[${dataAttribute}]`);
-          
-          if (!stub) {
+          if (!stub && stub.getAttribute("data-id") === dataAttribute) {
             return;
           }
-          component.getContent()?.append(...Array.from(stub.childNodes));
-          
-          stub.replaceWith(component.getContent()!);
+          component.element?.append(...Array.from(stub.childNodes));
+            stub.replaceWith(component.getContent()!);
+          return { stub, component };
         },
       });
       const contents = fn ? fn(this) : "";
-      console.log(`${name} loaded`);
       return `<div ${dataAttribute}>${contents}</div>`;
     }
   );

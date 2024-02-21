@@ -1,18 +1,19 @@
-<main class="profile">
-  <div class="profile__inner">
-    <div class="profile__image-wrapper">
-      <img
-        src="https://avatars.mds.yandex.net/i?id=2eeb65844afee5dc830414a1fc1e54c1034faa59-9215166-images-thumbs&n=13"
-        alt=""
-        class="profile__image"
-      />
-    </div>
-    <ul class="profile__fields">
+<main class="{{styles.main}}">
+  <h2 class="{{styles.main__title}}">Profile</h2>
+  <div class="{{styles.main__profile}} {{styles.profile}}">
+    <div class="{{styles.profile__fields}}">
+      <div class="{{styles.image__wrapper}}">
+        <img src="{{image}}" alt="person" class="{{styles.profile__image}}" />
+      </div>
       {{#each fields}}
         {{{ProfileField data=this}}}
       {{/each}}
-      <a href="#" class="profile__link">Change password</a>
-      <a href="#" class="profile__link profile__link_color_danger">Log out</a>
-    </ul>
+    </div>
+    <a href="#" class="{{styles.profile__link}}">Change password</a>
+    <a
+      href="/signin"
+      class="{{styles.profile__link}} {{styles.profile__link_color_danger}}"
+    >Logout</a>
   </div>
+
 </main>

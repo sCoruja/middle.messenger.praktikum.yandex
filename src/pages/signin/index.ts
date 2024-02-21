@@ -1,21 +1,12 @@
 import tpl from "./signin.hbs";
-import "./signin.css";
-import { Component } from "../../services/Component";
-import { ComponentProps } from "../../services/types";
+import styles from "./signin.module.css";
+import Component from "../../services/Component";
 export class SignInPage extends Component {
-  constructor() {
-    super();
-    this.submitHandler = this.submitHandler.bind(this);
-    this.changeHandler = this.changeHandler.bind(this);
+  constructor(tagName = 'main') {
+    super(tagName, { styles, login: '', password: '' });
   }
-  componentDidMount(oldProps: ComponentProps): void {
+  componentDidMount(): void {
     this.setProps({ login: "", password: "" });
-  }
-  componentDidUpdate(
-    oldProps: ComponentProps,
-    newProps: ComponentProps
-  ): boolean {
-    return !(oldProps === newProps);
   }
   private regExp = {
     login: "[a-zA-ZА-Яа-я0-9_-]{3,20}",
@@ -25,23 +16,27 @@ export class SignInPage extends Component {
   submitHandler(event: SubmitEvent) {
     event.preventDefault();
     event.stopPropagation();
+    const form = event.target as HTMLFormElement;
     //check valid
     if (event.target) {
-      const data = new FormData(event.target);
+      const data = new FormData(form);
     }
+    console.log({ login: form.login.value, password: form.password.value });
   }
   changeHandler(event: InputEvent) {
-    console.log(event.target.value);
-    this.setProps({ ...this.props, [event.target.name]: event.target.value });
+    console.log("Page: " + (event.target as HTMLInputElement).value);
+    this.setProps({
+      ...this.props,
+      [(event.target as HTMLInputElement).name]: (
+        event.target as HTMLInputElement
+      ).value,
+    });
   }
-
   render() {
     return this.compile(tpl, {
       ...this.props,
-      submitHandler: this.submitHandler,
-      changeHandler: this.changeHandler,
-      login: this.props.login,
-      password: this.props.password,
+      submitHandler: this.submitHandler.bind(this),
+      changeHandler: this.changeHandler.bind(this),
     });
   }
 }

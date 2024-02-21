@@ -3,37 +3,42 @@ import { ErrorPage } from "./pages/error";
 import { ProfilePage } from "./pages/profile";
 import { SignInPage } from "./pages/signin";
 import { SignUpPage } from "./pages/signup";
-import "./index.css";
-import { render } from "./utils/renderDOM";
 
-import { Conversation } from "./components/Conversation";
-import { Fieldset } from "./components/Fieldset";
-import { Form } from "./components/Form";
+import "./index.css";
+
+import { render } from "./utils/renderDOM";
+import { registerComponent } from "./utils/registerComponent";
+import { Button } from "./components/Button";
 import { Input } from "./components/Input";
+import { Users } from "./components/Users";
+import { Conversation } from "./components/Conversation";
+import { Form } from "./components/Form";
 import { Message } from "./components/Message";
 import { Profile } from "./components/Profile";
 import { ProfileField } from "./components/ProfileField";
 import { UserCard } from "./components/UserCard";
-import { Users } from "./components/Users";
 
-import { registerComponent } from "./utils/registerComponent";
-import { Button } from "./components/Button";
+import { registerConcatHelper } from "./utils/concatHelper";
+import { Modal } from "./components/Modal";
 
-registerComponent("Users", Users);
-registerComponent("Conversation", Conversation);
-registerComponent("Fieldset", Fieldset);
-registerComponent("Form", Form);
-registerComponent("Input", Input);
-registerComponent("Message", Message);
-registerComponent("Profile", Profile);
-registerComponent("ProfileField", ProfileField);
-registerComponent("UserCard", UserCard);
-registerComponent("Button", Button);
+registerConcatHelper();
+registerComponent("Button", Button, "button");
+registerComponent("Input", Input, "input");
+registerComponent("Users", Users, "aside");
+registerComponent("Conversation", Conversation, "main");
+registerComponent("Form", Form, "form");
+registerComponent("Message", Message, "li");
+registerComponent("Profile", Profile, "main");
+registerComponent("ProfileField", ProfileField, "li");
+registerComponent("UserCard", UserCard, "div");
+registerComponent("Modal", Modal, "div");
+
+// const indexPage = new IndexPage();
+// render("#app", indexPage);
 
 const pathname = window.location.pathname.endsWith("/")
   ? window.location.pathname
   : window.location.pathname + "/";
-
 switch (pathname) {
   case "/": {
     const root = document.getElementById("app");
@@ -67,7 +72,7 @@ switch (pathname) {
     break;
   }
   default: {
-    const errorPage = new ErrorPage({ code: 404 });
+    const errorPage = new ErrorPage("main", { code: 404 });
     render("#app", errorPage);
     break;
   }
