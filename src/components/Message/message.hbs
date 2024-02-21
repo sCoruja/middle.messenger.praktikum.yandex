@@ -6,7 +6,9 @@
     </p>
     <div class="{{styles.message__info}}">
       <span class="{{styles.message__time}}">{{date}}</span>
-      <img src="../images/done.png" alt="" class="{{styles.message__status}}" />
+      {{#if isOwned}}
+        <img src="{{statusImage}}" alt="" class="{{styles.message__status}}" />
+      {{/if}}
     </div>
   </div>
 </li>

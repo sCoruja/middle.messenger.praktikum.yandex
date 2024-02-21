@@ -2,6 +2,7 @@ import styles from "./profile.module.css";
 import tpl from "./profile.hbs";
 import Component from "../../services/Component";
 import image from "../../../static/images/person1.png";
+
 export class Profile extends Component {
   constructor(tagName = "main") {
     const fields = [

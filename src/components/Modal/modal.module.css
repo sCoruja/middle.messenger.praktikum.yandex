@@ -88,8 +88,8 @@
 .modal__close-icon {
   height: 24px;
   width: 24px;
-  -webkit-mask-image: url(/@fs/home/oleg/Projects/middle.messenger.praktikum.yandex/static/icons/close.svg);
-  mask-image: url(/@fs/home/oleg/Projects/middle.messenger.praktikum.yandex/static/icons/close.svg);
+  -webkit-mask-image:url(../../../static/icons/close.svg);
+  mask-image: url(../../../static/icons/close.svg);
   background-color: var(--color-primary-dark);
   object-fit: contain;
   mask-size: 100%;

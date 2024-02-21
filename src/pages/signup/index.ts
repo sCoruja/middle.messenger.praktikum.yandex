@@ -14,6 +14,13 @@ export class SignUpPage extends Component {
   constructor(tagName = "main") {
     super(tagName, {
       styles,
+      first_name: '',
+      second_name: '',
+      login: '',
+      email: '',
+      phone: '',
+      password: '',
+      confirm_password: '',
     });
   }
   submitHandler(event: SubmitEvent) {
@@ -47,13 +54,6 @@ export class SignUpPage extends Component {
       ...this.props,
       submitHandler: this.submitHandler.bind(this),
       changeHandler: this.changeHandler.bind(this),
-      first_name: this.props.first_name,
-      second_name: this.props.second_name,
-      login: this.props.login,
-      email: this.props.email,
-      phone: this.props.phone,
-      password: this.props.password,
-      confirm_password: this.props.confirm_password,
     });
   }
 }

@@ -4,7 +4,7 @@ import tpl from "./conversation.hbs";
 import attachIcon from "../../../static/images/attach.png";
 export class Conversation extends Component {
   constructor(tagName = "main", props: any) {
-    super("main", { ...props, styles });
+    super(tagName, { ...props, styles });
   }
   render() {
     return this.compile(tpl, { ...this.props, attachIcon });

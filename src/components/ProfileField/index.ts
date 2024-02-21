@@ -9,7 +9,8 @@ export class ProfileField extends Component {
       isModalShown: false,
       events: {
         click: (e: MouseEvent) => {
-          this.props.modalOpenHandler();
+          if(!this.props.isModalShown)
+            this.props.modalOpenHandler();
         },
       },
       modalOpenHandler: () => {

@@ -1,6 +1,6 @@
 import Component, { ComponentProps } from "../../services/Component";
 import tpl from "./form.hbs";
-import "./form.css";
+
 export class Form extends Component {
   constructor(tagName = "form", props: ComponentProps) {
     super(tagName, {
@@ -8,7 +8,7 @@ export class Form extends Component {
       events: {
         submit(event: SubmitEvent) {
           event.preventDefault();
-          if (props.onSubmit) props.onSubmit(event);
+          props.onSubmit?.(event);
         },
       },
     });

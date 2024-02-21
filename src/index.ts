@@ -1,4 +1,3 @@
-import { IndexPage } from "./pages/index/index";
 import { ChatPage } from "./pages/chat";
 import { ErrorPage } from "./pages/error";
 import { ProfilePage } from "./pages/profile";
@@ -50,11 +49,6 @@ switch (pathname) {
     <a href="/profile">Profile page</a><br />
     <a href="/chat">Chat page</a><br />
     <a href="/fdssfdfds">404</a><br />`;
-    break;
-  }
-  case "/index/": {
-    const indexPage = new IndexPage();
-    render("#app", indexPage);
     break;
   }
   case "/signup/": {

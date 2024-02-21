@@ -4,7 +4,7 @@
     <p class="{{styles.profile__field-value}}">{{data.value}}</p>
     <span class="{{styles.profile__field-span}}">Click for change</span>
   </div>
-  {{#if isModalShown}}
-    {{{Modal key=data.title onClose=modalCloseHandler}}}
-  {{/if}}
+  {{!-- {{#if isModalShown}} --}}
+    {{{Modal key=data.title onClose=modalCloseHandler onKeyUp=onKeyUp isModalShown=isModalShown}}}
+  {{!-- {{/if}} --}}
 </div>

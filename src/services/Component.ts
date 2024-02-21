@@ -52,6 +52,7 @@ class Component {
     this._createResources();
     console.log(`INIT ${this.constructor.name}`);
     this.eventBus().emit(EVENTS.FLOW_RENDER);
+    //создать виртуальное древо компонента
   }
 
   _componentDidMount() {
@@ -59,23 +60,25 @@ class Component {
   }
 
   // Может переопределять пользователь, необязательно трогать
-  componentDidMount() {}
+  componentDidMount() { }
 
-  dispatchComponentDidMount() {}
+  dispatchComponentDidMount() { }
 
   _componentDidUpdate(oldProps, newProps) {
+    if (!this.componentDidUpdate(oldProps, newProps))
+      return
+    this._render();
+    // if (!this.componentDidUpdate(oldProps, newProps)) return;
     // this._removeEvents();
-    // this._render();
-    // const contextAndStubs = { ...context };
-    if (!this.componentDidUpdate(oldProps, newProps)) return;
-    const fragment = this.compile(this._tpl!, this.props);
-    const newElement = fragment as TElement;
-    if (this._element) {
-      const newNode = recycleNode(newElement);
-      patch(newNode, this._element);
-      console.log(`UPDATE ${this.constructor.name}`);
-      // this._addEvents();
-    }
+    // const newElement = this.compile(this._tpl!, this.props) as TElement;
+    // if (this._element) {
+    //   console.log(newElement)
+    //   console.log(this.element)
+    //   const newNode = recycleNode(newElement);
+    //   console.log(recycleNode(this.element))
+    //   patch(newNode, this._element);
+    //   this._addEvents();  
+    // }
   }
 
   // Может переопределять пользователь, необязательно трогать
@@ -98,17 +101,13 @@ class Component {
   _render() {
     const fragment = this.render();
     const newElement = fragment as TElement;
-    if (this._element) {
-      this._removeEvents();
-
-      if (this._element !== newElement) {
-        const newNode = recycleNode(newElement); //создание vnode
-        patch(newNode, this._element); //обновление элемента без его полной перерисовки
-      }
-      this._element = newElement;
-      this._addEvents();
-      this.eventBus().emit(EVENTS.FLOW_CDM);
-    }
+    this._removeEvents();
+    this._element?.replaceWith(newElement)
+    // const newNode = recycleNode(newElement); //создание vnode
+    // const x = patch(newNode, this._element); //обновление элемента без его полной перерисовки
+    this._element = newElement;
+    this._addEvents();
+    this.eventBus().emit(EVENTS.FLOW_CDM);
     // console.log(`RENDER ${this.constructor.name}`);
   }
 
@@ -127,9 +126,8 @@ class Component {
     const tmpl = document.createElement("template");
     tmpl.innerHTML = html;
     const result = tmpl.content.children[0];
-    const temp = document.createElement(this._meta.tagName);
-    temp.innerHTML = html;
-    contextAndStubs.__children?.forEach(({ embed }: { embed: Function }) => {
+
+    contextAndStubs.__children?.forEach(({ embed, component }: { embed: Function }) => {
       embed(result);
     });
     return result as TElement;
@@ -139,7 +137,8 @@ class Component {
     const { events = {} } = this.props;
     if (events) {
       Object.keys(events).forEach((eventName) => {
-        this._element?.addEventListener(eventName, events[eventName]);
+        // this._element?.addEventListener(eventName, events[eventName]);
+        this._element[`on${eventName}`] = events[eventName]
       });
     }
   }
@@ -147,7 +146,8 @@ class Component {
     const { events = {} } = this.props;
     if (events) {
       Object.keys(events).forEach((eventName) => {
-        this._element?.removeEventListener(eventName, events[eventName]);
+        // this._element?.removeEventListener(eventName, events[eventName]);
+        this._element[`on${eventName}`] = undefined;
       });
     }
   }
@@ -181,8 +181,8 @@ class Component {
     return document.createElement(tagName);
   }
 
-  show() {}
+  show() { }
 
-  hide() {}
+  hide() { }
 }
 export default Component;
