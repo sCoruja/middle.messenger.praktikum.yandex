@@ -1,6 +1,7 @@
 import tpl from "./signin.hbs";
 import styles from "./signin.module.css";
 import Component from "../../services/Component";
+import { signInFormValidators } from "./validate";
 export class SignInPage extends Component {
   constructor(tagName = 'main') {
     super(tagName, { styles, login: '', password: '' });
@@ -24,10 +25,15 @@ export class SignInPage extends Component {
     console.log({ login: form.login.value, password: form.password.value });
   }
   changeHandler(event: InputEvent) {
-    console.log("Page: " + (event.target as HTMLInputElement).value);
+    const name = (event.target as HTMLInputElement).name
+    const value = (event.target as HTMLInputElement).value
+    signInFormValidators[name].forEach(validator => {
+      if (!validator.validate(value))
+        console.log(validator.errorMessage)
+    })
     this.setProps({
       ...this.props,
-      [(event.target as HTMLInputElement).name]: (
+      [name]: (
         event.target as HTMLInputElement
       ).value,
     });
