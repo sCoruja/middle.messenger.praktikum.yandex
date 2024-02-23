@@ -8,11 +8,11 @@
 ## Ссылки на свёрсианные страницы
 
 [Главная](https://scoruja-middle-messenger.netlify.app/)
-[Вход](https://scoruja-middle-messenger.netlify.app/pages/signin)
-[Регистрация](https://scoruja-middle-messenger.netlify.app/pages/signup)
-[Ошибка (404/5\*\*)](https://scoruja-middle-messenger.netlify.app/pages/dfdrsfdf)
-[Список чатов](https://scoruja-middle-messenger.netlify.app/pages/main)
-[Настройки профиля](https://scoruja-middle-messenger.netlify.app/pages/profile)
+[Вход](https://scoruja-middle-messenger.netlify.app/signin)
+[Регистрация](https://scoruja-middle-messenger.netlify.app/signup)
+[Ошибка (404/5\*\*)](https://scoruja-middle-messenger.netlify.app/dfdrsfdf)
+[Список чатов](https://scoruja-middle-messenger.netlify.app/main)
+[Настройки профиля](https://scoruja-middle-messenger.netlify.app/profile)
 
 ## Что использовалось
 
