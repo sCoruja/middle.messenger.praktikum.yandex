@@ -20,14 +20,13 @@ class Component {
   private _element: Element | null = null;
   private _meta: { props: ComponentProps; tagName: string };
   _tpl: Template | null = null;
-  private _isUpdate = false;
+  _isUpdate = false;
   constructor(tagName = "div", props: ComponentProps = {}) {
     const eventBus = new EventBus();
     this._meta = {
       tagName,
       props,
     };
-
     this.props = this._makePropsProxy(props);
     this.eventBus = () => eventBus;
     this.id = makeUUID();
@@ -69,7 +68,7 @@ class Component {
 
   // Может переопределять пользователь, необязательно трогать
   componentDidUpdate(oldProps: ComponentProps, newProps: ComponentProps) {
-    return true;
+    if (oldProps !== newProps) return true;
   }
 
   setProps = (nextProps: ComponentProps) => {
@@ -154,7 +153,7 @@ class Component {
         }
         return true;
       },
-      deleteProperty(target, prop) {
+      deleteProperty() {
         throw new Error("Access denied");
       },
     });

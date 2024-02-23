@@ -2,7 +2,6 @@ import {
   regExpValidation,
   requiredValidation,
   lengthValidation,
-  equalValidation,
 } from "../../utils/formValidate";
 
 type InputValidator = {

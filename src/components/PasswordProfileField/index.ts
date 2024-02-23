@@ -8,7 +8,7 @@ export class PasswordProfileField extends Component {
       styles,
       isModalShown: false,
       events: {
-        click: (e: MouseEvent) => {
+        click: () => {
           if (!this.props.isModalShown) this.props.modalOpenHandler();
         },
       },
