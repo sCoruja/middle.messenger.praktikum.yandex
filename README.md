@@ -11,7 +11,7 @@
 [Вход](https://scoruja-middle-messenger.netlify.app/signin)
 [Регистрация](https://scoruja-middle-messenger.netlify.app/signup)
 [Ошибка (404/5\*\*)](https://scoruja-middle-messenger.netlify.app/dfdrsfdf)
-[Список чатов](https://scoruja-middle-messenger.netlify.app/main)
+[Список чатов](https://scoruja-middle-messenger.netlify.app/chat)
 [Настройки профиля](https://scoruja-middle-messenger.netlify.app/profile)
 
 ## Что использовалось
