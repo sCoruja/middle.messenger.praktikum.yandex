@@ -1,8 +1,8 @@
-import Component from "../../services/Component";
+import Component, { ComponentProps } from "../../services/Component";
 import styles from "./imageProfileField.module.css";
 import tpl from "./imageProfileField.hbs";
 export class ImageProfileField extends Component {
-  constructor(tagName = "div", props: any) {
+  constructor(tagName = "div", props: ComponentProps) {
     super(tagName, {
       ...props,
       styles,

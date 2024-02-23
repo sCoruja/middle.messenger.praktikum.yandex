@@ -1,8 +1,8 @@
-import Component from "../../services/Component";
+import Component, { ComponentProps } from "../../services/Component";
 import styles from "./passwordProfileField.module.css";
 import tpl from "./passwordProfileField.hbs";
 export class PasswordProfileField extends Component {
-  constructor(tagName = "div", props: any) {
+  constructor(tagName = "div", props: ComponentProps) {
     super(tagName, {
       ...props,
       styles,

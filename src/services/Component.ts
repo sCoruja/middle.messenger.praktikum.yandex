@@ -18,7 +18,7 @@ class Component {
   props: ComponentProps = {};
   private eventBus: () => EventBus;
   private _element: Element | null = null;
-  private _meta: { props: any; tagName: string };
+  private _meta: { props: ComponentProps; tagName: string };
   _tpl: Template | null = null;
   private _isUpdate = false;
   constructor(tagName = "div", props: ComponentProps = {}) {
