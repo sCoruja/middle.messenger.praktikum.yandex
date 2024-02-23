@@ -5,6 +5,13 @@
     <span class="{{styles.profile__field-span}}">Click for change</span>
   </div>
   {{!-- {{#if isModalShown}} --}}
-    {{{Modal key=data.title onClose=modalCloseHandler onKeyUp=onKeyUp isModalShown=isModalShown}}}
+  {{{Modal
+    title=data.title
+    name=data.name
+    onClose=modalCloseHandler
+    onKeyUp=onKeyUp
+    isModalShown=isModalShown
+    validator=validator
+  }}}
   {{!-- {{/if}} --}}
 </div>

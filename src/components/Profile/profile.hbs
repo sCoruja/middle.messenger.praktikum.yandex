@@ -4,10 +4,10 @@
     <div class="{{styles.profile__fields}}">
       {{{ImageProfileField image=image}}}
       {{#each fields}}
-        {{{ProfileField data=this}}}
+        {{{ProfileField data=this validator=validator}}}
       {{/each}}
     </div>
-    {{{PasswordProfileField}}}
+    {{{PasswordProfileField validator=passwordValidator}}}
     <a
       href="/signin"
       class="{{styles.profile__link}} {{styles.profile__link_color_danger}}"
