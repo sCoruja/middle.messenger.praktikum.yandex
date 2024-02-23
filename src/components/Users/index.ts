@@ -1,5 +1,4 @@
 import Component, { ComponentProps } from "../../services/Component";
-import { UsersProps } from "./types";
 import styles from "./users.module.css";
 import tpl from "./users.hbs";
 import userImg from "../../../static/images/person1.png";
@@ -10,7 +9,7 @@ import searchIcon from "../../../static/icons/search.svg";
 
 export class Users extends Component {
   constructor(tagName = "aside", props: ComponentProps) {
-    const { users } = props as UsersProps;
+    const { users } = props;
     super(tagName, { ...props, users, styles });
   }
   render() {

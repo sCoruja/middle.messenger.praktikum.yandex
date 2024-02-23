@@ -2,14 +2,12 @@
   <h2 class="{{styles.main__title}}">Profile</h2>
   <div class="{{styles.main__profile}} {{styles.profile}}">
     <div class="{{styles.profile__fields}}">
-      <div class="{{styles.image__wrapper}}">
-        <img src="{{image}}" alt="person" class="{{styles.profile__image}}" />
-      </div>
+      {{{ImageProfileField image=image}}}
       {{#each fields}}
         {{{ProfileField data=this}}}
       {{/each}}
     </div>
-    <a href="#" class="{{styles.profile__link}}">Change password</a>
+    {{{PasswordProfileField}}}
     <a
       href="/signin"
       class="{{styles.profile__link}} {{styles.profile__link_color_danger}}"

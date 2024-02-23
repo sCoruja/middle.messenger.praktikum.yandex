@@ -26,10 +26,15 @@
           value=first_name
           className=styles.form__input
           id="first_name"
-          type="text"
+          htmlType="text"
           name="first_name"
           placeholder="John"
-        }}}</label></fieldset>
+        }}}
+        <ul class="{{styles.form__inputErrors}}">
+          {{#each errors.first_name}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul></label></fieldset>
     <fieldset class="{{styles.form__fieldset}}">
       <label for="second_name" class="{{styles.form__label}}">
         <h3 class="{{styles.form__input-title}}">Second name</h3>{{{Input
@@ -37,10 +42,15 @@
           value=second_name
           className=styles.form__input
           id="second_name"
-          type="text"
+          htmlType="text"
           name="second_name"
           placeholder="Smith"
-        }}}</label></fieldset>
+        }}}
+        <ul class="{{styles.form__inputErrors}}">
+          {{#each errors.second_name}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul></label></fieldset>
     <fieldset class="{{styles.form__fieldset}}">
       <label for="login" class="{{styles.form__label}}">
         <h3 class="{{styles.form__input-title}}">Login</h3>{{{Input
@@ -48,10 +58,15 @@
           value=login
           className=styles.form__input
           id="login"
-          type="text"
+          htmlType="text"
           name="login"
           placeholder="jsmth23"
-        }}}</label></fieldset>
+        }}}
+        <ul class="{{styles.form__inputErrors}}">
+          {{#each errors.login}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul></label></fieldset>
     <fieldset class="{{styles.form__fieldset}}">
       <label for="email" class="{{styles.form__label}}">
         <h3 class="{{styles.form__input-title}}">E-mail</h3>{{{Input
@@ -59,10 +74,15 @@
           value=email
           className=styles.form__input
           id="email"
-          type="text"
+          htmlType="text"
           name="email"
           placeholder="jsmth24@ya.ru"
-        }}}</label></fieldset>
+        }}}
+        <ul class="{{styles.form__inputErrors}}">
+          {{#each errors.email}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul></label></fieldset>
     <fieldset class="{{styles.form__fieldset}}">
       <label for="phone" class="{{styles.form__label}}">
         <h3 class="{{styles.form__input-title}}">Phone number</h3>{{{Input
@@ -70,10 +90,15 @@
           value=phone
           className=styles.form__input
           id="phone"
-          type="text"
+          htmlType="text"
           name="phone"
           placeholder="+7 000 000 00 00"
-        }}}</label></fieldset>
+        }}}
+        <ul class="{{styles.form__inputErrors}}">
+          {{#each errors.phone}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul></label></fieldset>
     <fieldset class="{{styles.form__fieldset}}">
       <label for="password" class="{{styles.form__label}}">
         <h3 class="{{styles.form__input-title}}">Password</h3>{{{Input
@@ -81,10 +106,15 @@
           value=password
           className=styles.form__input
           id="password"
-          type="password"
+          htmlType="password"
           name="password"
           placeholder="Enter your password"
-        }}}</label></fieldset>
+        }}}
+        <ul class="{{styles.form__inputErrors}}">
+          {{#each errors.password}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul></label></fieldset>
     <fieldset class="{{styles.form__fieldset}}">
       <label for="confirm_password" class="{{styles.form__label}}">
         <h3 class="{{styles.form__input-title}}">Confirm password</h3>{{{Input
@@ -92,13 +122,21 @@
           value=confirm_password
           className=styles.form__input
           id="confirm_password"
-          type="password"
+          htmlType="password"
           name="confirm_password"
           placeholder="Confirm your password"
-        }}}</label></fieldset>
+        }}}
+        <ul class="{{styles.form__inputErrors}}">
+          {{#each errors.confirm_password}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul></label></fieldset>
 
     {{#Button type="submit" className=styles.form__button}}
       Sign Up
     {{/Button}}
+    {{#if hasErrors}}
+      <span class="{{styles.form__errors}}">Form has errors!</span>
+    {{/if}}
   {{/Form}}
 </main>

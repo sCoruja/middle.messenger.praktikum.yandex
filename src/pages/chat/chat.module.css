@@ -10,9 +10,11 @@
   align-items: stretch;
   justify-content: space-between;
 }
+
 .body_theme_light .app {
   background-color: #fff;
 }
+
 .chat {
   display: flex;
   padding: 32px;

@@ -1,0 +1,11 @@
+<div>
+  <div class="{{styles.image__wrapper}}">
+    <img src="{{image}}" alt="person" class="{{styles.profile__image}}" />
+  </div>
+  {{{Modal
+    key="image"
+    onClose=modalCloseHandler
+    onKeyUp=onKeyUp
+    isModalShown=isModalShown
+  }}}
+</div>

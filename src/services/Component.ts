@@ -1,4 +1,3 @@
-import { TElement, patch, recycleNode } from "./VDOM";
 import { EventBus } from "./EventBus";
 import { v4 as makeUUID } from "uuid";
 
@@ -18,10 +17,10 @@ class Component {
   public id: string;
   props: ComponentProps = {};
   private eventBus: () => EventBus;
-  private _element: TElement | null = null;
+  private _element: Element | null = null;
   private _meta: { props: any; tagName: string };
   _tpl: Template | null = null;
-
+  private _isUpdate = false;
   constructor(tagName = "div", props: ComponentProps = {}) {
     const eventBus = new EventBus();
     this._meta = {
@@ -45,14 +44,13 @@ class Component {
 
   _createResources() {
     const { tagName } = this._meta;
-    this._element = this._createDocumentElement(tagName) as TElement;
+    this._element = this._createDocumentElement(tagName) as Element;
   }
 
   init() {
     this._createResources();
     console.log(`INIT ${this.constructor.name}`);
     this.eventBus().emit(EVENTS.FLOW_RENDER);
-    //создать виртуальное древо компонента
   }
 
   _componentDidMount() {
@@ -60,29 +58,17 @@ class Component {
   }
 
   // Может переопределять пользователь, необязательно трогать
-  componentDidMount() { }
+  componentDidMount() {}
 
-  dispatchComponentDidMount() { }
+  dispatchComponentDidMount() {}
 
-  _componentDidUpdate(oldProps, newProps) {
-    if (!this.componentDidUpdate(oldProps, newProps))
-      return
+  _componentDidUpdate(oldProps: ComponentProps, newProps: ComponentProps) {
+    if (!this.componentDidUpdate(oldProps, newProps)) return;
     this._render();
-    // if (!this.componentDidUpdate(oldProps, newProps)) return;
-    // this._removeEvents();
-    // const newElement = this.compile(this._tpl!, this.props) as TElement;
-    // if (this._element) {
-    //   console.log(newElement)
-    //   console.log(this.element)
-    //   const newNode = recycleNode(newElement);
-    //   console.log(recycleNode(this.element))
-    //   patch(newNode, this._element);
-    //   this._addEvents();  
-    // }
   }
 
   // Может переопределять пользователь, необязательно трогать
-  componentDidUpdate(oldProps, newProps) {
+  componentDidUpdate(oldProps: ComponentProps, newProps: ComponentProps) {
     return true;
   }
 
@@ -90,8 +76,10 @@ class Component {
     if (!nextProps) {
       return;
     }
-    if (this.props === nextProps) return;
+    const oldProps = { ...this.props };
+    this._isUpdate = false;
     Object.assign(this.props, nextProps);
+    this.eventBus().emit(EVENTS.FLOW_CDU, oldProps, nextProps);
   };
 
   get element() {
@@ -100,20 +88,18 @@ class Component {
 
   _render() {
     const fragment = this.render();
-    const newElement = fragment as TElement;
+    const newElement = fragment as Element;
     this._removeEvents();
-    this._element?.replaceWith(newElement)
-    // const newNode = recycleNode(newElement); //создание vnode
-    // const x = patch(newNode, this._element); //обновление элемента без его полной перерисовки
+    this._element?.replaceWith(newElement);
     this._element = newElement;
     this._addEvents();
     this.eventBus().emit(EVENTS.FLOW_CDM);
-    // console.log(`RENDER ${this.constructor.name}`);
+    console.log(`RENDER ${this.constructor.name}`);
   }
 
   // Может переопределять пользователь, необязательно трогать
-  render(): HTMLElement {
-    return new HTMLElement();
+  render(): Element {
+    return new Element();
   }
 
   getContent() {
@@ -127,18 +113,17 @@ class Component {
     tmpl.innerHTML = html;
     const result = tmpl.content.children[0];
 
-    contextAndStubs.__children?.forEach(({ embed, component }: { embed: Function }) => {
+    contextAndStubs.__children?.forEach(({ embed }: { embed: Function }) => {
       embed(result);
     });
-    return result as TElement;
+    return result as Element;
   }
 
   _addEvents() {
     const { events = {} } = this.props;
     if (events) {
       Object.keys(events).forEach((eventName) => {
-        // this._element?.addEventListener(eventName, events[eventName]);
-        this._element[`on${eventName}`] = events[eventName]
+        this._element?.addEventListener(eventName, events[eventName]);
       });
     }
   }
@@ -146,8 +131,7 @@ class Component {
     const { events = {} } = this.props;
     if (events) {
       Object.keys(events).forEach((eventName) => {
-        // this._element?.removeEventListener(eventName, events[eventName]);
-        this._element[`on${eventName}`] = undefined;
+        this._element?.removeEventListener(eventName, events[eventName]);
       });
     }
   }
@@ -166,7 +150,7 @@ class Component {
         if (oldValue !== value) {
           target[prop] = value;
           if (oldValue !== value && !(typeof value === "function"))
-            self.eventBus().emit(EVENTS.FLOW_CDU, oldValue, value);
+            self._isUpdate = true;
         }
         return true;
       },
@@ -181,8 +165,8 @@ class Component {
     return document.createElement(tagName);
   }
 
-  show() { }
+  show() {}
 
-  hide() { }
+  hide() {}
 }
 export default Component;

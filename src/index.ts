@@ -4,7 +4,7 @@ import { ProfilePage } from "./pages/profile";
 import { SignInPage } from "./pages/signin";
 import { SignUpPage } from "./pages/signup";
 
-import "./index.css";
+import styles from "./index.module.css";
 
 import { render } from "./utils/renderDOM";
 import { registerComponent } from "./utils/registerComponent";
@@ -20,6 +20,8 @@ import { UserCard } from "./components/UserCard";
 
 import { registerConcatHelper } from "./utils/concatHelper";
 import { Modal } from "./components/Modal";
+import { ImageProfileField } from "./components/ImageProfileField";
+import { PasswordProfileField } from "./components/PasswordProfileField";
 
 registerConcatHelper();
 registerComponent("Button", Button, "button");
@@ -30,11 +32,14 @@ registerComponent("Form", Form, "form");
 registerComponent("Message", Message, "li");
 registerComponent("Profile", Profile, "main");
 registerComponent("ProfileField", ProfileField, "li");
+registerComponent("ImageProfileField", ImageProfileField, "div");
+registerComponent("PasswordProfileField", PasswordProfileField, "div");
 registerComponent("UserCard", UserCard, "div");
 registerComponent("Modal", Modal, "div");
 
 // const indexPage = new IndexPage();
 // render("#app", indexPage);
+document.querySelector("body")?.setAttribute("class", styles.body_theme_dark);
 
 const pathname = window.location.pathname.endsWith("/")
   ? window.location.pathname

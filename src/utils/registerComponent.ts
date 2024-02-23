@@ -1,7 +1,6 @@
 import Handlebars from "handlebars";
 import { HelperOptions } from "handlebars";
 import Component from "../services/Component";
-import { patch, recycleNode } from "../services/VDOM";
 
 export function registerComponent(
   name: string,
@@ -21,11 +20,11 @@ export function registerComponent(
         component,
         embed(fragment: Element) {
           const stub = fragment.querySelector(`[${dataAttribute}]`);
-          if (!stub && stub.getAttribute("data-id") === dataAttribute) {
+          if (!stub) {
             return;
           }
           component.element?.append(...Array.from(stub.childNodes));
-            stub.replaceWith(component.getContent()!);
+          stub.replaceWith(component.getContent()!);
           return { stub, component };
         },
       });

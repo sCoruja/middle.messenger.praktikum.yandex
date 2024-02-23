@@ -12,15 +12,12 @@ export class Modal extends Component {
           if (e.key === "Escape") this.props.onClose();
         },
         click: (e: MouseEvent) => {
-          if(e.target === e.currentTarget)
-          this.props.onClose();
+          if (e.target === e.currentTarget) this.props.onClose();
         },
       },
     });
   }
-  componentDidMount(): void {
-    console.log(this.element)
-  }
+  componentDidMount(): void {}
   render() {
     return this.compile(tpl, {
       ...this.props,
