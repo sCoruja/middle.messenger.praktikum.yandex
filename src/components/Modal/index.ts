@@ -32,7 +32,7 @@ export class Modal extends Component {
     });
   }
   submitHandler(event: SubmitEvent) {
-    console.log(new FormData(event.targetyaen));
+    console.log(new FormData(event.target));
   }
   render() {
     return this.compile(tpl, {
