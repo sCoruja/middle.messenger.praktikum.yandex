@@ -22,10 +22,12 @@ import { registerConcatHelper } from "./utils/concatHelper";
 import { Modal } from "./components/Modal";
 import { ImageProfileField } from "./components/ImageProfileField";
 import { PasswordProfileField } from "./components/PasswordProfileField";
+import { InputWithValidation } from "./components/InputWithValidation";
 
 registerConcatHelper();
 registerComponent("Button", Button, "button");
 registerComponent("Input", Input, "input");
+registerComponent("InputWithValidation", InputWithValidation, "div");
 registerComponent("Users", Users, "aside");
 registerComponent("Conversation", Conversation, "main");
 registerComponent("Form", Form, "form");

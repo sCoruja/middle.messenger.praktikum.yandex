@@ -31,10 +31,14 @@ export class Modal extends Component {
       value,
     });
   }
+  submitHandler(event: SubmitEvent) {
+    console.log(new FormData(event.targetyaen));
+  }
   render() {
     return this.compile(tpl, {
       ...this.props,
       changeHandler: this.changeHandler.bind(this),
+      submitHandler: this.submitHandler.bind(this),
     });
   }
 }
