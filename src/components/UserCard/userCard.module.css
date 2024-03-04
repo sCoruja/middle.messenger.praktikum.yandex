@@ -8,6 +8,7 @@
   padding-right: 16px;
   overflow-y: scroll;
 }
+
 .chats__item {
   display: flex;
   align-items: center;
@@ -16,49 +17,55 @@
   border-radius: 20px;
   cursor: pointer;
 }
+
 .chats__item:hover,
 .chats__item_active {
   background: var(--bg-color-secondary-dark);
 }
+
 .body_theme_light .chats__item:hover,
 .body_theme_light .chats__item_active {
   background: var(--bg-color-primary-light);
 }
+
 .chats__img {
   height: 48px;
   width: 48px;
   object-fit: cover;
   border-radius: 50%;
 }
+
 .chats__name {
   color: var(--color-primary-dark);
   margin: 0;
   font-size: 18px;
 }
+
 .body_theme_light .chats__name {
   color: var(--color-primary-light);
 }
+
 .chats__message {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
+
 .chats__text {
   margin: 0;
   color: var(--color-secondary);
   font-size: 18px;
-
   overflow: hidden;
   text-overflow: ellipsis;
   display: -moz-box;
-  -moz-box-orient: vertical;
   display: -webkit-box;
+  -moz-box-orient: vertical;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   line-clamp: 1;
-  box-orient: vertical;
 }
+
 .chats__msgInfo {
   width: 64px;
   display: flex;
@@ -67,11 +74,13 @@
   align-items: center;
   justify-content: space-between;
 }
+
 .chats__msgTime {
   width: 100%;
   color: var(--color-secondary);
   font-size: 14px;
 }
+
 .chats__msgCount {
   background: var(--bg-color-danger);
   color: var(--color-danger);
@@ -83,6 +92,7 @@
   height: 20px;
   font-size: 14px;
 }
+
 @media screen and (width < 720px) {
   .chats__list {
     max-height: 80vh;

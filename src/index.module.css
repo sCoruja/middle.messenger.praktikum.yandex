@@ -6,6 +6,23 @@
   background: var(/* var(aaaa) */ --bg-color-light);
 }
 
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 24px;
+}
+
+.list a {
+  color: var(--bg-color-light);
+  text-decoration: none;
+}
+
+.list a:hover {
+  opacity: 0.7;
+}
+
 :root {
   font-family: Montserrat, sans-serif;
 

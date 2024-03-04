@@ -22,10 +22,12 @@ import { registerConcatHelper } from "./utils/concatHelper";
 import { Modal } from "./components/Modal";
 import { ImageProfileField } from "./components/ImageProfileField";
 import { PasswordProfileField } from "./components/PasswordProfileField";
+import { InputWithValidation } from "./components/InputWithValidation";
 
 registerConcatHelper();
 registerComponent("Button", Button, "button");
 registerComponent("Input", Input, "input");
+registerComponent("InputWithValidation", InputWithValidation, "div");
 registerComponent("Users", Users, "aside");
 registerComponent("Conversation", Conversation, "main");
 registerComponent("Form", Form, "form");
@@ -49,11 +51,26 @@ switch (pathname) {
     const root = document.getElementById("app");
     if (root)
       root.innerHTML = `
-    <a href="/signup">Sign Up</a><br />
-    <a href="/signin">Sign In</a><br />
-    <a href="/profile">Profile page</a><br />
-    <a href="/chat">Chat page</a><br />
-    <a href="/fdssfdfds">404</a><br />`;
+    <nav">
+      <ul class="${styles.list}">
+        <li>
+          <a href="/signup">Sign Up</a>
+        </li>
+        <li>
+          <a href="/signin">Sign In</a>
+        </li>
+        <li>
+          <a href="/profile">Profile page</a>
+        </li>
+        <li>
+          <a href="/chat">Chat page</a>
+        </li>
+        <li>
+          <a href="/fdssfdfds">404</a>
+        </li>
+      <ul>
+    <nav>
+    `;
     break;
   }
   case "/signup/": {
