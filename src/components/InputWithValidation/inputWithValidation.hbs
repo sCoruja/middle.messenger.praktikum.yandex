@@ -1,0 +1,15 @@
+<div>
+  {{{Input
+    className=inputClassName
+    type=type
+    name=name
+    value=value
+    onKeyUp=blurHandler
+    placeholder=placeholder
+  }}}
+  <ul class="{{errorsClassName}}">
+    {{#each errors}}
+      <li>{{this}}</li>
+    {{/each}}
+  </ul>
+</div>

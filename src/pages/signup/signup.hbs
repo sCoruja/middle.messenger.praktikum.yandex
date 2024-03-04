@@ -1,0 +1,142 @@
+<main class="{{styles.signin}}">
+  <header class="{{styles.header}}">
+    <h1 class="{{styles.logo}} {{styles.header__logo}}">Messenger</h1>
+    <div class="{{styles.header__links}}">
+      <a
+        href="./signin.html"
+        class="{{styles.header__link}} {{styles.header__link_active}}"
+      >Sign In</a>
+      <a href="./signup.html" class="{{styles.header__link}}">Sign Up</a>
+    </div>
+  </header>
+  <aside class="{{styles.aside}} {{styles.signin__aside}}">
+    <h1 class="{{styles.logo}} {{styles.aside__logo}}">Messenger</h1>
+    <p class="{{styles.aside__text}}">Let's start!</p>
+    <a href="./signin.html" class="{{styles.aside__link}}">Sign In</a>
+  </aside>
+  {{#Form
+    onSubmit=submitHandler className=(concat styles.form styles.signin__form)
+  }}
+
+    <h2 class="{{styles.form__heading}}">Sign Up</h2>
+    <fieldset class="{{styles.form__fieldset}}">
+      <label for="first_name" class="{{styles.form__label}}">
+        <h3 class="{{styles.form__input-title}}">First name</h3>{{{Input
+          onKeyUp=changeHandler
+          value=first_name
+          className=styles.form__input
+          id="first_name"
+          htmlType="text"
+          name="first_name"
+          placeholder="John"
+        }}}
+        <ul class="{{styles.form__inputErrors}}">
+          {{#each errors.first_name}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul></label></fieldset>
+    <fieldset class="{{styles.form__fieldset}}">
+      <label for="second_name" class="{{styles.form__label}}">
+        <h3 class="{{styles.form__input-title}}">Second name</h3>{{{Input
+          onKeyUp=changeHandler
+          value=second_name
+          className=styles.form__input
+          id="second_name"
+          htmlType="text"
+          name="second_name"
+          placeholder="Smith"
+        }}}
+        <ul class="{{styles.form__inputErrors}}">
+          {{#each errors.second_name}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul></label></fieldset>
+    <fieldset class="{{styles.form__fieldset}}">
+      <label for="login" class="{{styles.form__label}}">
+        <h3 class="{{styles.form__input-title}}">Login</h3>{{{Input
+          onKeyUp=changeHandler
+          value=login
+          className=styles.form__input
+          id="login"
+          htmlType="text"
+          name="login"
+          placeholder="jsmth23"
+        }}}
+        <ul class="{{styles.form__inputErrors}}">
+          {{#each errors.login}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul></label></fieldset>
+    <fieldset class="{{styles.form__fieldset}}">
+      <label for="email" class="{{styles.form__label}}">
+        <h3 class="{{styles.form__input-title}}">E-mail</h3>{{{Input
+          onKeyUp=changeHandler
+          value=email
+          className=styles.form__input
+          id="email"
+          htmlType="text"
+          name="email"
+          placeholder="jsmth24@ya.ru"
+        }}}
+        <ul class="{{styles.form__inputErrors}}">
+          {{#each errors.email}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul></label></fieldset>
+    <fieldset class="{{styles.form__fieldset}}">
+      <label for="phone" class="{{styles.form__label}}">
+        <h3 class="{{styles.form__input-title}}">Phone number</h3>{{{Input
+          onKeyUp=changeHandler
+          value=phone
+          className=styles.form__input
+          id="phone"
+          htmlType="text"
+          name="phone"
+          placeholder="+7 000 000 00 00"
+        }}}
+        <ul class="{{styles.form__inputErrors}}">
+          {{#each errors.phone}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul></label></fieldset>
+    <fieldset class="{{styles.form__fieldset}}">
+      <label for="password" class="{{styles.form__label}}">
+        <h3 class="{{styles.form__input-title}}">Password</h3>{{{Input
+          onKeyUp=changeHandler
+          value=password
+          className=styles.form__input
+          id="password"
+          htmlType="password"
+          name="password"
+          placeholder="Enter your password"
+        }}}
+        <ul class="{{styles.form__inputErrors}}">
+          {{#each errors.password}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul></label></fieldset>
+    <fieldset class="{{styles.form__fieldset}}">
+      <label for="confirm_password" class="{{styles.form__label}}">
+        <h3 class="{{styles.form__input-title}}">Confirm password</h3>{{{Input
+          onKeyUp=changeHandler
+          value=confirm_password
+          className=styles.form__input
+          id="confirm_password"
+          htmlType="password"
+          name="confirm_password"
+          placeholder="Confirm your password"
+        }}}
+        <ul class="{{styles.form__inputErrors}}">
+          {{#each errors.confirm_password}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul></label></fieldset>
+
+    {{#Button type="submit" className=styles.form__button}}
+      Sign Up
+    {{/Button}}
+    {{#if hasErrors}}
+      <span class="{{styles.form__errors}}">Form has errors!</span>
+    {{/if}}
+  {{/Form}}
+</main>

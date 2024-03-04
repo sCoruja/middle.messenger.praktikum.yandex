@@ -1,0 +1,46 @@
+<main class="{{styles.main}}">
+
+  {{#if conversation.username}}
+    <h2 class="{{styles.main__title}}">
+      {{{conversation.username}}}
+      <span
+        class="{{styles.main__status}} {{styles.main__status_online}}"
+      >Online</span>
+    </h2>
+    <div class="{{styles.main__conversation}}">
+
+      <ul class="{{styles.main__list}}">
+
+        {{#each conversation.messages}}
+          {{{Message message=this}}}
+        {{/each}}
+
+      </ul>
+
+      <form class="{{styles.main__form}}">
+        <label for="file-upload" class="{{styles.main__fileLabel}}">
+          <div class="{{styles.main__fileIcon}}"></div>
+          <input
+            type="file"
+            id="file-upload"
+            name="file-upload"
+            class="{{styles.main__fileInput}}"
+          />
+        </label>
+        <input
+          type="text"
+          class="{{styles.main__msgInput}}"
+          placeholder="Type a message..."
+        />
+        <button type="submit" class="{{styles.main__formSubmit}}">
+          <div class="{{styles.main__formIcon}}"></div>
+        </button>
+      </form>
+    </div>
+
+  {{/if}}
+
+  {{#unless conversation.username}}
+    <span>Select chat</span>
+  {{/unless}}
+</main>

@@ -1,0 +1,44 @@
+<aside class="{{styles.aside}}">
+  <div class="{{styles.aside__header}}">
+    <h1 class="{{styles.logo}}">Messenger</h1>
+    <a href="#" class="{{styles.aside__headerUser}}">
+      <img src="{{userImg}}" alt="" class="{{styles.aside__headerImg}}" />
+    </a>
+  </div>
+  <div class="{{styles.user}} {{styles.aside__user}}">
+    <img src="{{userImg}}" alt="avatar" class="{{styles.user__image}}" />
+    <h3 class="{{styles.user__name}}">Olle Sovinsky</h3>
+    <p class="{{styles.user__bio}}">Front-end developer</p>
+    <div class="{{styles.user__panel}}">
+      <button class="{{styles.user__button}}">
+        <div class="{{styles.user__btnIcon}} {{styles.user__btnIcon_edit}}" />
+      </button>
+      <button class="{{styles.user__button}}">
+        <div
+          class="{{styles.user__btnIcon}} {{styles.user__btnIcon_light-mode}}"
+        />
+      </button>
+      <button class="{{styles.user__button}}">
+        <div class="{{styles.user__btnIcon}} {{styles.user__btnIcon_leave}}" />
+      </button>
+    </div>
+  </div>
+  <div class="{{styles.chats}}">
+    <div class="{{styles.search}} {{styles.chats__search}}">
+      <label for="query" class="{{styles.search__label}}">
+        <input
+          type="text"
+          class="{{styles.search__input}}"
+          id="query"
+          placeholder="Search"
+        />
+        <div class="{{styles.search__icon}}" />
+      </label>
+    </div>
+    <ul class="{{styles.chats__list}}">
+      {{#each users}}
+        {{{UserCard user=this}}}
+      {{/each}}
+    </ul>
+  </div>
+</aside>

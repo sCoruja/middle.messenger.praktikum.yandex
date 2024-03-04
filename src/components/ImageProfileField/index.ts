@@ -1,0 +1,34 @@
+import Component, { ComponentProps } from "../../services/Component";
+import styles from "./imageProfileField.module.css";
+import tpl from "./imageProfileField.hbs";
+export class ImageProfileField extends Component {
+  constructor(tagName = "div", props: ComponentProps) {
+    super(tagName, {
+      ...props,
+      styles,
+      isModalShown: false,
+      events: {
+        click: () => {
+          if (!this.props.isModalShown) this.props.modalOpenHandler();
+        },
+      },
+      modalOpenHandler: () => {
+        if (!this.props.isModalShown)
+          this.setProps({
+            ...this.props,
+            isModalShown: true,
+          });
+      },
+      modalCloseHandler: () => {
+        if (this.props.isModalShown)
+          this.setProps({
+            ...this.props,
+            isModalShown: false,
+          });
+      },
+    });
+  }
+  render() {
+    return this.compile(tpl, this.props);
+  }
+}

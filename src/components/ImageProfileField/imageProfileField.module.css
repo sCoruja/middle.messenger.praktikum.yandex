@@ -1,0 +1,30 @@
+.image__wrapper {
+  position: relative;
+  align-self: center;
+  width: 128px;
+  height: 128px;
+  margin-bottom: 32px;
+}
+
+.profile__image {
+  width: 128px;
+  border-radius: 50%;
+  height: 128px;
+}
+
+.image__wrapper:hover::after {
+  cursor: pointer;
+  content: "Upload image";
+  position: absolute;
+  color: aliceblue;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  background-color: rgba(0 0 0 / 70%);
+  transform: translate(-50%, -50%);
+}
