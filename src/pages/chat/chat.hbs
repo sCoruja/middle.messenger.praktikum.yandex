@@ -1,6 +1,10 @@
 <div class="{{styles.page}}">
   <section class="{{styles.chat}}">
-    {{{Users users=users}}}
-    {{{Conversation conversation=conversation}}}
+    {{{Users}}}
+    {{#if chatId}}
+      {{{Conversation chatId=chatId}}}
+    {{else}}
+      <p class="{{styles.chat__select}}">Pick a chat</p>
+    {{/if}}
   </section>
 </div>

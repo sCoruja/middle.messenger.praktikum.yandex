@@ -94,7 +94,7 @@ export const signUpFormValidators: FormValidators = {
       validate: (value) =>
         regExpValidation(
           value,
-          `^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,40}$`
+          /^(?=.*\d)(?=.*[!@#$%^&*-_,>?.])?(?=.*[a-z])(?=.*[A-Z]).{8,40}$/
         ),
       errorMessage: "Enter correct value!",
     },
@@ -112,7 +112,7 @@ export const signUpFormValidators: FormValidators = {
       validate: (value) =>
         regExpValidation(
           value,
-          `^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,40}$`
+          /^(?=.*\d)(?=.*[!@#$%^&*-_,>?.])?(?=.*[a-z])(?=.*[A-Z]).{8,40}$/
         ),
       errorMessage: "Enter correct value!",
     },
@@ -124,10 +124,10 @@ export const signUpFormValidators: FormValidators = {
       validate: (value) => lengthValidation(value, 3, 20),
       errorMessage: "Enter value!",
     },
-    {
-      validate: (value, second_value) =>
-        equalValidation(value, second_value ?? ""),
-      errorMessage: "Passwords must be equal",
-    },
+    // {
+    //   validate: (value, second_value) =>
+    //     equalValidation(value, second_value ?? ""),
+    //   errorMessage: "Passwords must be equal",
+    // },
   ],
 };

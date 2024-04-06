@@ -1,3 +1,7 @@
-<form class="{{className}}">
+<form class="{{className}}"
+  {{#if enctype}}
+    enctype="multipart/form-data"
+  {{/if}}
+  >
   {{{children}}}
 </form>

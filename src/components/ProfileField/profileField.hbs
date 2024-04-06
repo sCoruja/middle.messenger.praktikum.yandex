@@ -1,17 +1,15 @@
 <div class="{{styles.profile__field}}">
   <div class="{{styles.profile__fieldInner}}">
     <span class="{{styles.profile__field-name}}">{{data.title}}</span>
-    <p class="{{styles.profile__field-value}}">{{data.value}}</p>
+    <p class="{{styles.profile__field-value}}">{{value}}</p>
     <span class="{{styles.profile__field-span}}">Click for change</span>
   </div>
-  {{!-- {{#if isModalShown}} --}}
-  {{{Modal
+  {{{SettingsForm
     title=data.title
     name=data.name
+    isModalShown=isModalShown
     onClose=modalCloseHandler
     onKeyUp=onKeyUp
-    isModalShown=isModalShown
     validator=validator
   }}}
-  {{!-- {{/if}} --}}
 </div>

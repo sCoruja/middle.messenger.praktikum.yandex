@@ -1,0 +1,35 @@
+{{#if isModalShown}}
+  <div class="{{styles.overlay}}">
+    <div class="{{styles.modal}}">
+      {{#Button className=styles.modal__close onClick=onClose}}
+        <div class="{{styles.modal__close-icon}}"></div>
+      {{/Button}}
+      <p class="{{styles.modal__text}}">Chat users:</p>
+
+      <ul class="{{styles.modal__search-result}}">
+        {{#each users}}
+          <li class="{{../styles.modal__search-result-item}}">
+            <div class="{{../styles.modal__user-img-wrapper}}">
+            {{#if this.avatar}}
+              <img
+              src="https://ya-praktikum.tech/api/v2/resources/{{this.avatar}}"
+              alt="alt"
+              class="{{../styles.modal__user-img}}"
+              />
+            {{/if}}
+            </div>
+            <h3 class="{{../styles.modal__search-result-text}}">{{this.first_name}}
+              {{this.second_name}}</h3>
+            {{#Button
+              type="submit" className=../styles.modal__search-button id=this.id
+            }}
+              Remove
+            {{/Button}}
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+{{else}}
+  <template></template>
+{{/if}}

@@ -1,0 +1,31 @@
+<div class="{{styles.user}} {{styles.aside__user}} {{className}}">
+  <div class="{{styles.user__image-wrapper}}">
+    {{#if user.avatar}}
+      <img
+        src="https://ya-praktikum.tech/api/v2/resources/{{user.avatar}}"
+        class="{{styles.user__image}}"
+      />
+    {{/if}}
+  </div>
+  <h3 class="{{styles.user__name}}">{{user.first_name}}
+    {{user.second_name}}</h3>
+  <p class="{{styles.user__bio}}">@{{user.login}}</p>
+  <div class="{{styles.user__panel}}">
+    {{#Link to="/settings" className=styles.user__button}}
+      <div class="{{styles.user__btnIcon}} {{styles.user__btnIcon_edit}}"></div>
+    {{/Link}}
+    {{!-- <button class="{{styles.user__button}}">
+      <div
+        class="{{styles.user__btnIcon}} {{styles.user__btnIcon_light-mode}}"
+      ></div>
+    </button> --}}
+    {{!-- {{#Button className=styles.user__button}}
+      <div class="{{styles.user__btnIcon}} {{styles.user__btnIcon_plus}}"></div>
+    {{/Button}} --}}
+    {{#Link to="/logout" className=styles.user__button}}
+      <div
+        class="{{styles.user__btnIcon}} {{styles.user__btnIcon_leave}}"
+      ></div>
+    {{/Link}}
+  </div>
+</div>

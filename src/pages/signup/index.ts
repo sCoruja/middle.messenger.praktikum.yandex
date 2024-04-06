@@ -2,33 +2,59 @@ import tpl from "./signup.hbs";
 import styles from "../signin/signin.module.css";
 import Component from "../../services/Component";
 import { signUpFormValidators } from "./validate";
+import { UserController } from "../../controllers/UserController";
+import { Auth } from "../../services/api/Auth";
+
+interface SignUpPageProps {
+  first_name: string;
+  second_name: string;
+  login: string;
+  email: string;
+  phone: string;
+  password: string;
+  confirm_password: string;
+  errors: {
+    first_name: string[];
+    second_name: string[];
+    login: string[];
+    email: string[];
+    phone: string[];
+    password: string[];
+    confirm_password: string[];
+  };
+  hasErrors: false;
+}
+
 export class SignUpPage extends Component {
-  constructor(tagName = "main") {
-    super(tagName, {
-      styles,
-      first_name: "",
-      second_name: "",
-      login: "",
-      email: "",
-      phone: "",
-      password: "",
-      confirm_password: "",
-      errors: {
-        first_name: [],
-        second_name: [],
-        login: [],
-        email: [],
-        phone: [],
-        password: [],
-        confirm_password: [],
+  constructor(props = {}, tagName = "main") {
+    super(
+      {
+        ...props,
+        styles,
+        first_name: "",
+        second_name: "",
+        login: "",
+        email: "",
+        phone: "",
+        password: "",
+        confirm_password: "",
+        errors: {
+          first_name: [],
+          second_name: [],
+          login: [],
+          email: [],
+          phone: [],
+          password: [],
+          confirm_password: [],
+        },
+        hasErrors: false,
       },
-      hasErrors: false,
-    });
+      tagName
+    );
   }
   submitHandler(event: SubmitEvent) {
     event.preventDefault();
     event.stopPropagation();
-    const form = event.target as HTMLFormElement;
     const errors: { [key: string]: string[] } = {
       first_name: [],
       second_name: [],
@@ -52,8 +78,15 @@ export class SignUpPage extends Component {
       return;
     } else {
       this.setProps({ ...this.props, errors, hasErrors });
-      const data = new FormData(form);
-      console.log(data);
+      const userController = new UserController();
+      userController.signup({
+        first_name: this.props.first_name,
+        second_name: this.props.second_name,
+        login: this.props.login,
+        email: this.props.email,
+        phone: this.props.phone,
+        password: this.props.password,
+      });
     }
   }
   changeHandler(event: InputEvent) {
@@ -64,8 +97,9 @@ export class SignUpPage extends Component {
       if (name === "confirm_password") {
         if (
           !validator.validate(this.props.password, this.props.confirm_password)
-        )
+        ) {
           errors.push(validator.errorMessage);
+        }
       } else {
         if (!validator.validate(value)) errors.push(validator.errorMessage);
       }

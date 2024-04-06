@@ -1,3 +1,4 @@
+import { isEqual } from "../utils/utils";
 import { EventBus } from "./EventBus";
 import { v4 as makeUUID } from "uuid";
 
@@ -16,12 +17,14 @@ export type Template = (context: ComponentProps) => string;
 class Component {
   public id: string;
   props: ComponentProps = {};
-  private eventBus: () => EventBus;
-  private _element: Element | null = null;
-  private _meta: { props: ComponentProps; tagName: string };
+  eventBus: () => EventBus;
+  _element: Element | null = null;
+  _meta: { props: ComponentProps; tagName: string };
   _tpl: Template | null = null;
   _isUpdate = false;
-  constructor(tagName = "div", props: ComponentProps = {}) {
+  _isMounted = false;
+  __children?: { component: Component; embed: Function }[];
+  constructor(props: ComponentProps = {}, tagName = "div") {
     const eventBus = new EventBus();
     this._meta = {
       tagName,
@@ -48,12 +51,12 @@ class Component {
 
   init() {
     this._createResources();
-    console.log(`INIT ${this.constructor.name}`);
     this.eventBus().emit(EVENTS.FLOW_RENDER);
   }
 
   _componentDidMount() {
     this.componentDidMount();
+    this._isMounted = true;
   }
 
   // Может переопределять пользователь, необязательно трогать
@@ -63,12 +66,25 @@ class Component {
 
   _componentDidUpdate(oldProps: ComponentProps, newProps: ComponentProps) {
     if (!this.componentDidUpdate(oldProps, newProps)) return;
+    // console.log("UPDATED", this.constructor.name, this);
+    // console.log(oldProps, newProps);
     this._render();
   }
 
   // Может переопределять пользователь, необязательно трогать
   componentDidUpdate(oldProps: ComponentProps, newProps: ComponentProps) {
     if (oldProps !== newProps) return true;
+  }
+
+  componentWillUnmount() {}
+
+  _componentWillUnmount() {
+    if (this.props) this._removeEvents();
+    if (this.__children) {
+      this.__children.forEach((child) => child.component.unmount?.());
+    }
+    this.componentWillUnmount();
+    console.log("UNMOUNTED", this.constructor.name);
   }
 
   setProps = (nextProps: ComponentProps) => {
@@ -92,8 +108,7 @@ class Component {
     this._element?.replaceWith(newElement);
     this._element = newElement;
     this._addEvents();
-    this.eventBus().emit(EVENTS.FLOW_CDM);
-    console.log(`RENDER ${this.constructor.name}`);
+    if (!this._isMounted) this.eventBus().emit(EVENTS.FLOW_CDM);
   }
 
   // Может переопределять пользователь, необязательно трогать
@@ -111,7 +126,7 @@ class Component {
     const tmpl = document.createElement("template");
     tmpl.innerHTML = html;
     const result = tmpl.content.children[0];
-
+    this.__children = contextAndStubs.__children;
     contextAndStubs.__children?.forEach(({ embed }: { embed: Function }) => {
       embed(result);
     });
@@ -164,8 +179,16 @@ class Component {
     return document.createElement(tagName);
   }
 
-  show() {}
+  show() {
+    (this.element as HTMLElement).style.display = "";
+  }
 
-  hide() {}
+  hide() {
+    (this.element as HTMLElement).style.display = "none";
+  }
+  unmount() {
+    this._componentWillUnmount();
+    this.element?.replaceWith("");
+  }
 }
 export default Component;

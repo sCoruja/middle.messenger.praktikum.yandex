@@ -1,9 +1,21 @@
 import Component, { ComponentProps } from "../../services/Component";
 import styles from "./passwordProfileField.module.css";
 import tpl from "./passwordProfileField.hbs";
+import { SettingsForm } from "../SettingsForm";
+
+interface PasswordProfileFieldProps {
+  isModalShown: boolean;
+  events: {
+    click: () => void;
+  };
+  modalOpenHandler: () => void;
+  modalCloseHandler: () => void;
+  onKeyUp: (e: KeyboardEvent) => void;
+}
+
 export class PasswordProfileField extends Component {
-  constructor(tagName = "div", props: ComponentProps) {
-    super(tagName, {
+  constructor(props: ComponentProps) {
+    super({
       ...props,
       styles,
       isModalShown: false,
@@ -29,6 +41,8 @@ export class PasswordProfileField extends Component {
     });
   }
   render() {
-    return this.compile(tpl, this.props);
+    return this.compile(tpl, {
+      ...this.props,
+    });
   }
 }

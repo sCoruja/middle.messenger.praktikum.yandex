@@ -1,101 +1,77 @@
 import { ChatPage } from "./pages/chat";
 import { ErrorPage } from "./pages/error";
 import { ProfilePage } from "./pages/profile";
-import { SignInPage } from "./pages/signin";
+import SignInPage from "./pages/signin";
 import { SignUpPage } from "./pages/signup";
 
 import styles from "./index.module.css";
 
-import { render } from "./utils/renderDOM";
 import { registerComponent } from "./utils/registerComponent";
 import { Button } from "./components/Button";
 import { Input } from "./components/Input";
-import { Users } from "./components/Users";
-import { Conversation } from "./components/Conversation";
+import Users from "./components/Users";
+import UserPanel from "./components/UserPanel";
+import { UserCard } from "./components/UserCard";
+import Conversation from "./components/Conversation";
 import { Form } from "./components/Form";
 import { Message } from "./components/Message";
-import { Profile } from "./components/Profile";
+import Profile from "./components/Profile";
 import { ProfileField } from "./components/ProfileField";
-import { UserCard } from "./components/UserCard";
 
 import { registerConcatHelper } from "./utils/concatHelper";
-import { Modal } from "./components/Modal";
-import { ImageProfileField } from "./components/ImageProfileField";
+import { SettingsForm } from "./components/SettingsForm";
+import ImageProfileField from "./components/ImageProfileField";
 import { PasswordProfileField } from "./components/PasswordProfileField";
 import { InputWithValidation } from "./components/InputWithValidation";
+import Router from "./services/Router";
+import { Modal } from "./components/Modal";
+import { UserController } from "./controllers/UserController";
+import { MessengerController } from "./controllers/MessengerController";
+import { PasswordForm } from "./components/PasswordForm";
+import { ImageForm } from "./components/ImageForm";
+import AddUserModal from "./components/Conversation/AddUserModal";
+import ChatUsersModal from "./components/Conversation/ChatUsersModal";
+import { Link } from "./components/Link";
+import { Logout } from "./pages/Logout";
+import Messages from "./components/Messages";
+import { CreateChatModal } from "./components/Users/CreateChatModal";
 
 registerConcatHelper();
 registerComponent("Button", Button, "button");
 registerComponent("Input", Input, "input");
-registerComponent("InputWithValidation", InputWithValidation, "div");
+registerComponent("Link", Link);
+registerComponent("InputWithValidation", InputWithValidation);
 registerComponent("Users", Users, "aside");
+registerComponent("CreateChatModal", CreateChatModal);
+
 registerComponent("Conversation", Conversation, "main");
+registerComponent("AddUserModal", AddUserModal);
+registerComponent("ChatUsersModal", ChatUsersModal);
 registerComponent("Form", Form, "form");
 registerComponent("Message", Message, "li");
+registerComponent("Messages", Messages, "ul");
 registerComponent("Profile", Profile, "main");
 registerComponent("ProfileField", ProfileField, "li");
-registerComponent("ImageProfileField", ImageProfileField, "div");
-registerComponent("PasswordProfileField", PasswordProfileField, "div");
-registerComponent("UserCard", UserCard, "div");
-registerComponent("Modal", Modal, "div");
-
-// const indexPage = new IndexPage();
-// render("#app", indexPage);
+registerComponent("ImageProfileField", ImageProfileField);
+registerComponent("PasswordProfileField", PasswordProfileField);
+registerComponent("UserCard", UserCard);
+registerComponent("SettingsForm", SettingsForm);
+registerComponent("PasswordForm", PasswordForm);
+registerComponent("ImageForm", ImageForm);
+registerComponent("UserPanel", UserPanel);
+registerComponent("Modal", Modal);
 document.querySelector("body")?.setAttribute("class", styles.body_theme_dark);
 
-const pathname = window.location.pathname.endsWith("/")
-  ? window.location.pathname
-  : window.location.pathname + "/";
-switch (pathname) {
-  case "/": {
-    const root = document.getElementById("app");
-    if (root)
-      root.innerHTML = `
-    <nav">
-      <ul class="${styles.list}">
-        <li>
-          <a href="/signup">Sign Up</a>
-        </li>
-        <li>
-          <a href="/signin">Sign In</a>
-        </li>
-        <li>
-          <a href="/profile">Profile page</a>
-        </li>
-        <li>
-          <a href="/chat">Chat page</a>
-        </li>
-        <li>
-          <a href="/fdssfdfds">404</a>
-        </li>
-      <ul>
-    <nav>
-    `;
-    break;
-  }
-  case "/signup/": {
-    const signUpPage = new SignUpPage();
-    render("#app", signUpPage);
-    break;
-  }
-  case "/signin/": {
-    const signInPage = new SignInPage();
-    render("#app", signInPage);
-    break;
-  }
-  case "/profile/": {
-    const profilePage = new ProfilePage();
-    render("#app", profilePage);
-    break;
-  }
-  case "/chat/": {
-    const chatPage = new ChatPage();
-    render("#app", chatPage);
-    break;
-  }
-  default: {
-    const errorPage = new ErrorPage("main", { code: 404 });
-    render("#app", errorPage);
-    break;
-  }
-}
+const userController = new UserController();
+userController.user();
+
+const router = new Router("#app");
+router
+  .use("/", SignInPage)
+  .use("/signup", SignUpPage)
+  .use("/logout", Logout)
+  .use("/settings", ProfilePage)
+  .use("/messenger", ChatPage)
+  .use(/messenger\/(\d+)/, ChatPage)
+  .use("/*", ErrorPage);
+router.start();

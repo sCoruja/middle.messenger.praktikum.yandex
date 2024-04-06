@@ -6,4 +6,6 @@ export const lengthValidation = (str: string, min: number, max: number) => {
   return str.length >= min && str.length <= max;
 };
 export const requiredValidation = (str: string) => !!str;
-export const equalValidation = (str: string, str2: string) => str === str2;
+export const equalValidation = (str: string, str2: string) => {
+  return str === str2;
+};
