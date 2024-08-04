@@ -6,38 +6,16 @@
       {{{title}}}
     </h2>
     <div class="{{styles.main__chat-buttons}}">
-      {{#Button
-        htmlType="button"
-        className=styles.main__chat-button
-        onClick=addUserModalToggle
-      }}
-        <div
-          class="{{styles.main__chat-icon}} {{styles.main__chat-icon_add}}"
-        ></div>
-      {{/Button}}
-      {{#Button
-        htmlType="button"
-        className=styles.main__chat-button
-        onClick=chatUsersModalToggle
-      }}
-        <div
-          class="{{styles.main__chat-icon}} {{styles.main__chat-icon_users}}"
-        ></div>
-      {{/Button}}
-      {{{AddUserModal
-        isModalShown=isAddUserModalOpened
-        onClose=addUserModalToggle
-      }}}
-      {{{ChatUserModal
-        isModalShown=isChatUsersModalOpened
-        onClose=chatUsersModalToggle
-      }}}
+      {{{AddUserModalButton}}}
+      {{{ChatUsersModalButton}}}
+      {{{AddUserModal}}}
+      {{{ChatUserModal}}}
 
     </div>
   </div>
   <div class="{{styles.main__conversation}}">
-    {{{Messages messages=messages}}}
-    {{#Form className=styles.main__form onSubmit=onSubmit}}
+    {{{Messages}}}
+    {{!-- {{#Form className=styles.main__form onSubmit=onSubmit}}
       <label for="file-upload" class="{{styles.main__fileLabel}}">
         <div class="{{styles.main__fileIcon}}"></div>
         <input
@@ -52,13 +30,13 @@
         htmlType="text"
         placeholder="Type a message..."
         name="message"
-        value=message
         onKeyUp=changeHandler
       }}}
       <button type="submit" class="{{styles.main__formSubmit}}">
         <div class="{{styles.main__formIcon}}"></div>
       </button>
-    {{/Form}}
+    {{/Form}} --}}
+    {{{MessageForm}}}
   </div>
 
 </main>

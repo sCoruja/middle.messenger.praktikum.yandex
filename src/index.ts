@@ -45,8 +45,8 @@ registerComponent("Users", Users, "aside");
 registerComponent("CreateChatModal", CreateChatModal);
 
 registerComponent("Conversation", Conversation, "main");
-registerComponent("AddUserModal", AddUserModal);
-registerComponent("ChatUsersModal", ChatUsersModal);
+// registerComponent("AddUserModal", AddUserModal);
+// registerComponent("ChatUsersModal", ChatUsersModal);
 registerComponent("Form", Form, "form");
 registerComponent("Message", Message, "li");
 registerComponent("Messages", Messages, "ul");

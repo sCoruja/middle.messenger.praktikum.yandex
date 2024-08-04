@@ -58,6 +58,8 @@ export class MessagesController {
         isOwned: this.userId === data.user_id,
       } as ChatMessage);
       Store.set("messenger.currentChat.messages", messages as ChatMessage[]);
+      console.log("first");
+      console.log(Store.getState().messenger.currentChat.messages);
     }
   }
   public sendMessage(content: string) {

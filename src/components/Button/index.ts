@@ -11,7 +11,7 @@ interface ButtonProps {
   htmlType?: string;
   id?: string;
   className?: string;
-  text: string;
+  text?: string;
 }
 
 export class Button extends Component {
