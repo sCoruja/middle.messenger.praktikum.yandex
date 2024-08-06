@@ -72,7 +72,7 @@ export class Conversation extends Component {
         }),
         Messages: new Messages({}),
         MessageForm: new MessageForm({
-          inputKeyUpHandler: () => {},
+          inputKeyUpHandler: () => { },
           onSubmit: (event) => {
             this.onSubmit.call(this, event);
           },

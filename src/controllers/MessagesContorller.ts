@@ -1,4 +1,4 @@
-import Store from "../services/Store";
+import Store, { StoreEvents } from "../services/Store";
 import { WSTransport, WSTransportEvents } from "../services/WSTransport";
 import { Chats } from "../services/api/Chats";
 import { ChatMessage } from "../services/api/types";
@@ -43,6 +43,7 @@ export class MessagesController {
     this.webSocket!.send({ content: offset, type: "get old" });
   }
   private onMessage(data: MessageData) {
+    console.log('msg from ws!');
     if (Array.isArray(data)) {
       const messages = (data as ChatMessage[]).map((message) => {
         return {
@@ -53,13 +54,13 @@ export class MessagesController {
       Store.set("messenger.currentChat.messages", messages as ChatMessage[]);
     } else {
       const messages = Store.getState().messenger.currentChat.messages;
+      console.log(data);
       (messages ?? []).unshift({
         ...data,
         isOwned: this.userId === data.user_id,
       } as ChatMessage);
       Store.set("messenger.currentChat.messages", messages as ChatMessage[]);
-      console.log("first");
-      console.log(Store.getState().messenger.currentChat.messages);
+
     }
   }
   public sendMessage(content: string) {

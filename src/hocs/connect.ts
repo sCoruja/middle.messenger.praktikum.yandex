@@ -8,7 +8,7 @@ export function connect(mapStateToProps: (state: AppStore) => Indexed) {
     return class extends Block {
       constructor(props: ComponentProps) {
         // сохраняем начальное состояние
-        let state = mapStateToProps(Store.getState());
+        let state = { ...mapStateToProps(Store.getState()) };
         super({ ...props, ...state });
 
         // подписываемся на событие
