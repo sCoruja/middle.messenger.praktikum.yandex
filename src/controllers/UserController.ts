@@ -6,7 +6,6 @@ import {
   ChangePasswordRequest,
   SignInRequest,
   SignUpRequest,
-  UserRequest,
 } from "../services/api/types";
 
 export class UserController {

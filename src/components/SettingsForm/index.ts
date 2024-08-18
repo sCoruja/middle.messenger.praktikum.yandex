@@ -3,7 +3,6 @@ import styles from "./settingsForm.module.css";
 import Component from "../../services/Component";
 import { InputValidator } from "../Profile/validate";
 import { UserController } from "../../controllers/UserController";
-import { UserRequest } from "../../services/api/types";
 
 interface SettingsFormProps {
   title: string;
