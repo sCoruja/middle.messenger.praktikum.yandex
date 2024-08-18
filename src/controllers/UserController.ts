@@ -61,7 +61,7 @@ export class UserController {
       }
     });
   }
-  changeProfile(data: UserRequest) {
+  changeProfile(data: { [key: string]: string }) {
     Users.changeProfile(data).then((data) => {
       if (data.status === 200) {
         Store.set("user.user", JSON.parse(data.response));

@@ -1,7 +1,7 @@
 import { queryString } from "../../utils/utils";
 import HttpTransport from "../HttpTransport";
 import { BASE_URL } from "../../utils/constants";
-import { ChangePasswordRequest, FindUserRequest, UserRequest } from "./types";
+import { ChangePasswordRequest, FindUserRequest } from "./types";
 const http = new HttpTransport();
 const url = (path = "", getParams?: { [key: string]: any }) =>
   `${BASE_URL}/user${path}${getParams ? "?" + queryString(getParams) : ""}`;
@@ -11,7 +11,7 @@ const headers = {
   "Content-Type": "application/json",
 };
 export const Users = {
-  changeProfile(data: UserRequest) {
+  changeProfile(data: { [key: string]: string }) {
     return http.put(url("/profile"), { data, headers });
   },
   changeAvatar(formData: FormData) {
