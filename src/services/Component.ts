@@ -17,6 +17,7 @@ export type Template = (context: ComponentProps) => string;
 class Component {
   public id: string;
   props: ComponentProps = {};
+  children: { [key: string]: Component };
   eventBus: () => EventBus;
   _element: Element | null = null;
   _meta: { props: ComponentProps; tagName: string };
@@ -30,6 +31,8 @@ class Component {
       tagName,
       props,
     };
+    const { children } = this._getChildren(props);
+    this.children = children;
     this.props = this._makePropsProxy(props);
     this.eventBus = () => eventBus;
     this.id = makeUUID();
@@ -47,6 +50,21 @@ class Component {
   _createResources() {
     const { tagName } = this._meta;
     this._element = this._createDocumentElement(tagName) as Element;
+  }
+
+  _getChildren(propsAndChildren: ComponentProps) {
+    const children: { [key: string]: Component } = {};
+    const props: ComponentProps = {};
+
+    Object.entries(propsAndChildren).forEach(([key, value]) => {
+      if (value instanceof Component) {
+        children[key] = value;
+      } else {
+        props[key] = value;
+      }
+    });
+
+    return { children, props };
   }
 
   init() {
@@ -121,6 +139,9 @@ class Component {
   }
   compile(template: Template, context: ComponentProps) {
     const contextAndStubs = { ...context };
+    Object.entries(this.children).forEach(([key, child]) => {
+      contextAndStubs[key] = `<div data-id="${child.id}"></div>`;
+    });
     const html = template(contextAndStubs);
     this._tpl = template;
     const tmpl = document.createElement("template");
@@ -129,6 +150,10 @@ class Component {
     this.__children = contextAndStubs.__children;
     contextAndStubs.__children?.forEach(({ embed }: { embed: Function }) => {
       embed(result);
+    });
+    Object.values(this.children).forEach((child) => {
+      const stub = result.querySelector(`[data-id="${child.id}"]`);
+      if (stub) stub.replaceWith(child.getContent());
     });
     return result as Element;
   }

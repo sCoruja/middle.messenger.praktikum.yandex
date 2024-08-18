@@ -7,7 +7,11 @@ import { MessengerController } from "../../controllers/MessengerController";
 import { MessagesController } from "../../controllers/MessagesContorller";
 import { UserResponse } from "../../services/api/types";
 import Store from "../../services/Store";
-import Handlebars from "handlebars";
+import { Button } from "../Button";
+import AddUserModal from "./AddUserModal";
+import ChatUsersModal from "./ChatUsersModal";
+import Messages from "../Messages";
+import { MessageForm } from "./MessageForm";
 
 interface ConversationProps {
   tagName: string;
@@ -31,6 +35,48 @@ export class Conversation extends Component {
         isChatUsersModalOpened: false,
         message: "",
         title: "",
+
+        AddUserModalButton: new Button({
+          htmlType: "button",
+          className: styles["main__chat-button"],
+          onClick: () => {
+            this.addUserModalToggle();
+            this.setProps({
+              ...this.props,
+              isAddUserModalOpened: !this.props.isAddUserModalOpened,
+            });
+          },
+          text: ` <div
+          class="${styles["main__chat-icon"]} ${styles["main__chat-icon_add"]}"
+        ></div>`,
+        }),
+        ChatUsersModalButton: new Button({
+          htmlType: "button",
+          className: styles["main__chat-button"],
+          onClick: () => {
+            this.chatUsersModalToggle();
+            this.setProps({
+              ...this.props,
+              isChatUsersModalOpened: !this.props.isChatUsersModalOpened,
+            });
+          },
+          text: ` <div
+          class="${styles["main__chat-icon"]} ${styles["main__chat-icon_users"]}"
+        ></div>`,
+        }),
+        AddUserModal: new AddUserModal({
+          isModalShown: props.isAddUserModalOpened,
+        }),
+        ChatUserModal: new ChatUsersModal({
+          isModalShown: props.isChatUsersModalOpened,
+        }),
+        Messages: new Messages({}),
+        MessageForm: new MessageForm({
+          inputKeyUpHandler: () => {},
+          onSubmit: (event) => {
+            this.onSubmit.call(this, event);
+          },
+        }),
       },
       tagName
     );
@@ -45,6 +91,7 @@ export class Conversation extends Component {
       );
       this.messagesController.start();
     }
+    console.log(this.__children);
   }
   componentDidUpdate(
     oldProps: ComponentProps,
@@ -63,15 +110,15 @@ export class Conversation extends Component {
     return true;
   }
   addUserModalToggle() {
-    this.setProps({
-      ...this.props,
-      isAddUserModalOpened: !this.props.isAddUserModalOpened,
+    this.children.AddUserModal.setProps({
+      ...this.children.AddUserModal.props,
+      isModalShown: !this.children.AddUserModal.props.isModalShown,
     });
   }
   chatUsersModalToggle() {
-    this.setProps({
-      ...this.props,
-      isChatUsersModalOpened: !this.props.isChatUsersModalOpened,
+    this.children.ChatUserModal.setProps({
+      ...this.children.ChatUserModal.props,
+      isModalShown: !this.children.ChatUserModal.props.isModalShown,
     });
   }
   changeHandler(event: InputEvent) {
@@ -81,14 +128,17 @@ export class Conversation extends Component {
   }
   onSubmit(event: SubmitEvent) {
     event.preventDefault();
-    if (this.props.message)
-      this.messagesController?.sendMessage(this.props.message);
+    const form = event.target as HTMLFormElement;
+    if (form.message.value)
+      this.messagesController?.sendMessage(form.message.value);
     this.setProps({ ...this.props, message: "" });
+    form.message.value = "";
   }
   componentWillUnmount(): void {
     this.messagesController?.close.call(this);
     Store.set("messenger.currentChat.messages", undefined);
   }
+
   render() {
     return this.compile(tpl, {
       ...this.props,
@@ -96,6 +146,10 @@ export class Conversation extends Component {
       addUserModalToggle: this.addUserModalToggle.bind(this),
       chatUsersModalToggle: this.chatUsersModalToggle.bind(this),
       changeHandler: this.changeHandler.bind(this),
+      AddUserModal: {
+        ...this.props.AddUserModal,
+        isModalShown: this.props.isAddUserModalOpened,
+      },
       onSubmit: this.onSubmit.bind(this),
     });
   }

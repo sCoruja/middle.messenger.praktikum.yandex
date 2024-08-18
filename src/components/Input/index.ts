@@ -2,16 +2,16 @@ import tpl from "./input.hbs";
 import Component, { ComponentProps } from "../../services/Component";
 
 interface InputProps {
-  placeholder: string;
-  tabindex: string;
-  htmlTypehtmlType: string;
-  value: string;
-  name: string;
-  id: string;
-  className: string;
-  onKeyUp: (e: KeyboardEvent) => void;
-  events: {
-    blur: (e: KeyboardEvent) => void;
+  placeholder?: string;
+  tabindex?: string;
+  htmlType?: string;
+  value?: string;
+  name?: string;
+  id?: string;
+  className?: string;
+  onKeyUp?: (e: KeyboardEvent) => void;
+  events?: {
+    blur?: (e: KeyboardEvent) => void;
   };
 }
 

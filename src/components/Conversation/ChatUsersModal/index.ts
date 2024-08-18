@@ -26,7 +26,8 @@ class ChatUsersModal extends Component {
           if (e.key === "Escape") this.props.onClose();
         },
         click: (e: MouseEvent) => {
-          if (e.target === e.currentTarget) this.props.onClose();
+          if (e.target === e.currentTarget)
+            this.setProps({ ...this.props, isModalShown: false });
         },
       },
     });
