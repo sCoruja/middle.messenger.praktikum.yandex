@@ -7,7 +7,7 @@ interface ErrorPageProps {
 }
 
 export class ErrorPage extends Component {
-  componentDidMount(): void {}
+  componentDidMount(): void { }
   render() {
     const { code = 404 } = this.props as ErrorPageProps;
     return this.compile(tpl, { ...this.props, code });

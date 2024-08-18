@@ -11,8 +11,7 @@
   margin-bottom: 8px;
 }
 
-.main__chat-buttons {
-}
+.main__chat-buttons {}
 
 .main__chat-button {
   background-color: transparent;
@@ -105,8 +104,7 @@
   padding-right: 24px;
 }
 
-.main__message {
-}
+.main__message {}
 
 .message {
   display: flex;

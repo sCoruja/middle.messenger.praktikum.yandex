@@ -69,7 +69,7 @@ class SignInPage extends Component {
       errors: { ...this.props.errors, [name]: errors },
     });
   }
-  componentDidMount(): void {}
+  componentDidMount(): void { }
   componentDidUpdate(
     oldProps: ComponentProps,
     newProps: ComponentProps
