@@ -70,7 +70,7 @@ export class WSTransport extends EventBus {
         const data = JSON.parse(message.data);
         if (["pong", "user connected"].includes(data?.type)) return;
         this.emit(WSTransportEvents.Message, data);
-      } catch (e) {}
+      } catch (e) { }
     });
   }
 }

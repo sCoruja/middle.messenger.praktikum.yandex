@@ -15,11 +15,13 @@ class Messages extends Component {
     super(
       {
         ...props,
-        messages: props.messages,
         styles,
       },
       tagName
     );
+  }
+  componentDidUpdate(oldProps: ComponentProps, newProps: ComponentProps): true | undefined {
+    return true;
   }
   render() {
     return this.compile(tpl, this.props);

@@ -72,7 +72,7 @@ export class Conversation extends Component {
         }),
         Messages: new Messages({}),
         MessageForm: new MessageForm({
-          inputKeyUpHandler: () => {},
+          inputKeyUpHandler: () => { },
           onSubmit: (event) => {
             this.onSubmit.call(this, event);
           },
@@ -91,7 +91,6 @@ export class Conversation extends Component {
       );
       this.messagesController.start();
     }
-    console.log(this.__children);
   }
   componentDidUpdate(
     oldProps: ComponentProps,

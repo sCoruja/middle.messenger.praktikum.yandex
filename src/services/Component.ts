@@ -78,9 +78,9 @@ class Component {
   }
 
   // Может переопределять пользователь, необязательно трогать
-  componentDidMount() {}
+  componentDidMount() { }
 
-  dispatchComponentDidMount() {}
+  dispatchComponentDidMount() { }
 
   _componentDidUpdate(oldProps: ComponentProps, newProps: ComponentProps) {
     if (!this.componentDidUpdate(oldProps, newProps)) return;
@@ -94,7 +94,7 @@ class Component {
     if (oldProps !== newProps) return true;
   }
 
-  componentWillUnmount() {}
+  componentWillUnmount() { }
 
   _componentWillUnmount() {
     if (this.props) this._removeEvents();
