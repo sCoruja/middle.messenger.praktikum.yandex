@@ -1,0 +1,92 @@
+.user__image {
+  width: 99px;
+  height: 99px;
+  object-fit: cover;
+  float: left;
+  border-radius: 50%;
+}
+
+.user__image-wrapper {
+  width: 99px;
+  height: 99px;
+  border-radius: 50%;
+  margin-right: 14px;
+  float: left;
+  background-image: url("../../../static/images/default-avatar.png");
+  background-size: contain;
+  background-position: center;
+}
+
+.user__name {
+  color: var(--color-primary-dark);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.body_theme_light .user__name {
+  color: var(--color-primary-light);
+}
+
+.user__bio {
+  color: var(--color-secondary);
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.user__panel {
+  display: flex;
+  gap: 8px;
+}
+
+.user__button {
+  background-color: var(--bg-color-secondary-dark);
+  border: none;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  display: inline-flex;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.body_theme_light .user__button {
+  background-color: var(--bg-color-primary-light);
+}
+
+.user__button:hover {
+  opacity: 0.7;
+}
+
+.user__btnIcon {
+  height: 20px;
+  width: 20px;
+  margin: auto;
+  object-fit: contain;
+  mask-size: 100%;
+  background-color: var(--color-primary-dark);
+}
+
+.user__btnIcon_edit {
+  mask-image: url("../../../static/icons/edit.svg");
+}
+
+.user__btnIcon_light-mode {
+  mask-image: url("../../../static/icons/light-mode.svg");
+}
+
+.user__btnIcon_leave {
+  mask-image: url("../../../static/icons/leave.svg");
+  background-color: var(--bg-color-danger);
+}
+
+.user__btnIcon_plus {
+  mask-image: url("../../../static/icons/plus.svg");
+}

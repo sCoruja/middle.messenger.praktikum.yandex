@@ -16,17 +16,22 @@ export type Template = (context: ComponentProps) => string;
 class Component {
   public id: string;
   props: ComponentProps = {};
-  private eventBus: () => EventBus;
-  private _element: Element | null = null;
-  private _meta: { props: ComponentProps; tagName: string };
+  children: { [key: string]: Component };
+  eventBus: () => EventBus;
+  _element: Element | null = null;
+  _meta: { props: ComponentProps; tagName: string };
   _tpl: Template | null = null;
   _isUpdate = false;
-  constructor(tagName = "div", props: ComponentProps = {}) {
+  _isMounted = false;
+  __children?: { component: Component; embed: Function }[];
+  constructor(props: ComponentProps = {}, tagName = "div") {
     const eventBus = new EventBus();
     this._meta = {
       tagName,
       props,
     };
+    const { children } = this._getChildren(props);
+    this.children = children;
     this.props = this._makePropsProxy(props);
     this.eventBus = () => eventBus;
     this.id = makeUUID();
@@ -46,29 +51,57 @@ class Component {
     this._element = this._createDocumentElement(tagName) as Element;
   }
 
+  _getChildren(propsAndChildren: ComponentProps) {
+    const children: { [key: string]: Component } = {};
+    const props: ComponentProps = {};
+
+    Object.entries(propsAndChildren).forEach(([key, value]) => {
+      if (value instanceof Component) {
+        children[key] = value;
+      } else {
+        props[key] = value;
+      }
+    });
+
+    return { children, props };
+  }
+
   init() {
     this._createResources();
-    console.log(`INIT ${this.constructor.name}`);
     this.eventBus().emit(EVENTS.FLOW_RENDER);
   }
 
   _componentDidMount() {
     this.componentDidMount();
+    this._isMounted = true;
   }
 
   // Может переопределять пользователь, необязательно трогать
-  componentDidMount() {}
+  componentDidMount() { }
 
-  dispatchComponentDidMount() {}
+  dispatchComponentDidMount() { }
 
   _componentDidUpdate(oldProps: ComponentProps, newProps: ComponentProps) {
     if (!this.componentDidUpdate(oldProps, newProps)) return;
+    // console.log("UPDATED", this.constructor.name, this);
+    // console.log(oldProps, newProps);
     this._render();
   }
 
   // Может переопределять пользователь, необязательно трогать
   componentDidUpdate(oldProps: ComponentProps, newProps: ComponentProps) {
     if (oldProps !== newProps) return true;
+  }
+
+  componentWillUnmount() { }
+
+  _componentWillUnmount() {
+    if (this.props) this._removeEvents();
+    if (this.__children) {
+      this.__children.forEach((child) => child.component.unmount?.());
+    }
+    this.componentWillUnmount();
+    console.log("UNMOUNTED", this.constructor.name);
   }
 
   setProps = (nextProps: ComponentProps) => {
@@ -92,8 +125,7 @@ class Component {
     this._element?.replaceWith(newElement);
     this._element = newElement;
     this._addEvents();
-    this.eventBus().emit(EVENTS.FLOW_CDM);
-    console.log(`RENDER ${this.constructor.name}`);
+    if (!this._isMounted) this.eventBus().emit(EVENTS.FLOW_CDM);
   }
 
   // Может переопределять пользователь, необязательно трогать
@@ -106,14 +138,21 @@ class Component {
   }
   compile(template: Template, context: ComponentProps) {
     const contextAndStubs = { ...context };
+    Object.entries(this.children).forEach(([key, child]) => {
+      contextAndStubs[key] = `<div data-id="${child.id}"></div>`;
+    });
     const html = template(contextAndStubs);
     this._tpl = template;
     const tmpl = document.createElement("template");
     tmpl.innerHTML = html;
     const result = tmpl.content.children[0];
-
+    this.__children = contextAndStubs.__children;
     contextAndStubs.__children?.forEach(({ embed }: { embed: Function }) => {
       embed(result);
+    });
+    Object.values(this.children).forEach((child) => {
+      const stub = result.querySelector(`[data-id="${child.id}"]`);
+      if (stub) stub.replaceWith(child.getContent() as Element);
     });
     return result as Element;
   }
@@ -164,8 +203,16 @@ class Component {
     return document.createElement(tagName);
   }
 
-  show() {}
+  show() {
+    (this.element as HTMLElement).style.display = "";
+  }
 
-  hide() {}
+  hide() {
+    (this.element as HTMLElement).style.display = "none";
+  }
+  unmount() {
+    this._componentWillUnmount();
+    this.element?.replaceWith("");
+  }
 }
 export default Component;

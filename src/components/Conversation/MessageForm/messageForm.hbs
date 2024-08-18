@@ -1,0 +1,21 @@
+<form class="{{styles.main__form}}">
+  <label for="file-upload" class="{{styles.main__fileLabel}}">
+    <div class="{{styles.main__fileIcon}}"></div>
+    <input
+      type="file"
+      id="file-upload"
+      name="file-upload"
+      class="{{styles.main__fileInput}}"
+    />
+  </label>
+  {{{Input
+    className=styles.main__msgInput
+    htmlType="text"
+    placeholder="Type a message..."
+    name="message"
+    onKeyUp=changeHandler
+  }}}
+  <button type="submit" class="{{styles.main__formSubmit}}">
+    <div class="{{styles.main__formIcon}}"></div>
+  </button>
+</form>

@@ -1,11 +1,15 @@
-<div>
+<div class="{{styles.profile__field}}">
   <div class="{{styles.image__wrapper}}">
-    <img src="{{image}}" alt="person" class="{{styles.profile__image}}" />
+    <img
+      src="https://ya-praktikum.tech/api/v2/resources/{{user.avatar}}"
+      alt="person"
+      class="{{styles.profile__image}}"
+    />
   </div>
-  {{{Modal
-    key="image"
+  {{{ImageForm
+    isModalShown=isModalShown
     onClose=modalCloseHandler
     onKeyUp=onKeyUp
-    isModalShown=isModalShown
+    validator=validator
   }}}
 </div>

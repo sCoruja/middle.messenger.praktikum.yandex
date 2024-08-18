@@ -17,7 +17,6 @@ app.use("/*", (req, res) => {
 
 // app.get('*', (req, res) => {
 //  if (req.path.startsWith('/assets')) {
-//     console.log()
 //     res.sendFile(path.join(__dirname, 'dist' + req.path.slice(0, -1)));
 //   } else {
 //     res.sendFile(path.join(__dirname, 'dist/index.html'));

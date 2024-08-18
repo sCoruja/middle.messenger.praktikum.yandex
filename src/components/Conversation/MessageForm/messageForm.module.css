@@ -1,0 +1,76 @@
+.main__form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: var(--bg-color-primary-dark);
+  padding: 18px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  gap: 24px;
+}
+
+.body_theme_light .main__form {
+  background: var(--bg-color-secondary-light);
+}
+
+.main__fileLabel {
+  cursor: pointer;
+  display: flex;
+}
+
+.main__fileIcon {
+  height: 32px;
+  width: 32px;
+  mask-image: url("../../../../static/icons/attach.svg");
+  background-color: var(--color-primary-dark);
+  object-fit: contain;
+  mask-size: 100%;
+}
+
+.main__fileInput {
+  height: 0;
+  width: 0;
+  opacity: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.main__msgInput {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: var(--color-primary-dark);
+}
+
+.body_theme_light .main__msgInput {
+  color: var(--color-primary-light);
+}
+
+.main__msgInput::placeholder {
+  color: var(--color-secondary);
+}
+
+.main__formSubmit {
+  background-color: var(--bg-color-dark);
+  border: transparent;
+  outline: transparent;
+  cursor: pointer;
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.main__formIcon {
+  height: 20px;
+  width: 20px;
+  mask-image: url("../../../../static/icons/send.svg");
+  background-color: var(--color-primary-dark);
+  object-fit: contain;
+  mask-size: 100%;
+}

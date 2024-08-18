@@ -33,7 +33,7 @@ export const signInFormValidators: FormValidators = {
       validate: (value) =>
         regExpValidation(
           value,
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,40}$/gm
+          /^(?=.*\d)(?=.*[!@#$%^&*-_,>?.])?(?=.*[a-z])(?=.*[A-Z]).{8,40}$/
         ),
       errorMessage: "Enter correct value!",
     },

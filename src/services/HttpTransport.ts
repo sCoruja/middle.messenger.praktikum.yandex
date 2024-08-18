@@ -1,7 +1,7 @@
 export type HttpRequestOptions = {
   headers?: HttpRequestHeaders;
   method?: string;
-  data?: { [key: string]: string };
+  data?: { [key: string]: any };
   timeout?: number;
 };
 export type HttpRequestData = {
@@ -62,7 +62,12 @@ export class HttpTransport {
     );
   };
 
-  request = (url: string, options: HttpRequestOptions = {}, timeout = 5000) => {
+  request = (
+    url: string,
+    options: HttpRequestOptions = {},
+    timeout = 5000,
+    withCredentials = true
+  ): Promise<XMLHttpRequest> => {
     const { headers = {}, method, data } = options;
 
     return new Promise(function (resolve, reject) {
@@ -88,10 +93,12 @@ export class HttpTransport {
       xhr.onerror = reject;
 
       xhr.timeout = timeout;
+      xhr.withCredentials = withCredentials;
       xhr.ontimeout = reject;
-
       if (isGet || !data) {
         xhr.send();
+      } else if (data instanceof FormData) {
+        xhr.send(data);
       } else {
         xhr.send(JSON.stringify(data));
       }

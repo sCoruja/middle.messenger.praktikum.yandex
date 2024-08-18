@@ -1,16 +1,33 @@
 import tpl from "./input.hbs";
-import Component, { ComponentProps } from "../../services/Component";
+import Component from "../../services/Component";
+
+interface InputProps {
+  placeholder?: string;
+  tabindex?: string;
+  htmlType?: string;
+  value?: string;
+  name?: string;
+  id?: string;
+  className?: string;
+  onKeyUp?: (e: KeyboardEvent) => void;
+  events?: {
+    blur?: (e: KeyboardEvent) => void;
+  };
+}
 
 export class Input extends Component {
-  constructor(tagName = "input", props: ComponentProps) {
-    super(tagName, {
-      ...props,
-      events: {
-        blur(e: KeyboardEvent) {
-          props.onKeyUp(e);
+  constructor(props: InputProps, tagName = "input") {
+    super(
+      {
+        ...props,
+        events: {
+          blur(e: KeyboardEvent) {
+            props.onKeyUp?.(e);
+          },
         },
       },
-    });
+      tagName
+    );
   }
 
   render() {

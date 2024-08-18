@@ -2,20 +2,36 @@ import tpl from "./signin.hbs";
 import styles from "./signin.module.css";
 import Component from "../../services/Component";
 import { signInFormValidators } from "./validate";
-export class SignInPage extends Component {
-  constructor(tagName = "main") {
-    super(tagName, {
-      styles,
-      login: "",
-      password: "",
-      errors: { login: [], password: [] },
-      hasErrors: false,
-    });
+import { UserController } from "../../controllers/UserController";
+import { withAuth } from "../../hocs/connect";
+import Router from "../../services/Router";
+
+interface SignInPageProps {
+  isAuthorized: boolean;
+  login: string;
+  password: string;
+  errors: { login: string[]; password: string[] };
+  hasErrors: boolean;
+}
+
+class SignInPage extends Component {
+  constructor(props: SignInPageProps, tagName = "main") {
+    super(
+      {
+        ...props,
+        styles,
+        login: "",
+        password: "",
+        errors: { login: [], password: [] },
+        hasErrors: false,
+      },
+      tagName
+    );
   }
   submitHandler(event: SubmitEvent) {
     event.preventDefault();
     event.stopPropagation();
-    const form = event.target as HTMLFormElement;
+
     let hasErrors = false;
     const errors: { [key: string]: string[] } = { login: [], password: [] };
     Object.keys(signInFormValidators).forEach((key) => {
@@ -26,13 +42,18 @@ export class SignInPage extends Component {
         }
       });
     });
+
     if (hasErrors) {
       this.setProps({ ...this.props, errors, hasErrors });
       return;
     } else {
       this.setProps({ ...this.props, errors, hasErrors });
-      const data = new FormData(form);
-      console.log(data);
+
+      const userController = new UserController();
+      userController.signin({
+        login: this.props.login,
+        password: this.props.password,
+      });
     }
   }
   changeHandler(event: InputEvent) {
@@ -48,6 +69,14 @@ export class SignInPage extends Component {
       errors: { ...this.props.errors, [name]: errors },
     });
   }
+  componentDidMount(): void { }
+  componentDidUpdate(): true | undefined {
+    if (this.props.isAuthorized) {
+      const router = new Router("#app");
+      router.go("/messenger");
+    }
+    return true;
+  }
   render() {
     return this.compile(tpl, {
       ...this.props,
@@ -56,3 +85,5 @@ export class SignInPage extends Component {
     });
   }
 }
+
+export default withAuth(SignInPage);

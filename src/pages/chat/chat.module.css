@@ -11,7 +11,7 @@
 }
 
 .body_theme_light .app {
-  background-color: #fff;
+  background-color: var(--bg-color-light);
 }
 
 .chat {
@@ -22,4 +22,15 @@
   box-sizing: border-box;
   width: 100%;
   height: 100%;
+}
+
+.chat__select {
+  color: var(--color-primary-dark);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-color-secondary-dark);
+  border-radius: 20px;
+  width: 100%;
 }
