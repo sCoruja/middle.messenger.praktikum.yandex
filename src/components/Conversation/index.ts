@@ -91,7 +91,6 @@ export class Conversation extends Component {
       );
       this.messagesController.start();
     }
-    console.log(this.__children);
   }
   componentDidUpdate(
     oldProps: ComponentProps,

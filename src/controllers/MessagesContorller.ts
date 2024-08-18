@@ -53,12 +53,12 @@ export class MessagesController {
       });
       Store.set("messenger.currentChat.messages", messages as ChatMessage[]);
     } else {
-      const messages = Store.getState().messenger.currentChat.messages;
-      console.log(data);
-      (messages ?? []).unshift({
+      const messages = Array.from(Store.getState().messenger.currentChat.messages as ChatMessage[]);
+      ((messages) ?? []).unshift({
         ...data,
         isOwned: this.userId === data.user_id,
       } as ChatMessage);
+      // Store.set("messenger.currentChat.messages", []);
       Store.set("messenger.currentChat.messages", messages as ChatMessage[]);
 
     }
