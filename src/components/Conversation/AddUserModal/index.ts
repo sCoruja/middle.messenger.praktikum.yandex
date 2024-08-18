@@ -2,7 +2,7 @@ import tpl from "./addUserModal.hbs";
 import styles from "./addUserModal.module.css";
 import Component from "../../../services/Component";
 import img from "../../../../static/images/person3.png";
-import { UserRequest, UserResponse, UsersRequest } from "../../../services/api/types";
+import { UserResponse, UsersRequest } from "../../../services/api/types";
 import { withSearchResult } from "../../../hocs/connect";
 import { MessengerController } from "../../../controllers/MessengerController";
 
