@@ -52,6 +52,6 @@ export const withChatUsers = connect((state) => ({
 }));
 
 export const withSearchResult = connect((state) => ({
-  chatId: state.messenger.currentChat.chat?.id,
+  // chatId: state.messenger.currentChat.chat?.id,
   searchResult: state.messenger.searchResult,
 }));

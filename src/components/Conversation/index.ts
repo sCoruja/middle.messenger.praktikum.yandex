@@ -65,7 +65,7 @@ export class Conversation extends Component {
         ></div>`,
         }),
         AddUserModal: new AddUserModal({
-          isModalShown: props.isAddUserModalOpened,
+          isModalShown: props.isAddUserModalOpened, chatId: props.chatId
         }),
         ChatUserModal: new ChatUsersModal({
           isModalShown: props.isChatUsersModalOpened,
@@ -144,7 +144,7 @@ export class Conversation extends Component {
       changeHandler: this.changeHandler.bind(this),
       AddUserModal: {
         ...this.props.AddUserModal,
-        isModalShown: this.props.isAddUserModalOpened,
+        isModalShown: this.props.isAddUserModalOpened, chatId: this.props.chatId
       },
       onSubmit: this.onSubmit.bind(this),
     });

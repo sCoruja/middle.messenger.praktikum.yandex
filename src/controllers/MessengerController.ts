@@ -2,6 +2,7 @@ import Router from "../services/Router";
 import Store from "../services/Store";
 import { Chats } from "../services/api/Chats";
 import { Users } from "../services/api/Users";
+import { UsersRequest } from "../services/api/types";
 
 export class MessengerController {
   getChats() {
@@ -25,6 +26,12 @@ export class MessengerController {
         Store.set("messenger.searchResult", JSON.parse(data.response));
       }
     });
+  }
+  addUser(requestData: UsersRequest) {
+    Chats.addUsers(requestData).then((data) => {
+      if (data.status === 200)
+        console.log('ok');
+    })
   }
   createChat(title: string) {
     Chats.create({ title }).then((data) => {

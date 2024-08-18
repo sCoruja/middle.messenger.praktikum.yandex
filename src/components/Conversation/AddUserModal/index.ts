@@ -2,7 +2,7 @@ import tpl from "./addUserModal.hbs";
 import styles from "./addUserModal.module.css";
 import Component from "../../../services/Component";
 import img from "../../../../static/images/person3.png";
-import { UserResponse } from "../../../services/api/types";
+import { UserRequest, UserResponse, UsersRequest } from "../../../services/api/types";
 import { withSearchResult } from "../../../hocs/connect";
 import { MessengerController } from "../../../controllers/MessengerController";
 
@@ -53,10 +53,13 @@ class AddUserModal extends Component {
   }
   addHandler(event: MouseEvent) {
     console.log(this.props.chatId, (event.target as HTMLButtonElement).id);
+    const userId = Number((event.target as HTMLButtonElement).id)
+    const messengerController = new MessengerController();
+    messengerController.addUser({ chatId: this.props.chatId, users: [userId] } as UsersRequest)
   }
   render() {
     return this.compile(tpl, {
-      ...this.props,
+      ...this.props, changeHandler: this.changeHandler.bind(this), submitHandler: this.submitHandler.bind(this), addHandler: this.addHandler.bind(this)
     });
   }
 }
