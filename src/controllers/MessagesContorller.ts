@@ -34,7 +34,7 @@ export class MessagesController {
           }
         );
       }
-    });
+    }).catch(() => console.log('Something went wrong while starting chat'));
   }
   public close() {
     this.webSocket?.close();
