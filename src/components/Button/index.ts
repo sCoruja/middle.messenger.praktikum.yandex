@@ -1,6 +1,5 @@
 import tpl from "./button.hbs";
-import Component, { ComponentProps } from "../../services/Component";
-import { Indexed } from "../../services/Store";
+import Component from "../../services/Component";
 
 interface ButtonProps {
   events?: {

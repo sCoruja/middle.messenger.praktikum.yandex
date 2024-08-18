@@ -1,4 +1,4 @@
-import Component, { ComponentProps } from "../../services/Component";
+import Component from "../../services/Component";
 import styles from "./conversation.module.css";
 import tpl from "./conversation.hbs";
 import attachIcon from "../../../static/images/attach.png";
@@ -92,10 +92,7 @@ export class Conversation extends Component {
       this.messagesController.start();
     }
   }
-  componentDidUpdate(
-    oldProps: ComponentProps,
-    newProps: ComponentProps
-  ): true | undefined {
+  componentDidUpdate(): true | undefined {
     if (!this.props.isAuthorized) return;
     if (this.props.user.id && !this.messagesController) {
       this.messagesController = new MessagesController(

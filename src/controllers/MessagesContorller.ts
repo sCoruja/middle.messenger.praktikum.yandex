@@ -1,4 +1,4 @@
-import Store, { StoreEvents } from "../services/Store";
+import Store from "../services/Store";
 import { WSTransport, WSTransportEvents } from "../services/WSTransport";
 import { Chats } from "../services/api/Chats";
 import { ChatMessage } from "../services/api/types";

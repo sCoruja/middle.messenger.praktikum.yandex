@@ -1,6 +1,6 @@
 import tpl from "./modal.hbs";
 import styles from "./modal.module.css";
-import Component, { ComponentProps } from "../../services/Component";
+import Component from "../../services/Component";
 
 interface ModalProps {
   isModalShown: boolean;

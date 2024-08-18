@@ -3,9 +3,10 @@ import Store from "../services/Store";
 import { Auth } from "../services/api/Auth";
 import { Users } from "../services/api/Users";
 import {
+  ChangePasswordRequest,
   SignInRequest,
   SignUpRequest,
-  SignUpResponse,
+  UserRequest,
 } from "../services/api/types";
 
 export class UserController {
@@ -47,20 +48,20 @@ export class UserController {
       })
       .catch((e) => console.log(e));
   }
-  changeAvatar(formData) {
+  changeAvatar(formData: FormData) {
     Users.changeAvatar(formData).then((data) => {
       if (data.status === 200) {
         Store.set("user.user", JSON.parse(data.response));
       }
     });
   }
-  changePassword(data) {
+  changePassword(data: ChangePasswordRequest) {
     Users.changePassword(data).then((data) => {
       if (data.status === 200) {
       }
     });
   }
-  changeProfile(data) {
+  changeProfile(data: UserRequest) {
     Users.changeProfile(data).then((data) => {
       if (data.status === 200) {
         Store.set("user.user", JSON.parse(data.response));

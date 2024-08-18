@@ -1,6 +1,6 @@
 import tpl from "./signin.hbs";
 import styles from "./signin.module.css";
-import Component, { ComponentProps } from "../../services/Component";
+import Component from "../../services/Component";
 import { signInFormValidators } from "./validate";
 import { UserController } from "../../controllers/UserController";
 import { withAuth } from "../../hocs/connect";
@@ -70,10 +70,7 @@ class SignInPage extends Component {
     });
   }
   componentDidMount(): void { }
-  componentDidUpdate(
-    oldProps: ComponentProps,
-    newProps: ComponentProps
-  ): true | undefined {
+  componentDidUpdate(): true | undefined {
     if (this.props.isAuthorized) {
       const router = new Router("#app");
       router.go("/messenger");

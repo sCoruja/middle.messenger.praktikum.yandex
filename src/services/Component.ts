@@ -1,4 +1,3 @@
-import { isEqual } from "../utils/utils";
 import { EventBus } from "./EventBus";
 import { v4 as makeUUID } from "uuid";
 
@@ -153,7 +152,7 @@ class Component {
     });
     Object.values(this.children).forEach((child) => {
       const stub = result.querySelector(`[data-id="${child.id}"]`);
-      if (stub) stub.replaceWith(child.getContent());
+      if (stub) stub.replaceWith(child.getContent() as Element);
     });
     return result as Element;
   }

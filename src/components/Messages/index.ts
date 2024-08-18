@@ -1,4 +1,4 @@
-import Component, { ComponentProps } from "../../services/Component";
+import Component from "../../services/Component";
 import styles from "./messages.module.css";
 import tpl from "./messages.hbs";
 import { withMessages } from "../../hocs/connect";
@@ -19,9 +19,6 @@ class Messages extends Component {
       },
       tagName
     );
-  }
-  componentDidUpdate(oldProps: ComponentProps, newProps: ComponentProps): true | undefined {
-    return true;
   }
   render() {
     return this.compile(tpl, this.props);

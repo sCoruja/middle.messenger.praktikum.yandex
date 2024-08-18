@@ -1,9 +1,8 @@
 import tpl from "./createChatModal.hbs";
 import styles from "./createChatModal.module.css";
-import Component, { ComponentProps } from "../../../services/Component";
+import Component from "../../../services/Component";
 import img from "../../../../static/images/person3.png";
 import { MessengerController } from "../../../controllers/MessengerController";
-import { Chats } from "../../../services/api/Chats";
 
 interface CreateChatModalProps {
   onClose: () => void;
@@ -38,13 +37,8 @@ export class CreateChatModal extends Component {
       value,
     });
   }
-  componentDidUpdate(
-    oldProps: ComponentProps,
-    newProps: ComponentProps
-  ): true | undefined {
-    return true;
-  }
-  submitHandler(event: SubmitEvent) {
+
+  submitHandler() {
     if (this.props.value) {
       const messengerController = new MessengerController();
       messengerController.createChat(this.props.value);

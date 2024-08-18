@@ -1,6 +1,6 @@
 import tpl from "./addUserModal.hbs";
 import styles from "./addUserModal.module.css";
-import Component, { ComponentProps } from "../../../services/Component";
+import Component from "../../../services/Component";
 import img from "../../../../static/images/person3.png";
 import { UserResponse } from "../../../services/api/types";
 import { withSearchResult } from "../../../hocs/connect";
@@ -44,13 +44,8 @@ class AddUserModal extends Component {
       value,
     });
   }
-  componentDidUpdate(
-    oldProps: ComponentProps,
-    newProps: ComponentProps
-  ): true | undefined {
-    return true;
-  }
-  submitHandler(event: SubmitEvent) {
+
+  submitHandler() {
     if (this.props.value) {
       const messengerController = new MessengerController();
       messengerController.findUser(this.props.value);

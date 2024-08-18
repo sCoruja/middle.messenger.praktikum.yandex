@@ -1,4 +1,4 @@
-import Component, { ComponentProps } from "../../services/Component";
+import Component from "../../services/Component";
 import tpl from "./form.hbs";
 
 interface FormProps {

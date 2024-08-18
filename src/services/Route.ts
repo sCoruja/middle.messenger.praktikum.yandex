@@ -6,7 +6,7 @@ type RouteProps = {
 };
 
 class Route {
-  private _pathname: string | RegExp;
+  _pathname: string | RegExp;
   private _blockClass: typeof Component;
   private _block: Component | null;
   private _props: RouteProps;

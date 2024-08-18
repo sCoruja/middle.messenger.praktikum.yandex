@@ -41,7 +41,7 @@ export class SettingsForm extends Component {
       value,
     });
   }
-  submitHandler(event: SubmitEvent) {
+  submitHandler() {
     const userController = new UserController();
     userController.changeProfile({ [this.props.name]: this.props.value });
   }

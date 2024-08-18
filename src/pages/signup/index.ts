@@ -3,7 +3,6 @@ import styles from "../signin/signin.module.css";
 import Component from "../../services/Component";
 import { signUpFormValidators } from "./validate";
 import { UserController } from "../../controllers/UserController";
-import { Auth } from "../../services/api/Auth";
 
 interface SignUpPageProps {
   first_name: string;
@@ -26,7 +25,7 @@ interface SignUpPageProps {
 }
 
 export class SignUpPage extends Component {
-  constructor(props = {}, tagName = "main") {
+  constructor(props: SignUpPageProps, tagName = "main") {
     super(
       {
         ...props,

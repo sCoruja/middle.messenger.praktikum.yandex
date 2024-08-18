@@ -1,4 +1,4 @@
-import Component, { ComponentProps } from "../../services/Component";
+import Component from "../../services/Component";
 import tpl from "./inputWithValidation.hbs";
 
 interface InputWithValidationProps {
@@ -13,6 +13,9 @@ interface InputWithValidationProps {
 }
 
 export class InputWithValidation extends Component {
+  constructor(props: InputWithValidationProps) {
+    super(props)
+  }
   blurHandler(e: InputEvent) {
     this.props.onKeyUp(e);
   }

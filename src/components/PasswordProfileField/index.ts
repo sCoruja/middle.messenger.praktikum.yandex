@@ -1,7 +1,6 @@
-import Component, { ComponentProps } from "../../services/Component";
+import Component from "../../services/Component";
 import styles from "./passwordProfileField.module.css";
 import tpl from "./passwordProfileField.hbs";
-import { SettingsForm } from "../SettingsForm";
 
 interface PasswordProfileFieldProps {
   isModalShown: boolean;
@@ -14,7 +13,7 @@ interface PasswordProfileFieldProps {
 }
 
 export class PasswordProfileField extends Component {
-  constructor(props: ComponentProps) {
+  constructor(props: PasswordProfileFieldProps) {
     super({
       ...props,
       styles,

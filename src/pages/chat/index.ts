@@ -1,4 +1,4 @@
-import Component, { ComponentProps } from "../../services/Component";
+import Component from "../../services/Component";
 import styles from "./chat.module.css";
 import tpl from "./chat.hbs";
 import { MessengerController } from "../../controllers/MessengerController";

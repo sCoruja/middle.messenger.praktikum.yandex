@@ -1,6 +1,6 @@
 import tpl from "./imageForm.hbs";
 import styles from "./imageForm.module.css";
-import Component, { ComponentProps } from "../../services/Component";
+import Component from "../../services/Component";
 import { UserController } from "../../controllers/UserController";
 
 interface ImageFormProps {
@@ -14,7 +14,6 @@ interface ImageFormProps {
 }
 
 export class ImageForm extends Component {
-  props: ImageFormProps;
   constructor(props: ImageFormProps) {
     super({
       ...props,

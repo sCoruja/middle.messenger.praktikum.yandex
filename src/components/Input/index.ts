@@ -1,5 +1,5 @@
 import tpl from "./input.hbs";
-import Component, { ComponentProps } from "../../services/Component";
+import Component from "../../services/Component";
 
 interface InputProps {
   placeholder?: string;

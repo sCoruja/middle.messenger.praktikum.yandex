@@ -2,11 +2,11 @@ import Component from "./Component";
 import Route from "./Route";
 
 class Router {
-  routes: Route[];
-  __instance: Router;
+  routes: Route[] = [];
   history?: History;
   private _currentRoute?: Route | null;
-  private _rootQuery?: string;
+  private _rootQuery: string = '';
+  static __instance: Router;
   constructor(rootQuery: string) {
     if (Router.__instance) {
       return Router.__instance;
@@ -40,7 +40,7 @@ class Router {
       this._currentRoute.leave();
     }
     this._currentRoute = route;
-    route.render(pathname);
+    route?.render(pathname as string);
   }
 
   public go(pathname: string) {
@@ -50,12 +50,12 @@ class Router {
 
   back() {
     this.history?.back();
-    this._onRoute(this._currentRoute?._pathname);
+    this._onRoute(this._currentRoute?._pathname as string);
   }
 
   forward() {
-    this.history.forward();
-    this._onRoute(this._currentRoute._pathname);
+    this.history?.forward();
+    this._onRoute(this._currentRoute?._pathname as string);
   }
 
   getRoute(pathname: string) {
