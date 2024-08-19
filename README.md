@@ -5,19 +5,20 @@
 [Демо проекта](https://scoruja-middle-messenger.netlify.app/)
 [Макет](https://www.figma.com/file/T2omafwn4rluU1P8VgLr7e/middle.messenger.yandex.praktikum?type=design&node-id=0-1&mode=design&t=ah4xWqUcbjeVN678-0)
 
-## Ссылки на свёрсианные страницы
+## Ссылки на свёрстанные страницы
 
-[Главная](https://scoruja-middle-messenger.netlify.app/)
-[Вход](https://scoruja-middle-messenger.netlify.app/signin)
+[Главная / Вход](https://scoruja-middle-messenger.netlify.app/)
 [Регистрация](https://scoruja-middle-messenger.netlify.app/signup)
 [Ошибка (404/5\*\*)](https://scoruja-middle-messenger.netlify.app/dfdrsfdf)
-[Список чатов](https://scoruja-middle-messenger.netlify.app/chat)
-[Настройки профиля](https://scoruja-middle-messenger.netlify.app/profile)
+[Список чатов](https://scoruja-middle-messenger.netlify.app/messenger)
+[Настройки профиля](https://scoruja-middle-messenger.netlify.app/settings)
 
 ## Что использовалось
 
 - HTML/CSS
+- CSS-Modules
 - Javascript
+- Typescript
 - Vite
 - Handlebars
 

@@ -1,17 +1,23 @@
 <li class="{{styles.chats__item}}">
-  <img
-    src="{{image}}"
-    alt="{{username}}'s avatar"
-    class="{{styles.chats__img}}"
-  />
+  <div class="{{styles.chats__img-wrapper}}">
+    {{#if chat.avatar}}
+      <img
+        src="https://ya-praktikum.tech/api/v2/resources/{{chat.avatar}}"
+        alt="{{chat.title}}'s avatar"
+        class="{{styles.chats__img}}"
+      />
+    {{/if}}
+  </div>
   <div class="{{styles.chats__message}}">
-    <h4 class="{{styles.chats__name}}">{{username}}</h4>
-    <p class="{{styles.chats__text}}">{{lastMessage}}</p>
+    <h4 class="{{styles.chats__name}}">{{chat.title}}</h4>
+    {{#if chat.last_message.content}}
+      <p class="{{styles.chats__text}}">{{chat.last_message.content}}</p>
+    {{/if}}
   </div>
   <div class="{{styles.chats__msgInfo}}">
-    <span class="{{styles.chats__msgTime}}">{{date}}</span>
-    {{#if newMessages}}
-      <span class="{{styles.chats__msgCount}}">{{newMessages}}</span>
+    {{#if chat.unread_count}}
+      <span class="{{styles.chats__msgCount}}">{{chat.unread_count}}</span>
     {{/if}}
+    <span class="{{styles.chats__msgTime}}">{{date}}</span>
   </div>
 </li>

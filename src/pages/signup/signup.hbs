@@ -2,17 +2,23 @@
   <header class="{{styles.header}}">
     <h1 class="{{styles.logo}} {{styles.header__logo}}">Messenger</h1>
     <div class="{{styles.header__links}}">
-      <a
-        href="./signin.html"
-        class="{{styles.header__link}} {{styles.header__link_active}}"
-      >Sign In</a>
-      <a href="./signup.html" class="{{styles.header__link}}">Sign Up</a>
+      {{#Link to="/" className=styles.header__link}}
+        Sign In
+      {{/Link}}
+      {{#Link
+        to="/signup"
+        className=(concat styles.header__link styles.header__link_active)
+      }}
+        Sign Up
+      {{/Link}}
     </div>
   </header>
   <aside class="{{styles.aside}} {{styles.signin__aside}}">
     <h1 class="{{styles.logo}} {{styles.aside__logo}}">Messenger</h1>
     <p class="{{styles.aside__text}}">Let's start!</p>
-    <a href="./signin.html" class="{{styles.aside__link}}">Sign In</a>
+    {{#Link to="/" className=styles.aside__link}}
+      Sign In
+    {{/Link}}
   </aside>
   {{#Form
     onSubmit=submitHandler className=(concat styles.form styles.signin__form)
@@ -29,6 +35,7 @@
           htmlType="text"
           name="first_name"
           placeholder="John"
+          tabindex=0
         }}}
         <ul class="{{styles.form__inputErrors}}">
           {{#each errors.first_name}}
@@ -45,6 +52,7 @@
           htmlType="text"
           name="second_name"
           placeholder="Smith"
+          tabindex="1"
         }}}
         <ul class="{{styles.form__inputErrors}}">
           {{#each errors.second_name}}
@@ -61,6 +69,7 @@
           htmlType="text"
           name="login"
           placeholder="jsmth23"
+          tabindex="2"
         }}}
         <ul class="{{styles.form__inputErrors}}">
           {{#each errors.login}}
@@ -77,6 +86,7 @@
           htmlType="text"
           name="email"
           placeholder="jsmth24@ya.ru"
+          tabindex="3"
         }}}
         <ul class="{{styles.form__inputErrors}}">
           {{#each errors.email}}
@@ -93,6 +103,7 @@
           htmlType="text"
           name="phone"
           placeholder="+7 000 000 00 00"
+          tabindex="4"
         }}}
         <ul class="{{styles.form__inputErrors}}">
           {{#each errors.phone}}
@@ -109,6 +120,7 @@
           htmlType="password"
           name="password"
           placeholder="Enter your password"
+          tabindex="5"
         }}}
         <ul class="{{styles.form__inputErrors}}">
           {{#each errors.password}}
@@ -125,6 +137,7 @@
           htmlType="password"
           name="confirm_password"
           placeholder="Confirm your password"
+          tabindex="6"
         }}}
         <ul class="{{styles.form__inputErrors}}">
           {{#each errors.confirm_password}}

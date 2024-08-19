@@ -5,7 +5,7 @@ import Component from "../services/Component";
 export function registerComponent(
   name: string,
   Block: typeof Component,
-  tagName: string
+  tagName: string = "div"
 ) {
   if (name in Handlebars.helpers) {
     throw `The ${name} component is already registered!`;
@@ -14,7 +14,7 @@ export function registerComponent(
   Handlebars.registerHelper(
     name,
     function (this: unknown, { hash, data, fn }: HelperOptions) {
-      const component = new Block(tagName, hash);
+      const component = new Block(hash, tagName);
       const dataAttribute = `data-id="${component.id}"`;
       (data.root.__children = data.root.__children || []).push({
         component,

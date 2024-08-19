@@ -1,14 +1,11 @@
-<li class="{{liClassName}}">
+<li class="{{className}}">
   <img src="{{image}}" alt="avatar" class="{{styles.message__img}}" />
   <div class="{{styles.message__message}}">
     <p class="{{styles.message__text}}">
-      {{text}}
+      {{message.content}}
     </p>
     <div class="{{styles.message__info}}">
-      <span class="{{styles.message__time}}">{{date}}</span>
-      {{#if isOwned}}
-        <img src="{{statusImage}}" alt="" class="{{styles.message__status}}" />
-      {{/if}}
+      <span class="{{styles.message__time}}">{{time}}</span>
     </div>
   </div>
 </li>

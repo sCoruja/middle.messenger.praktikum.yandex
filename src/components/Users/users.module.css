@@ -12,45 +12,26 @@
   margin-bottom: 35px;
 }
 
-.user__image {
-  width: 99px;
-  height: 99px;
-  object-fit: cover;
-  float: left;
-  border-radius: 50%;
-  margin-right: 14px;
-}
-
-.user__name {
-  color: var(--color-primary-dark);
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  margin: 0;
-  margin-bottom: 8px;
-}
-
-.body_theme_light .user__name {
-  color: var(--color-primary-light);
-}
-
-.user__bio {
-  color: var(--color-secondary);
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin: 0;
-  margin-bottom: 8px;
-}
-
-.user__panel {
+.search {
   display: flex;
+  justify-content: space-between;
   gap: 8px;
 }
 
-.user__button {
+.search__btnIcon_plus {
+  mask-image: url("../../../static/icons/plus.svg");
+}
+
+.search__btnIcon {
+  height: 20px;
+  width: 20px;
+  margin: auto;
+  object-fit: contain;
+  mask-size: 100%;
+  background-color: var(--color-primary-dark);
+}
+
+.search__button {
   background-color: var(--bg-color-secondary-dark);
   border: none;
   border-radius: 50%;
@@ -61,36 +42,6 @@
   transition: 0.3s ease;
 }
 
-.body_theme_light .user__button {
-  background-color: var(--bg-color-primary-light);
-}
-
-.user__button:hover {
-  opacity: 0.7;
-}
-
-.user__btnIcon {
-  height: 20px;
-  width: 20px;
-  margin: auto;
-  object-fit: contain;
-  mask-size: 100%;
-  background-color: var(--color-primary-dark);
-}
-
-.user__btnIcon_edit {
-  mask-image: url("../../../static/icons/edit.svg");
-}
-
-.user__btnIcon_light-mode {
-  mask-image: url("../../../static/icons/light-mode.svg");
-}
-
-.user__btnIcon_leave {
-  mask-image: url("../../../static/icons/leave.svg");
-  background-color: var(--bg-color-danger);
-}
-
 .search__label {
   background: var(--bg-color-secondary-dark);
   height: 32px;
@@ -99,6 +50,7 @@
   display: block;
   padding: 6px 12px;
   box-sizing: border-box;
+  width: 100%;
 }
 
 .body_theme_light .search__label {
@@ -136,6 +88,10 @@
   background-color: var(--color-primary-dark);
 }
 
+.chats {
+  width: 320px;
+}
+
 .chats__list {
   list-style: none;
   padding: 0;
@@ -145,6 +101,9 @@
   max-height: 65vh;
   padding-right: 16px;
   overflow-y: scroll;
+  width: 100%;
+  max-width: 320px;
+  flex-shrink: 0;
 }
 
 @media screen and (width < 720px) {
@@ -163,6 +122,10 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+  }
+
+  .chats {
+    width: 100%;
   }
 
   .chats__list {

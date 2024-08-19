@@ -3,17 +3,23 @@
     <header class="{{styles.header}}">
       <h1 class="{{styles.logo}} {{styles.header__logo}}">Messenger</h1>
       <div class="{{styles.header__links}}">
-        <a
-          href="./signin.html"
-          class="{{styles.header__link}} {{styles.header__link_active}}"
-        >Sign In</a>
-        <a href="./signup.html" class="{{styles.header__link}}">Sign Up</a>
+        {{#Link
+          to="/"
+          className=(concat styles.header__link styles.header__link_active)
+        }}
+          Sign In
+        {{/Link}}
+        {{#Link to="/signup" className=styles.header__link}}
+          Sign Up
+        {{/Link}}
       </div>
     </header>
     <aside class="{{styles.aside}} {{styles.signin__aside}}">
       <h1 class="{{styles.logo}} {{styles.aside__logo}}">Messenger</h1>
       <p class="{{styles.aside__text}}">Let's start!</p>
-      <a href="./signup.html" class="{{styles.aside__link}}">Sign Up</a>
+      {{#Link to="/signup" className=styles.aside__link}}
+        Sign Up
+      {{/Link}}
     </aside>
     {{#Form
       onSubmit=submitHandler className=(concat styles.signin__form styles.form)

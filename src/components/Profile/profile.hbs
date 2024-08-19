@@ -2,14 +2,14 @@
   <h2 class="{{styles.main__title}}">Profile</h2>
   <div class="{{styles.main__profile}} {{styles.profile}}">
     <div class="{{styles.profile__fields}}">
-      {{{ImageProfileField image=image}}}
+      {{{ImageProfileField image=user.avatar}}}
       {{#each fields}}
-        {{{ProfileField data=this validator=validator}}}
+        {{{ProfileField data=this validator=validator user=../user}}}
       {{/each}}
     </div>
     {{{PasswordProfileField validator=passwordValidator}}}
     <a
-      href="/signin"
+      href="/"
       class="{{styles.profile__link}} {{styles.profile__link_color_danger}}"
     >Logout</a>
   </div>

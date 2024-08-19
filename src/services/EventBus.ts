@@ -3,7 +3,7 @@ export type EventBusListeners = {
 };
 
 export class EventBus {
-  private listeners: EventBusListeners;
+  protected listeners: EventBusListeners;
   constructor() {
     this.listeners = {};
   }
