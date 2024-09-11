@@ -21,6 +21,7 @@
 - Typescript
 - Vite
 - Handlebars
+- Пакеты для тестирования Mocha, Chai
 
 ## Установка
 
@@ -33,4 +34,10 @@ $ npm run start / yarn start
 
 # запуск сервера в режиме разработки
 $ npm run dev / yarn dev
+
+# запуск линтера
+$ npm run lint / yarn lint
+
+# запуск тестов
+$ npm run test / yarn test
 ```

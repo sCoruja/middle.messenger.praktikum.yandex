@@ -1,9 +1,13 @@
 .body_theme_dark {
-  background: var(/* var(aaaa) */ --bg-color-primary-dark);
+  background: var(
+      /* var(aaaa) */
+      --bg-color-primary-dark);
 }
 
 .body_theme_light {
-  background: var(/* var(aaaa) */ --bg-color-light);
+  background: var(
+      /* var(aaaa) */
+      --bg-color-light);
 }
 
 .list {
