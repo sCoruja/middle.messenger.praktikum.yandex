@@ -7,6 +7,7 @@
     "dev": "vite --port 3000",
     "start": "vite build && node src/server.js",
     "build": "vite build",
+    "lint": "stylelint ./src/**/*.css && eslint .",
     "test": "mocha --config=./.mocharc.json -n import=./mochaloader.js ./src/**/*.spec.ts"
   },
   "devDependencies": {
@@ -46,7 +47,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm-run-all test lint:all"
+      "pre-commit": "npm-run-all test lint"
     }
   }
 }
