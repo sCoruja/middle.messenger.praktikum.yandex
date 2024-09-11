@@ -1,4 +1,1 @@
-#!/usr/bin/env sh
-. "$(dirname "$0")/_/h"
-npm run test 
-npm run lint
+npx npm-run-all test lint 
