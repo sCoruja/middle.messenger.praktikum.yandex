@@ -8,7 +8,13 @@
     "start": "vite build && node src/server.js",
     "build": "vite build",
     "lint": "stylelint ./src/**/*.css && eslint ./src/**/*.ts",
-    "test": "mocha --config=./.mocharc.json -n import=./mochaloader.js ./src/**/*.spec.ts"
+    "test": "mocha --config=./.mocharc.json -n import=./mochaloader.js ./src/**/*.spec.ts",
+    "prepare": "husky"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm-run-all test lint"
+    }
   },
   "devDependencies": {
     "@types/chai": "^4.3.17",
@@ -44,10 +50,5 @@
     "handlebars": "^4.7.7",
     "path": "^0.12.7",
     "uuid": "^9.0.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm-run-all test lint"
-    }
   }
 }
