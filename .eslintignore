@@ -1,4 +1,2 @@
 /dist
-/node_modules 
-/mochaSetup.js
-/mochaloader.js
+/node_modules
