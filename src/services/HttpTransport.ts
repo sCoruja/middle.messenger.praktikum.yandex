@@ -32,7 +32,7 @@ export function queryStringify(data: HttpRequestData): string {
 export class HttpTransport {
   get = (url: string, options: HttpRequestOptions = {}) => {
     return this.request(
-      `${url}${queryStringify(options.data as HttpRequestData)}`,
+      `${url}${options.data ? queryStringify(options.data as HttpRequestData) : ""}`,
       { ...options, method: METHODS.GET },
       options.timeout
     );
