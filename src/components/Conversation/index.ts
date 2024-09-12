@@ -65,10 +65,16 @@ export class Conversation extends Component {
         ></div>`,
         }),
         AddUserModal: new AddUserModal({
-          isModalShown: props.isAddUserModalOpened, chatId: props.chatId
+          isModalShown: props.isAddUserModalOpened, chatId: props.chatId,
+          onClose: () => {
+            this.addUserModalToggle();
+          }
         }),
         ChatUserModal: new ChatUsersModal({
-          isModalShown: props.isChatUsersModalOpened,
+          isModalShown: props.isChatUsersModalOpened, chatId: props.chatId,
+          onClose: () => {
+            this.chatUsersModalToggle();
+          }
         }),
         Messages: new Messages({}),
         MessageForm: new MessageForm({

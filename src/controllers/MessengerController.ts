@@ -33,6 +33,12 @@ export class MessengerController {
         console.log('ok');
     }).catch(() => { console.log('Something went wrong when adding the user to chat') });
   }
+  deleteUser(requestData: UsersRequest) {
+    Chats.deleteUsers(requestData).then((data) => {
+      if (data.status === 200)
+        console.log('ok');
+    }).catch(() => { console.log('Something went wrong when adding the user to chat') });
+  }
   createChat(title: string) {
     Chats.create({ title }).then((data) => {
       if (data.status === 200) {
