@@ -12,6 +12,8 @@ import AddUserModal from "./AddUserModal";
 import ChatUsersModal from "./ChatUsersModal";
 import Messages from "../Messages";
 import { MessageForm } from "./MessageForm";
+import DeleteChatModal from "./DeleteChatModal";
+import UpdateAvatarModal from "./UpdateAvatarModal";
 
 interface ConversationProps {
   tagName: string;
@@ -20,6 +22,8 @@ interface ConversationProps {
   isAuthorized: boolean;
   isAddUserModalOpened: boolean;
   isChatUsersModalOpened: boolean;
+  isDeleteChatModalOpened: boolean;
+  isUpdateAvatarModalOpened: boolean;
   message: string;
 }
 
@@ -32,9 +36,10 @@ export class Conversation extends Component {
         ...props,
         styles,
         isAddUserModalOpened: false,
+        isDeleteChatModalOpened: false,
         isChatUsersModalOpened: false,
+        isUpdateAvatarModalOpened: false,
         message: "",
-        title: "",
 
         AddUserModalButton: new Button({
           htmlType: "button",
@@ -64,11 +69,43 @@ export class Conversation extends Component {
           class="${styles["main__chat-icon"]} ${styles["main__chat-icon_users"]}"
         ></div>`,
         }),
+        DeleteChatButton: new Button({
+          htmlType: "button",
+          className: styles["main__chat-button"],
+          onClick: () => {
+            this.deleteChatModalToggle();
+            this.setProps({
+              ...this.props,
+              isDeleteChatModalOpened: !this.props.isDeleteChatModalOpened,
+            });
+          },
+          text: ` <div
+          class="${styles["main__chat-icon"]} ${styles["main__chat-icon_delete"]}"
+        ></div>`,
+        }),
         AddUserModal: new AddUserModal({
-          isModalShown: props.isAddUserModalOpened, chatId: props.chatId
+          isModalShown: props.isAddUserModalOpened, chatId: props.chatId,
+          onClose: () => {
+            this.addUserModalToggle();
+          }
+        }),
+        DeleteChatModal: new DeleteChatModal({
+          isModalShown: props.isDeleteChatModalOpened, chatId: props.chatId,
+          onClose: () => {
+            this.deleteChatModalToggle();
+          }
         }),
         ChatUserModal: new ChatUsersModal({
-          isModalShown: props.isChatUsersModalOpened,
+          isModalShown: props.isChatUsersModalOpened, chatId: props.chatId,
+          onClose: () => {
+            this.chatUsersModalToggle();
+          }
+        }),
+        UpdateAvatarModal: new UpdateAvatarModal({
+          isModalShown: props.isUpdateAvatarModalOpened, chatId: props.chatId,
+          onClose: () => {
+            this.udpateAvatarModalToggle();
+          }
         }),
         Messages: new Messages({}),
         MessageForm: new MessageForm({
@@ -111,10 +148,22 @@ export class Conversation extends Component {
       isModalShown: !this.children.AddUserModal.props.isModalShown,
     });
   }
+  deleteChatModalToggle() {
+    this.children.DeleteChatModal.setProps({
+      ...this.children.DeleteChatModal.props,
+      isModalShown: !this.children.DeleteChatModal.props.isModalShown,
+    });
+  }
   chatUsersModalToggle() {
     this.children.ChatUserModal.setProps({
       ...this.children.ChatUserModal.props,
       isModalShown: !this.children.ChatUserModal.props.isModalShown,
+    });
+  }
+  udpateAvatarModalToggle() {
+    this.children.UpdateAvatarModal.setProps({
+      ...this.children.UpdateAvatarModal.props,
+      isModalShown: !this.children.UpdateAvatarModal.props.isModalShown,
     });
   }
   changeHandler(event: InputEvent) {
@@ -142,6 +191,7 @@ export class Conversation extends Component {
       addUserModalToggle: this.addUserModalToggle.bind(this),
       chatUsersModalToggle: this.chatUsersModalToggle.bind(this),
       changeHandler: this.changeHandler.bind(this),
+      udpateAvatarModalToggle: this.udpateAvatarModalToggle.bind(this),
       AddUserModal: {
         ...this.props.AddUserModal,
         isModalShown: this.props.isAddUserModalOpened, chatId: this.props.chatId

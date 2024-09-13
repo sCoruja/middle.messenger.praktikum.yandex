@@ -11,6 +11,8 @@ export type HttpRequestHeaders = {
   [key: string]: string;
 };
 
+type HTTPMethod<R = unknown> = (url: string, options?: HttpRequestOptions) => Promise<R>
+
 enum METHODS {
   GET = "GET",
   POST = "POST",
@@ -30,7 +32,7 @@ export function queryStringify(data: HttpRequestData): string {
 }
 
 export class HttpTransport {
-  get = (url: string, options: HttpRequestOptions = {}) => {
+  get: HTTPMethod<XMLHttpRequest> = (url, options = {}) => {
     return this.request(
       `${url}${options.data ? queryStringify(options.data as HttpRequestData) : ""}`,
       { ...options, method: METHODS.GET },
@@ -38,7 +40,7 @@ export class HttpTransport {
     );
   };
 
-  post = (url: string, options: HttpRequestOptions = {}) => {
+  post: HTTPMethod<XMLHttpRequest> = (url, options = {}) => {
     return this.request(
       url,
       { ...options, method: METHODS.POST },
@@ -46,7 +48,7 @@ export class HttpTransport {
     );
   };
 
-  put = (url: string, options: HttpRequestOptions = {}) => {
+  put: HTTPMethod<XMLHttpRequest> = (url, options = {}) => {
     return this.request(
       url,
       { ...options, method: METHODS.PUT },
@@ -54,7 +56,7 @@ export class HttpTransport {
     );
   };
 
-  delete = (url: string, options: HttpRequestOptions = {}) => {
+  delete: HTTPMethod<XMLHttpRequest> = (url, options = {}) => {
     return this.request(
       url,
       { ...options, method: METHODS.DELETE },
