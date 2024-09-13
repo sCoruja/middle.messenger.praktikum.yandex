@@ -31,6 +31,8 @@ export function connect(mapStateToProps: (state: AppStore) => Indexed) {
 export const withUser = connect((state) => ({
   user: state.user.user,
   isAuthorized: state.user.isAuthorized,
+  title: state.messenger.currentChat.chat?.title,
+  avatar: state.messenger.currentChat.chat?.avatar
   // messages: state.messenger.currentChat.messages,
 }));
 

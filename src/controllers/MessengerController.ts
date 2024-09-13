@@ -2,7 +2,7 @@ import Router from "../services/Router";
 import Store from "../services/Store";
 import { Chats } from "../services/api/Chats";
 import { Users } from "../services/api/Users";
-import { UsersRequest } from "../services/api/types";
+import { SetChatAvatarRequest, UsersRequest } from "../services/api/types";
 
 export class MessengerController {
   getChats() {
@@ -45,5 +45,19 @@ export class MessengerController {
         new Router("#app").go(`/messenger/${JSON.parse(data.response).id}`);
       }
     }).catch(() => { console.log('Something went wrong when creating a chat') });
+  }
+  deleteChat(chatId: number) {
+    Chats.delete({ chatId }).then((data) => {
+      if (data.status === 200) {
+        new Router('#app').go('/messenger')
+      }
+    }).catch(() => { console.log('Something went wrong when deleting a chat') });
+  }
+  updateAvatar(requestData: FormData, chatId: number) {
+    Chats.setAvatar(requestData).then((data) => {
+      if (data.status === 200) {
+        new Router('#app').go(`/messenger/${chatId}`)
+      }
+    }).catch(() => { console.log('Something went wrong when changing user avatar'); });
   }
 }

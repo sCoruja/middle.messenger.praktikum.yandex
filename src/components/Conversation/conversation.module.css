@@ -49,6 +49,20 @@
   background-color: var(--color-primary-dark);
 }
 
+.main__chat-icon_delete {
+  mask-image: url("../../../static/icons/delete.svg");
+  mask-size: 100%;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  background-color: var(--bg-color-danger);
+}
+
+.main__chat-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .main__title {
   font-size: 24px;
   line-height: 40px;
@@ -267,6 +281,33 @@
   background-color: var(--color-primary-dark);
   object-fit: contain;
   mask-size: 100%;
+}
+
+.main__avatar-button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  float: left;
+  display: inline;
+}
+
+.main__image {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  float: left;
+  border-radius: 50%;
+}
+
+.main__image-wrapper {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 14px;
+  float: left;
+  background-image: url("../../../static/images/default-avatar.png");
+  background-size: contain;
+  background-position: center;
 }
 
 @media screen and (width < 720px) {

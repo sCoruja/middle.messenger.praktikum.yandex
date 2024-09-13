@@ -1,41 +1,34 @@
 <main class="{{styles.main}}">
 
-  <div class="{{styles.main__chat-panel}}">
-    <h2 class="{{styles.main__title}}">
-      {{! TODO }}
-      {{{title}}}
-    </h2>
+  <div class="{{styles.main__chat-info}}">
+    <div class="{{styles.main__chat-panel}}">
+
+      <div class="{{styles.main__chat-info}}">
+        {{#Button className=styles.main__avatar-button onClick=udpateAvatarModalToggle}}
+        <div class="{{styles.main__image-wrapper}}">
+          {{#if avatar}}
+          <img src="https://ya-praktikum.tech/api/v2/resources/{{avatar}}" class="{{styles.main__image}}" />
+          {{/if}}
+        </div>
+      </div>
+      {{/Button}}
+      <h2 class="{{styles.main__title}}">
+        {{{title}}}
+      </h2>
+    </div>
     <div class="{{styles.main__chat-buttons}}">
+      {{{DeleteChatButton}}}
       {{{AddUserModalButton}}}
       {{{ChatUsersModalButton}}}
       {{{AddUserModal}}}
       {{{ChatUserModal}}}
+      {{{DeleteChatModal}}}
+      {{{UpdateAvatarModal}}}
 
     </div>
   </div>
   <div class="{{styles.main__conversation}}">
     {{{Messages}}}
-    {{!-- {{#Form className=styles.main__form onSubmit=onSubmit}}
-      <label for="file-upload" class="{{styles.main__fileLabel}}">
-        <div class="{{styles.main__fileIcon}}"></div>
-        <input
-          type="file"
-          id="file-upload"
-          name="file-upload"
-          class="{{styles.main__fileInput}}"
-        />
-      </label>
-      {{{Input
-        className=styles.main__msgInput
-        htmlType="text"
-        placeholder="Type a message..."
-        name="message"
-        onKeyUp=changeHandler
-      }}}
-      <button type="submit" class="{{styles.main__formSubmit}}">
-        <div class="{{styles.main__formIcon}}"></div>
-      </button>
-    {{/Form}} --}}
     {{{MessageForm}}}
   </div>
 
