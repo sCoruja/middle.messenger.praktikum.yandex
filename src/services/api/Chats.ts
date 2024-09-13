@@ -6,7 +6,6 @@ import {
   DeleteChatRequest,
   GetChatRequest,
   GetChatUsersRequest,
-  SetChatAvatarRequest,
   UsersRequest,
 } from "./types";
 

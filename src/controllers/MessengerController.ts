@@ -2,7 +2,7 @@ import Router from "../services/Router";
 import Store from "../services/Store";
 import { Chats } from "../services/api/Chats";
 import { Users } from "../services/api/Users";
-import { SetChatAvatarRequest, UsersRequest } from "../services/api/types";
+import { UsersRequest } from "../services/api/types";
 
 export class MessengerController {
   getChats() {
