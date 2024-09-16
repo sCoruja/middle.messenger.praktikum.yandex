@@ -6,7 +6,6 @@ import {
   DeleteChatRequest,
   GetChatRequest,
   GetChatUsersRequest,
-  SetChatAvatarRequest,
   UsersRequest,
 } from "./types";
 
@@ -33,8 +32,8 @@ export const Chats = {
   getNewMessagesCount(id: number) {
     return http.get(url(`/new/${id}`), { headers });
   },
-  setAvatar(data: SetChatAvatarRequest) {
-    return http.put(url("/avatar"), { data, headers });
+  setAvatar(data: FormData) {
+    return http.put(url("/avatar"), { data });
   },
   addUsers(data: UsersRequest) {
     return http.put(url("/users"), { data, headers });

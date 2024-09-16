@@ -3,6 +3,8 @@ import styles from "./chatUsersModal.module.css";
 import Component from "../../../services/Component";
 import img from "../../../../static/images/person3.png";
 import { withChatUsers } from "../../../hocs/connect";
+import { MessengerController } from "../../../controllers/MessengerController";
+import { UsersRequest } from "../../../services/api/types";
 
 interface ChatUsersModalProps {
   onClose: () => void;
@@ -43,12 +45,20 @@ class ChatUsersModal extends Component {
   submitHandler(event: SubmitEvent) {
     console.log(new FormData(event.target as HTMLFormElement));
   }
+  deleteHandler(event: MouseEvent) {
+    console.log(this.props.chatId, (event.target as HTMLButtonElement).id);
+    const userId = Number((event.target as HTMLButtonElement).id)
+    const messengerController = new MessengerController();
+    messengerController.deleteUser({ chatId: this.props.chatId, users: [userId] } as UsersRequest)
+    this.props.onClose();
+  }
 
   render() {
     return this.compile(tpl, {
       ...this.props,
       changeHandler: this.changeHandler.bind(this),
       submitHandler: this.submitHandler.bind(this),
+      deleteHandler: this.deleteHandler.bind(this)
     });
   }
 }

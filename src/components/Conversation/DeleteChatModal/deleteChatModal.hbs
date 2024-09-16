@@ -1,0 +1,16 @@
+{{#if isModalShown}}
+<div class="{{styles.overlay}}">
+  <div class="{{styles.modal}}">
+    {{#Button className=styles.modal__close onClick=onClose}}
+    <div class="{{styles.modal__close-icon}}"></div>
+    {{/Button}}
+    <p class="{{styles.modal__text}}">Are you sure?</p>
+    {{#Button type="submit" className=styles.modal__button onClick=clickHandler}}
+    Yes
+    {{/Button}}
+
+  </div>
+</div>
+{{else}}
+<template></template>
+{{/if}}
